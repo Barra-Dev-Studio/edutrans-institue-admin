@@ -5,15 +5,15 @@ use App\Models\User;
 
 class UserService
 {
-    public static function getById(int $userId)
+    public static function getById(string $id)
     {
-        $user = User::findOrFail($userId);
+        $user = User::findOrFail($id);
         return $user;
     }
 
-    public static function deleteById(int $userId)
+    public static function deleteById(string $id)
     {
-        $user = User::findOrFail($userId);
+        $user = User::findOrFail($id);
         return $user->delete();
     }
 }
