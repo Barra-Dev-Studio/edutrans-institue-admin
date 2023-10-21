@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Pages\Category;
 
-use App\Models\User;
+use App\Models\Category;
+use App\Traits\DatatableModalTrait;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Traits\DatatableModalTrait;
 
-class UserTableLivewire extends Component
+class CategoryTableLivewire extends Component
 {
     use WithPagination;
     use DatatableModalTrait;
@@ -27,8 +27,8 @@ class UserTableLivewire extends Component
 
     public function render()
     {
-        return view('livewire.user-table-livewire', [
-            'users' => User::where('name', 'like', '%' . $this->search . '%')->paginate($this->showPage)
+        return view('livewire.pages.category.category-table-livewire', [
+            'categories' => Category::where('name', 'like', '%' . $this->search . '%')->paginate($this->showPage)
         ]);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Pages\User;
 
 use App\Models\User;
 use Livewire\Component;
@@ -44,6 +44,6 @@ class UserUpdateLivewire extends Component
 
     public function render()
     {
-        return view('livewire.user-update-livewire');
+        return view('livewire.pages.user.user-update-livewire');
     }
 }

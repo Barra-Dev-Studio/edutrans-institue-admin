@@ -13,7 +13,7 @@
             <h5 class="dark:text-zinc-100">User data</h5>
         </div>
         <div class="card-body">
-            <livewire:user-table-livewire></livewire:user-table-livewire>
+            <livewire:pages.user.user-table-livewire></livewire:pages.user.user-table-livewire>
         </div>
     </div>
 </x-app-layout>

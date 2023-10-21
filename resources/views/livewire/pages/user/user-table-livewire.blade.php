@@ -39,7 +39,7 @@
                     <a href="{{ route('dashboard.user.edit', $user->id) }}" class="p-2 bg-amber-400 hover:bg-amber-300 rounded-tl rounded-bl">
                         Edit
                     </a>
-                    <button wire:click="showModal('dashboard.user.destroy', {{ $user->id }})" class="p-2 bg-rose-600 hover:bg-rose-700 rounded-tr rounded-br text-white">
+                    <button wire:click="showModal('dashboard.user.destroy', '{{ $user->id }}')" class="p-2 bg-rose-600 hover:bg-rose-700 rounded-tr rounded-br text-white">
                         Delete
                     </button>
                   </td>

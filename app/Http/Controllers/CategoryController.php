@@ -13,7 +13,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view("pages.category.index");
     }
 
     /**
@@ -21,23 +21,23 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view("pages.category.create");
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show($id)
     {
-        //
+        return view("pages.category.show", compact("id"));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+        return view("pages.category.edit", compact("id"));
     }
 
     /**

@@ -11,7 +11,7 @@
         </div>
         <div class="card-body">
             <div class="w-full">
-                <livewire:user-update-livewire :id="$id"></livewire:user-update-livewire>
+                <livewire:pages.user.user-update-livewire :id="$id"></livewire:pages.user.user-update-livewire>
             </div>
         </div>
     </div>
