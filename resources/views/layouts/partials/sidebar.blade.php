@@ -11,6 +11,12 @@
           </a>
         </li>
         <li>
+          <a href="{{ route('dashboard.mentor.index') }}" class="pl-6 pr-4 py-3 block text-sm font-medium text-gray-700 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
+            <i data-feather="users"></i>
+            <span data-key="t-mentor"> Mentor</span>
+          </a>
+        </li>
+        <li>
           <a href="{{ route('dashboard.category.index') }}" class="pl-6 pr-4 py-3 block text-sm font-medium text-gray-700 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
             <i data-feather="list"></i>
             <span data-key="t-category"> Category</span>

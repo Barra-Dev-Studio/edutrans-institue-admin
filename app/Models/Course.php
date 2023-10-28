@@ -29,4 +29,9 @@ class Course extends Model
     {
         return $this->hasMany(Chapter::class);
     }
+
+    public function mentor()
+    {
+        return $this->belongsTo(Mentor::class);
+    }
 }
