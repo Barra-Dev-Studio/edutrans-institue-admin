@@ -8,7 +8,7 @@
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
         <div class="mt-4">
-            <x-input-label for="description" :value="__('Email')" />
+            <x-input-label for="description" :value="__('Description')" />
             <x-textarea-input wire:model.live="description" id="description" class="block mt-1 w-full"
                 name="description" placeholder="Description" required />
             <x-input-error :messages="$errors->get('description')" class="mt-2" />

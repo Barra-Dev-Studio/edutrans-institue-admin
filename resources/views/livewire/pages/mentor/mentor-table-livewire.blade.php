@@ -41,16 +41,16 @@
                             <td class="p-3">{{ $mentor->speciality }}</td>
                             <td class="p-3 flex">
                                 <a href="{{ route('dashboard.mentor.show', $mentor->id) }}"
-                                    class="p-2 bg-sky-400 hover:bg-sky-300 rounded-tl rounded-bl">
-                                    <i data-feather="search" class="w-4 h-4"></i>
+                                    class="p-2 flex items-center bg-sky-400 hover:bg-sky-300 rounded-tl rounded-bl text-lg">
+                                    <i class="bx bx-search-alt-2"></i>
                                 </a>
                                 <a href="{{ route('dashboard.mentor.edit', $mentor->id) }}"
-                                    class="p-2 bg-amber-400 hover:bg-amber-300">
-                                    <i data-feather="edit" class="w-4 h-4"></i>
+                                    class="p-2 flex items-center bg-amber-400 hover:bg-amber-300 text-lg">
+                                    <i class="bx bx-edit"></i>
                                 </a>
                                 <button wire:click="showModal('dashboard.mentor.destroy', '{{ $mentor->id }}')"
-                                    class="p-2 bg-rose-600 hover:bg-rose-700 rounded-tr rounded-br text-white">
-                                    <i data-feather="trash" class="w-4 h-4"></i>
+                                    class="p-2 flex items-center bg-rose-600 hover:bg-rose-700 rounded-tr rounded-br text-white text-lg">
+                                    <i class="bx bx-trash-alt"></i>
                                 </button>
                             </td>
                         </tr>

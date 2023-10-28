@@ -36,11 +36,13 @@
                   <td class="p-3">{{ $user->email }}</td>
                   <td class="p-3">{{ $user->created_at }}</td>
                   <td class="p-3 flex">
-                    <a href="{{ route('dashboard.user.edit', $user->id) }}" class="p-2 bg-amber-400 hover:bg-amber-300 rounded-tl rounded-bl">
-                        Edit
+                    <a href="{{ route('dashboard.user.edit', $user->id) }}"
+                        class="p-2 flex items-center bg-amber-400 hover:bg-amber-300 text-lg rounded-tl rounded-bl">
+                        <i class="bx bx-edit"></i>
                     </a>
-                    <button wire:click="showModal('dashboard.user.destroy', '{{ $user->id }}')" class="p-2 bg-rose-600 hover:bg-rose-700 rounded-tr rounded-br text-white">
-                        Delete
+                    <button wire:click="showModal('dashboard.user.destroy', '{{ $user->id }}')"
+                        class="p-2 flex items-center bg-rose-600 hover:bg-rose-700 rounded-tr rounded-br text-white text-lg">
+                        <i class="bx bx-trash-alt"></i>
                     </button>
                   </td>
                 </tr>
