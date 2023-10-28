@@ -27,9 +27,9 @@ class MentorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id, MentorService $mentorService)
+    public function show(string $id)
     {
-        $mentor = $mentorService::getById($id);
+        $mentor = MentorService::getById($id);
         return view("pages.mentor.show", compact("mentor"));
     }
 
@@ -44,9 +44,9 @@ class MentorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id, MentorService $mentorService)
+    public function destroy(string $id)
     {
-        $isDeleted = $mentorService::deleteMentorById($id);
+        $isDeleted = MentorService::deleteMentorById($id);
         return $isDeleted
             ? redirect()->route('dashboard.mentor.index')->with('success', 'Mentor has been deleted')
             : redirect()->back()->with('error', 'Failed to delete mentor');

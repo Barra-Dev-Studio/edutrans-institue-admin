@@ -26,9 +26,9 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id, UserService $userService)
+    public function show(string $id)
     {
-        $user = $userService::getById($id);
+        $user = UserService::getById($id);
         return view('pages.user.show', compact('user'));
     }
 
@@ -43,10 +43,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id, UserService $userService)
+    public function destroy(string $id)
     {
         try {
-            $isDeleted = $userService->deleteById($id);
+            $isDeleted = UserService::deleteById($id);
             return $isDeleted ? redirect()->route('dashboard.user.index')->with('success', 'User deleted succesfully') : redirect()->back()->with('error','Failed to delete user');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Failed to delete user ' . $e->getMessage());

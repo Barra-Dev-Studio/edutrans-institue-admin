@@ -43,9 +43,9 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id, CategoryService $categoryService)
+    public function destroy(string $id)
     {
-        $isDeleted = $categoryService::deleteCategoryById($id);
+        $isDeleted = CategoryService::deleteCategoryById($id);
         return $isDeleted
             ? redirect()->route('dashboard.category.index')->with('success', 'Category has been deleted')
             : redirect()->back()->with('error', 'Failed to delete category');
