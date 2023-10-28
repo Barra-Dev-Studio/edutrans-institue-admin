@@ -16,6 +16,8 @@ class Course extends Model
         'description',
         'price',
         'category_id',
+        'mentor_id',
+        'thumbnail',
         'note',
         'total_views',
         'total_shares',
@@ -33,5 +35,10 @@ class Course extends Model
     public function mentor()
     {
         return $this->belongsTo(Mentor::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }
