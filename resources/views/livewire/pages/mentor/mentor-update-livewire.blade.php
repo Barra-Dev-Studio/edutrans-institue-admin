@@ -13,7 +13,7 @@
         <div class="mt-4">
             <x-input-label for="photo" :value="__('Photo')" />
             <x-text-input wire:model.live="photo" id="photo" class="block mt-1 w-full" type="file" name="photo"
-                placeholder="Photo" required />
+                placeholder="Photo" />
             <x-input-error :messages="$errors->get('photo')" class="mt-2" />
         </div>
         <div class="mt-4">

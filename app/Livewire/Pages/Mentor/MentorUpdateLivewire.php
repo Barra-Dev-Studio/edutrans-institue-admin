@@ -22,7 +22,7 @@ class MentorUpdateLivewire extends Component
         'name' => 'required',
         'speciality' => 'required',
         'bio' => 'required',
-        'photo' => ['image', 'max:1024']
+        'photo' => ['image', 'max:1024', 'nullable']
     ];
 
     public function mount()
@@ -44,14 +44,14 @@ class MentorUpdateLivewire extends Component
     {
         $this->validate();
         try {
-            $photo = $this->photo->store('photos', 'hosting');
+            $photo = $this->photo ? $this->photo->store('photos', 'hosting') : $this->currentPhoto;
             $isUpdated = Mentor::where('id', $this->id)->update([
                 'name' => $this->name,
                 'speciality' => $this->speciality,
                 'bio' => $this->bio,
                 'photo' => $photo
             ]);
-            if (Storage::disk('hosting')->exists($this->currentPhoto) && $isUpdated) {
+            if (Storage::disk('hosting')->exists($this->currentPhoto) && $isUpdated && $this->photo) {
                 Storage::disk('hosting')->delete($this->currentPhoto);
             }
             return redirect()->route('dashboard.mentor.index')->with('success', 'Mentor updated successfuly');
