@@ -55,8 +55,12 @@
                                             <p class="prose">{{ $chapter->title }} ({{ $chapter->duration }}m)</p>
                                         </div>
                                         <div class="flex">
+                                            <a href="{{ route('dashboard.chapter.show', $chapter->id) }}"
+                                                class="p-2 flex items-center bg-sky-400 hover:bg-sky-500 rounded-tl rounded-bl text-lg">
+                                                <i class="bx bx-search"></i>
+                                            </a>
                                             <button wire:click="updateChapter('{{ $chapter->id }}')"
-                                                class="p-2 flex items-center bg-amber-400 hover:bg-amber-500 rounded-tl rounded-bl text-lg">
+                                                class="p-2 flex items-center bg-amber-400 hover:bg-amber-500 text-lg">
                                                 <i class="bx bx-edit"></i>
                                             </button>
                                             <button wire:click="showModal('dashboard.chapter.destroy', '{{ $chapter->id }}')"

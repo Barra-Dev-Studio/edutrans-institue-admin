@@ -36,7 +36,8 @@ class ChapterController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $chapter = ChapterService::getById($id);
+        return view("pages.chapter.show", compact("chapter"));
     }
 
     /**
