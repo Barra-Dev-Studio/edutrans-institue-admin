@@ -1,7 +1,7 @@
 <div>
     <x-flash-notification></x-flash-notification>
-    <form wire:submit.prevent="submit">
-        <div class="mt-4">
+    <form wire:submit.prevent="submit" class="prose">
+        <div>
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input wire:model.live="name" id="password" class="block mt-1 w-full" type="text" name="name"
                 placeholder="Name" required />

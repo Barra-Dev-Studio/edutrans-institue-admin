@@ -149,7 +149,7 @@ class CourseUpdateLivewire extends Component
             if ($this->thumbnail && Storage::disk('hosting')->exists($this->currentThumbnail) && $isUpdated) {
                 Storage::disk('hosting')->delete($this->currentThumbnail);
             }
-            return redirect()->route('dashboard.course.index')->with('success', 'Course updated successfuly');
+            return redirect()->route('dashboard.course.show', $this->id)->with('success', 'Course updated successfuly');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Failed to update course');
         }

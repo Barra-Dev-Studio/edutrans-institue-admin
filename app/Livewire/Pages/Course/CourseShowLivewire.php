@@ -105,6 +105,11 @@ class CourseShowLivewire extends Component
         }
     }
 
+    public function refreshPage()
+    {
+        return redirect()->route('dashboard.course.show', $this->course->id);
+    }
+
     public function render()
     {
         return view('livewire.pages.course.course-show-livewire');

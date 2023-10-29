@@ -1,12 +1,12 @@
 <div>
     <x-flash-notification></x-flash-notification>
-    <form wire:submit.prevent="submit">
+    <form wire:submit.prevent="submit" class="prose">
         @if ($currentPhoto && !$photo)
-        <div class="mt-4">
+        <div class="mb-4">
             <img src="{{ \Storage::url($currentPhoto) }}" alt="">
         </div>
         @elseif($photo)
-        <div class="mt-4">
+        <div>
             <img src="{{ $photo->temporaryUrl() }}" alt="">
         </div>
         @endif

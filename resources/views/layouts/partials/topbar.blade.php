@@ -39,12 +39,6 @@
             </div>
 
             <div>
-                <button type="button" class="light-dark-mode text-xl px-4 h-[70px] text-gray-600 dark:text-gray-100 hidden sm:block ">
-                    <i data-feather="moon" class="h-5 w-5 block dark:hidden"></i>
-                    <i data-feather="sun" class="h-5 w-5 hidden dark:block"></i>
-            </div>
-
-            <div>
                 <div class="dropdown relative ">
                     <div class="relative">
                         <button type="button" class="btn border-0 h-[70px] dropdown-toggle px-4 text-gray-500 dark:text-gray-100" aria-expanded="false" data-dropdown-toggle="notification">
@@ -141,13 +135,13 @@
                 <div class="dropdown relative ltr:mr-4 rtl:ml-4">
                     <button type="button" class="flex items-center px-4 py-5 dropdown-toggle dark:bg-zinc-700 dark:border-zinc-600 dark:text-gray-100" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         <img class="h-8 w-8 rounded-full ltr:xl:mr-2 rtl:xl:ml-2" src="https://ui-avatars.com/api/?background=random&name={{ \Str::slug(\Auth()->user()->name) }}" alt="Header Avatar">
-                        <span class="fw-medium hidden xl:block">{{ \Auth()->user()->name }}</span>
+                        <span class="fw-medium hidden xl:block prose">{{ \Auth()->user()->name }}</span>
                         <i class="mdi mdi-chevron-down align-bottom hidden xl:block"></i>
                     </button>
                     <div class="dropdown-menu absolute top-0 ltr:-left-3 rtl:-right-3 z-50 hidden w-40 list-none rounded bg-white shadow dark:bg-zinc-800" id="profile/log">
                         <div class="border border-gray-50 dark:border-zinc-600" aria-labelledby="navNotifications">
                             <div class="dropdown-item dark:text-gray-100">
-                                <a class="px-3 py-2 hover:bg-gray-50/50 block dark:hover:bg-zinc-700/50" href="{{ route('dashboard.profile') }}">
+                                <a class="px-3 py-2 hover:bg-gray-50/50 block dark:hover:bg-zinc-700/50 prose !no-underline" href="{{ route('dashboard.profile') }}">
                                     <i class="mdi mdi-face-man text-16 align-middle mr-1"></i> Profile
                                 </a>
                             </div>
@@ -156,7 +150,7 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
-                                <a class="p-3 hover:bg-gray-50/50 block dark:hover:bg-zinc-700/50" href="{{ route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <a class="p-3 hover:bg-gray-50/50 block dark:hover:bg-zinc-700/50 prose !no-underline" href="{{ route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     <i class="mdi mdi-logout text-16 align-middle mr-1"></i> Logout
                                 </a>
                             </div>

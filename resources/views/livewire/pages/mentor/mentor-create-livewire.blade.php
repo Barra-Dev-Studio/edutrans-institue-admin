@@ -1,12 +1,12 @@
 <div>
     <x-flash-notification></x-flash-notification>
-    <form wire:submit.prevent="submit">
+    <form wire:submit.prevent="submit" class="prose">
         @if ($photo)
-        <div class="mt-4">
+        <div class="mb-4">
             <img src="{{ $photo->temporaryUrl() }}" alt="">
         </div>
         @endif
-        <div class="mt-4">
+        <div>
             <x-input-label for="photo" :value="__('Photo')" />
             <x-text-input wire:model.live="photo" id="photo" class="block mt-1 w-full" type="file" name="photo"
                 placeholder="Photo" required />

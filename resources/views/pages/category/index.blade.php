@@ -6,7 +6,7 @@
 
     <div class="flex justify-end items-center mb-4">
         <a href="{{ route('dashboard.category.create') }}"
-            class="bg-emerald-500 px-6 py-3 rounded text-white hover:bg-emerald-600">Create new category</a>
+            class="bg-emerald-500 px-6 py-3 rounded text-white hover:bg-emerald-600 prose !no-underline">Create new category</a>
     </div>
     <x-flash-notification></x-flash-notification>
     <div class="card dark:border-zinc-600 dark:bg-zinc-800 bg-slate-50">

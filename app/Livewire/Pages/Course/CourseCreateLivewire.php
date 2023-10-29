@@ -108,7 +108,7 @@ class CourseCreateLivewire extends Component
         $this->validate();
         try {
             $thumbnail = $this->thumbnail->store('thumbnails', 'hosting');
-            Course::create([
+            $course = Course::create([
                 'title' => $this->title,
                 'slug' => $this->slug,
                 'description' => $this->description,
@@ -124,7 +124,7 @@ class CourseCreateLivewire extends Component
                 'status' => $this->status,
                 'thumbnail' => $thumbnail
             ]);
-            return redirect()->route('dashboard.course.index')->with('success', 'Course created successfuly');
+            return redirect()->route('dashboard.course.show', $course->id)->with('success', 'Course created successfuly');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Failed to add new course');
         }

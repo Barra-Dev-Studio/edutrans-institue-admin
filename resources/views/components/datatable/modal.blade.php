@@ -3,9 +3,9 @@
 <div id="deleteModal" tabindex="-1" aria-hidden="true"
     class="fixed top-0 left-0 right-0 z-50 w-screen p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-screen max-h-full bg-slate-800/70">
     <div class="relative w-full max-w-2xl max-h-full mx-auto translate-y-1/2 top-0">
-        <div class="relative bg-slate-50 rounded shadow ">
-            <div class="flex items-start justify-between p-4 border-b rounded-t border-slate-200">
-                <h3 class="text-xl font-semibold text-slate-900 ">
+        <div class="relative bg-slate-50 rounded shadow prose">
+            <div class="flex items-center justify-between p-4 border-b rounded-t border-slate-200">
+                <h3 class="text-xl font-semibold text-slate-900 my-0">
                     Are you sure want to delete this data?
                 </h3>
                 <button type="button"
@@ -23,8 +23,8 @@
             <form action="{{ $deleteRoute }}" method="POST">
                 @csrf
                 @method('DELETE')
-                <div class="p-6 space-y-6">
-                    <p class="text-base leading-relaxed text-slate-500 ">
+                <div class="px-6">
+                    <p class="text-slate-500 ">
                         You can&apos;t undo this action
                     </p>
                 </div>

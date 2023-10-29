@@ -6,9 +6,9 @@
         <div class="card-body">
             <div class="w-full">
                 <ul class="mb-4">
-                    <li class="font-medium p-4 @if($activeTab === 'information') border-l border-sky-500 bg-slate-100 @else hover:bg-slate-200 @endif border-slate-200 cursor-pointer" wire:click="setActiveTab('information')">Course infromation</li>
-                    <li class="font-medium p-4 @if($activeTab === 'chapters') border-l border-sky-500 bg-slate-100 @else hover:bg-slate-200 @endif border-slate-200 cursor-pointer" wire:click="setActiveTab('chapters')">Chapters</li>
-                    <li class="font-medium p-4 @if($activeTab === 'managechapter') border-l border-sky-500 bg-slate-100 @else hover:bg-slate-200 @endif border-slate-200 cursor-pointer" wire:click="setActiveTab('managechapter')">{{ $state == 'create' ? 'Add new' : 'Update' }} chapters</li>
+                    <li class="text-slate-700 prose font-medium p-4 @if($activeTab === 'information') border-l border-sky-500 bg-slate-100 @else hover:bg-slate-200 @endif border-slate-200 cursor-pointer" wire:click="setActiveTab('information')">Course infromation</li>
+                    <li class="text-slate-700 prose font-medium p-4 @if($activeTab === 'chapters') border-l border-sky-500 bg-slate-100 @else hover:bg-slate-200 @endif border-slate-200 cursor-pointer" wire:click="setActiveTab('chapters')">Chapters</li>
+                    <li class="text-slate-700 prose font-medium p-4 @if($activeTab === 'managechapter') border-l border-sky-500 bg-slate-100 @else hover:bg-slate-200 @endif border-slate-200 cursor-pointer" wire:click="setActiveTab('managechapter')">{{ $state == 'create' ? 'Add new' : 'Update' }} chapters</li>
                 </ul>
             </div>
         </div>
@@ -29,7 +29,7 @@
                         </div>
                         <div class="prose">
                             <h4 class="mb-0 text-slate-700">{{ $course->mentor->name ?? "-" }}</h4>
-                            <p class="text-sm text-slate-500">{{ $course->mentor->speciality ?? "-" }}</p>
+                            <p class=" text-slate-500">{{ $course->mentor->speciality ?? "-" }}</p>
                         </div>
                     </div>
                 </div>
@@ -44,13 +44,15 @@
                     <div class="flex flex-col gap-4">
                         @forelse($sections as $section => $chapters)
                         <div>
-                            <h6 class="bg-slate-200 rounded-tl rounded-tr p-4">{{ $section }}</h6>
+                            <div class="bg-slate-200 rounded-tl rounded-tr p-4 w-full">
+                                <h5 class="prose">{{ $section }}</h5>
+                            </div>
                             <div class="bg-slate-100 rounded-bl rounded-br p-4">
                                 <ul>
                                     @foreach($chapters as $chapter)
                                     <li class="border-b border-slate-200 py-4 flex justify-between items-center">
                                         <div>
-                                            <p>{{ $chapter->title }}</p>
+                                            <p class="prose">{{ $chapter->title }} ({{ $chapter->duration }}m)</p>
                                         </div>
                                         <div class="flex">
                                             <button wire:click="updateChapter('{{ $chapter->id }}')"
@@ -68,7 +70,9 @@
                             </div>
                         </div>
                         @empty
-                        <p>You don't have any active chapter. Add them.</p>
+                        <div class="prose">
+                            <p class="text-slate-600">You don't have any active chapter. Add them.</p>
+                        </div>
                         @endforelse
                     </div>
                 </div>
@@ -80,7 +84,7 @@
             </div>
             <div class="card-body">
                 <div class="w-full">
-                    <form wire:submit.prevent="submit">
+                    <form wire:submit.prevent="submit" class="prose">
                         <div>
                             <x-input-label for="title" :value="__('Chapter title')" />
                             <x-text-input wire:model.live="title" id="title" class="block mt-1 w-full" type="text" name="title"
@@ -116,17 +120,20 @@
                             <div class="grid grid-cols-2 items-center gap-4">
                                 <div class="w-full @if($isPreview) bg-emerald-100 @else bg-slate-100 @endif p-4 cursor-pointer border-slate-200 border rounded" wire:click="setIsPreview(true)">
                                     <h5 class="text-slate-700">Yes, make it preview</h5>
-                                    <p class="text-slate-500">User can play this video as a preview</p>
+                                    <p class="text-slate-500 mt-0">User can play this video as a preview</p>
                                 </div>
-                                <div class="w-full @if(!$isPreview) bg-emerald-100 @else bg-slate-100 @endif p-4 cursor-pointer border-slate-200 border rounded" wire:click="setIsPreview(false)">
+                                <div class="w-full @if(!$isPreview) bg-rose-100 @else bg-slate-100 @endif p-4 cursor-pointer border-slate-200 border rounded" wire:click="setIsPreview(false)">
                                     <h5 class="text-slate-700">No, don't make it preview</h5>
-                                    <p class="text-slate-500">User can't play this video as a preview</p>
+                                    <p class="text-slate-500 mt-0">User can't play this video as a preview</p>
                                 </div>
                             </div>
                         </div>
                         <div class="mt-4">
                             <button class="bg-emerald-500 px-6 py-3 rounded text-white hover:bg-emerald-600" type="submit">{{ $state == 'create' ? 'Add' : 'Save' }}
                                 chapter</button>
+                            @if($state == 'update')
+                                <button class="bg-rose-500 px-6 py-3 rounded text-white hover:bg-rose-600" type="button" wire:click="refreshPage">Cancel</button>
+                            @endif
                         </div>
                     </form>
                 </div>
