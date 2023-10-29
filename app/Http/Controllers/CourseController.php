@@ -28,7 +28,8 @@ class CourseController extends Controller
      */
     public function show(string $id)
     {
-        return view('pages.course.show');
+        $course = CourseService::getById($id);
+        return view('pages.course.show', compact('course'));
     }
 
     /**

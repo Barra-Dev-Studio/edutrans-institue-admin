@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MentorController;
@@ -29,6 +30,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('user', UserController::class);
         Route::resource('mentor', MentorController::class);
         Route::resource('course', CourseController::class);
+        Route::resource('chapter', ChapterController::class);
     });
 });
 

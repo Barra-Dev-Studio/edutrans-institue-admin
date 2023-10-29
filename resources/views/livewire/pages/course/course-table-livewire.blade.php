@@ -39,8 +39,8 @@
                             <td class="p-3" width="50">{{ ($courses->currentpage()-1) * $courses->perpage() + $loop->index +
                                 1 }}</td>
                             <td class="p-3">{{ $course->title }}</td>
-                            <td class="p-3">{{ $course->mentor->name }}</td>
-                            <td class="p-3">{{ $course->category->name }}</td>
+                            <td class="p-3">{{ $course->mentor->name ?? "Deleted" }}</td>
+                            <td class="p-3">{{ $course->category->name ?? "Deleted" }}</td>
                             <td class="p-3 flex">
                                 <a href="{{ route('dashboard.course.show', $course->id) }}"
                                     class="p-2 flex items-center bg-sky-400 hover:bg-sky-300 rounded-tl rounded-bl text-lg">

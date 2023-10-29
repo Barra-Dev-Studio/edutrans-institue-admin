@@ -10,4 +10,9 @@ class CourseService
         $course = Course::find($id);
         return $course->delete();
     }
+
+    public static function getById(string $id)
+    {
+        return Course::findOrFail($id);
+    }
 }

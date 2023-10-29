@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\ChapterService;
 use Illuminate\Http\Request;
 
 class ChapterController extends Controller
@@ -59,6 +60,9 @@ class ChapterController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $isDeleted = ChapterService::deleteChapterById($id);
+        return $isDeleted
+            ? redirect()->back()->with('success', 'Course has been deleted')
+            : redirect()->back()->with('error', 'Failed to delete course');
     }
 }

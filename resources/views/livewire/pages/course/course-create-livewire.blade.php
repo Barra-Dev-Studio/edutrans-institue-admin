@@ -6,16 +6,16 @@
         <div class="card-body">
             <div class="w-full">
                 <ul class="mb-4">
-                    <li class="p-4 border border-slate-200 cursor-pointer hover:bg-slate-200" wire:click="setActiveTab('thumbnail')">Thumbnail</li>
-                    <li class="p-4 border border-slate-200 cursor-pointer hover:bg-slate-200" wire:click="setActiveTab('title')">Title and Slug</li>
-                    <li class="p-4 border border-slate-200 cursor-pointer hover:bg-slate-200" wire:click="setActiveTab('description')">Description and Notes</li>
-                    <li class="p-4 border border-slate-200 cursor-pointer hover:bg-slate-200" wire:click="setActiveTab('category')">Category</li>
-                    <li class="p-4 border border-slate-200 cursor-pointer hover:bg-slate-200" wire:click="setActiveTab('price')">Price</li>
-                    <li class="p-4 border border-slate-200 cursor-pointer hover:bg-slate-200" wire:click="setActiveTab('mentor')">Mentor</li>
-                    <li class="p-4 border border-slate-200 cursor-pointer hover:bg-slate-200" wire:click="setActiveTab('statistics')">Statistics</li>
-                    <li class="p-4 border border-slate-200 cursor-pointer hover:bg-slate-200" wire:click="setActiveTab('certificate')">Certificate</li>
-                    <li class="p-4 border border-slate-200 cursor-pointer hover:bg-slate-200" wire:click="setActiveTab('status')">Status</li>
-                    <li class="p-4 border border-slate-200 cursor-pointer hover:bg-slate-200" wire:click="setActiveTab('review')">Review</li>
+                    <li class="font-medium p-4 @if($activeTab === 'thumbnail') border-l border-sky-500 bg-slate-100 @else hover:bg-slate-100 @endif border-slate-200 cursor-pointer" wire:click="setActiveTab('thumbnail')">Thumbnail</li>
+                    <li class="font-medium p-4 @if($activeTab === 'title') border-l border-sky-500 bg-slate-100 @else hover:bg-slate-100 @endif border-slate-200 cursor-pointer" wire:click="setActiveTab('title')">Title and Slug</li>
+                    <li class="font-medium p-4 @if($activeTab === 'description') border-l border-sky-500 bg-slate-100 @else hover:bg-slate-100 @endif border-slate-200 cursor-pointer" wire:click="setActiveTab('description')">Description and Notes</li>
+                    <li class="font-medium p-4 @if($activeTab === 'category') border-l border-sky-500 bg-slate-100 @else hover:bg-slate-100 @endif border-slate-200 cursor-pointer" wire:click="setActiveTab('category')">Category</li>
+                    <li class="font-medium p-4 @if($activeTab === 'price') border-l border-sky-500 bg-slate-100 @else hover:bg-slate-100 @endif border-slate-200 cursor-pointer" wire:click="setActiveTab('price')">Price</li>
+                    <li class="font-medium p-4 @if($activeTab === 'mentor') border-l border-sky-500 bg-slate-100 @else hover:bg-slate-100 @endif border-slate-200 cursor-pointer" wire:click="setActiveTab('mentor')">Mentor</li>
+                    <li class="font-medium p-4 @if($activeTab === 'statistics') border-l border-sky-500 bg-slate-100 @else hover:bg-slate-100 @endif border-slate-200 cursor-pointer" wire:click="setActiveTab('statistics')">Statistics</li>
+                    <li class="font-medium p-4 @if($activeTab === 'certificate') border-l border-sky-500 bg-slate-100 @else hover:bg-slate-100 @endif border-slate-200 cursor-pointer" wire:click="setActiveTab('certificate')">Certificate</li>
+                    <li class="font-medium p-4 @if($activeTab === 'status') border-l border-sky-500 bg-slate-100 @else hover:bg-slate-100 @endif border-slate-200 cursor-pointer" wire:click="setActiveTab('status')">Status</li>
+                    <li class="font-medium p-4 @if($activeTab === 'review') border-l border-sky-500 bg-slate-100 @else hover:bg-slate-100 @endif border-slate-200 cursor-pointer" wire:click="setActiveTab('review')">Review</li>
                 </ul>
                 <button class="bg-emerald-500 px-6 py-3 rounded text-white hover:bg-emerald-600 block w-full" form="create-course-form" type="submit">Save course</button>
             </div>
