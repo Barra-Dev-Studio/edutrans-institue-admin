@@ -150,7 +150,7 @@
             </div>
             <div class="card-body">
                 <div class="w-full prose">
-                    <p>Before you import the chapters, please download this template and fill the required columns. <a href="{{ \Storage::url('templates/edutrans-institute-chapters-import.xlsx') }}" class="text-sky-700">Download the template</a></p>
+                    <p>Before you import the chapters, please download this template and fill the required columns. <a href="{{ \Storage::url('templates/edutrans-institute-chapters-import.csv') }}" class="text-sky-700">Download the template</a></p>
                     <form wire:submit.prevent="importChapters">
                         <div class="mt-4">
                             <x-input-label for="chapterFile" :value="__('Import chapters')" />
