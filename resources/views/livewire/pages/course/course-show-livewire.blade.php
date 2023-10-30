@@ -9,6 +9,7 @@
                     <li class="text-slate-700 prose font-medium p-4 @if($activeTab === 'information') border-l border-sky-500 bg-slate-100 @else hover:bg-slate-200 @endif border-slate-200 cursor-pointer" wire:click="setActiveTab('information')">Course infromation</li>
                     <li class="text-slate-700 prose font-medium p-4 @if($activeTab === 'chapters') border-l border-sky-500 bg-slate-100 @else hover:bg-slate-200 @endif border-slate-200 cursor-pointer" wire:click="setActiveTab('chapters')">Chapters</li>
                     <li class="text-slate-700 prose font-medium p-4 @if($activeTab === 'managechapter') border-l border-sky-500 bg-slate-100 @else hover:bg-slate-200 @endif border-slate-200 cursor-pointer" wire:click="setActiveTab('managechapter')">{{ $state == 'create' ? 'Add new' : 'Update' }} chapters</li>
+                    <li class="text-slate-700 prose font-medium p-4 @if($activeTab === 'bulkupload') border-l border-sky-500 bg-slate-100 @else hover:bg-slate-200 @endif border-slate-200 cursor-pointer" wire:click="setActiveTab('bulkupload')">Bulk upload chapters</li>
                 </ul>
             </div>
         </div>
@@ -138,6 +139,27 @@
                             @if($state == 'update')
                                 <button class="bg-rose-500 px-6 py-3 rounded text-white hover:bg-rose-600" type="button" wire:click="refreshPage">Cancel</button>
                             @endif
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="card dark:border-zinc-600 dark:bg-zinc-800 bg-slate-50 w-full @if($activeTab != 'bulkupload') hidden @endif">
+            <div class="card-body pb-4 border-b border-slate-200 flex justify-between items-center">
+                <h5 class="dark:text-zinc-100">Bulk upload chapters</h5>
+            </div>
+            <div class="card-body">
+                <div class="w-full prose">
+                    <p>Before you import the chapters, please download this template and fill the required columns. <a href="{{ \Storage::url('templates/edutrans-institute-chapters-import.xlsx') }}" class="text-sky-700">Download the template</a></p>
+                    <form wire:submit.prevent="importChapters">
+                        <div class="mt-4">
+                            <x-input-label for="chapterFile" :value="__('Import chapters')" />
+                            <x-text-input wire:model.live="chapterFile" id="chapterFile" class="block mt-1 w-full" type="file" name="chapterFile"
+                                placeholder="Photo" required />
+                            <x-input-error :messages="$errors->get('chapterFile')" class="mt-2" />
+                        </div>
+                        <div class="mt-4">
+                            <button class="px-6 py-3 rounded text-white @if($chapterFile == null) disabled bg-emerald-300 @else bg-emerald-500 hover:bg-emerald-600 @endif" type="submit">Import chapters</button>
                         </div>
                     </form>
                 </div>

@@ -2,13 +2,17 @@
 
 namespace App\Livewire\Pages\Course;
 
+use App\Imports\ChaptersImport;
 use App\Models\Chapter;
 use App\Traits\DatatableModalTrait;
 use Livewire\Component;
+use Livewire\WithFileUploads;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CourseShowLivewire extends Component
 {
     use DatatableModalTrait;
+    use WithFileUploads;
 
     public $course;
     public $activeTab = 'information';
@@ -22,6 +26,8 @@ class CourseShowLivewire extends Component
     public $playbackUrl;
     public $duration;
     public $isPreview = false;
+
+    public $chapterFile;
 
     protected $rules = [
         'title' => 'required',
@@ -103,6 +109,12 @@ class CourseShowLivewire extends Component
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Failed to add new chapter');
         }
+    }
+
+    public function importChapters()
+    {
+        Excel::import(new ChaptersImport($this->course->id), $this->chapterFile);
+        return redirect()->route('dashboard.course.show', $this->course->id)->with('success', 'Chapters has beed imported');
     }
 
     public function refreshPage()
