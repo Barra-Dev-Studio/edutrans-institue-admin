@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'can:access-admin'])->group(function () {
     Route::prefix('dashboard')->as('dashboard.')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('index');
         Route::get('profile', [DashboardController::class, 'profile'])->name('profile');
