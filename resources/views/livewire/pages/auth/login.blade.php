@@ -8,6 +8,7 @@ use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Rule;
 use Livewire\Volt\Component;
+use App\Models\User;
 
 new #[Layout('layouts.guest')] class extends Component
 {
@@ -38,8 +39,11 @@ new #[Layout('layouts.guest')] class extends Component
 
         session()->regenerate();
 
+        $user = User::where('email', $this->email)->first();
+        $redirectTo = $user->hasRole('admin') ? RouteServiceProvider::HOME : RouteServiceProvider::MEMBER;
+
         $this->redirect(
-            session('url.intended', RouteServiceProvider::HOME),
+            session('url.intended', $redirectTo),
             navigate: true
         );
     }

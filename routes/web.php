@@ -34,4 +34,12 @@ Route::middleware(['auth', 'can:access-admin'])->group(function () {
     });
 });
 
+Route::middleware(['auth','can:access-member'])->group(function () {
+    Route::prefix('member')->as('member.')->group(function () {
+        Route::get('/', function() {
+            return view('pages.member.index');
+        })->name('index');
+    });
+});
+
 require __DIR__.'/auth.php';
