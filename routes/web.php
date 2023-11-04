@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MemberController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -36,9 +37,8 @@ Route::middleware(['auth', 'can:access-admin'])->group(function () {
 
 Route::middleware(['auth','can:access-member'])->group(function () {
     Route::prefix('member')->as('member.')->group(function () {
-        Route::get('/', function() {
-            return view('pages.member.index');
-        })->name('index');
+        Route::get('/', [MemberController::class, 'index'])->name('index');
+        Route::get('/transaction', [MemberController::class,'transaction'])->name('transaction');
     });
 });
 
