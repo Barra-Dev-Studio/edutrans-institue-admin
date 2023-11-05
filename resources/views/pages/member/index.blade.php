@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="grid grid-cols-2 gap-4">
         <div class="grid grid-cols-2 gap-4">
-            <div class="card bg-white cursor-pointer hover:bg-slate-100">
+            <div class="card bg-white cursor-pointer hover:bg-slate-50">
                 <div class="card-body">
                     <div>
                         <div class="grid grid-cols-1 gap-5 items-center">
@@ -18,7 +18,7 @@
             </div>
         </div>
     </div>
-    <div class="border border-slate-300 p-4 mb-8">
+    <div class="border border-slate-200 p-4 mb-8 bg-slate-50">
         <livewire:pages.member.course-livewire></livewire:pages.member.course-livewire>
     </div>
 </x-app-layout>

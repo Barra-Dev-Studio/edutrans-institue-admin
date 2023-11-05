@@ -1,21 +1,19 @@
 <nav class="px-16">
     <div class="flex items-center justify-between px-8">
         <div class="flex items-center gap-4 prose">
-            <a href="{{ url('/')}}" class="text-lg font-semibold !no-underline">Edutrans Intitute</a>
+            <a href="{{ route('home') }}" class="text-lg font-semibold !no-underline">Edutrans Intitute</a>
         </div>
         <div class="py-5">
             <ul class="flex gap-8 items-center list-none">
-                <li><a href="{{ url('/')}}" class="!no-underline prose hover:text-black">Home</a></li>
+                <li><a href="{{ route('home') }}" class="!no-underline prose hover:text-black">Home</a></li>
                 <li><a href="#" class="!no-underline prose hover:text-black">Instructors</a></li>
                 <li><a href="#" class="!no-underline prose hover:text-black">Categories</a></li>
-                <li><a href="#" class="!no-underline prose hover:text-black">Courses</a></li>
-                <li><a href="#" class="!no-underline prose hover:text-black">Cart</a></li>
+                <li><a href="{{ route('courses') }}" class="!no-underline prose hover:text-black">Courses</a></li>
             </ul>
         </div>
         <div class="py-5">
             <ul class="flex gap-2 items-center list-none">
                 @if(Auth()->user())
-                <li><a href="#" class="!no-underline prose hover:text-black">My Course</a></li>
                 <li><a href="#" class="!no-underline prose hover:text-black text-xl"><i class="bx bx-cart-alt"></i></a></li>
                 <li>
                     <div>
@@ -32,6 +30,12 @@
                             <div class="dropdown-menu absolute top-0 ltr:-left-3 z-50 hidden w-40 list-none rounded bg-white shadow dark:bg-zinc-800"
                                 id="profile/log">
                                 <div class="border border-gray-50 dark:border-zinc-600" aria-labelledby="navNotifications">
+                                    <div class="dropdown-item dark:text-gray-100">
+                                        <a class="px-3 py-2 hover:bg-gray-50/50 block dark:hover:bg-zinc-700/50 prose !no-underline"
+                                            href="{{ route('member.index') }}">
+                                            <i class="mdi mdi-home text-16 align-middle mr-1"></i> Dashboard
+                                        </a>
+                                    </div>
                                     <div class="dropdown-item dark:text-gray-100">
                                         <a class="px-3 py-2 hover:bg-gray-50/50 block dark:hover:bg-zinc-700/50 prose !no-underline"
                                             href="{{ route('dashboard.profile') }}">
