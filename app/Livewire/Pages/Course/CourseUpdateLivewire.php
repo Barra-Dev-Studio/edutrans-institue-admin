@@ -129,7 +129,7 @@ class CourseUpdateLivewire extends Component
     {
         $this->validate();
         try {
-            $thumbnail = $this->thumbnail ? $this->thumbnail->store('thumbnails', 'hosting') : $this->currentThumbnail;
+            $thumbnail = $this->thumbnail ? $this->thumbnail->store('thumbnails') : $this->currentThumbnail;
             $isUpdated = Course::find($this->id)->update([
                 'title' => $this->title,
                 'slug' => $this->slug,
@@ -146,8 +146,8 @@ class CourseUpdateLivewire extends Component
                 'status' => $this->status,
                 'thumbnail' => $thumbnail
             ]);
-            if ($this->thumbnail && Storage::disk('hosting')->exists($this->currentThumbnail) && $isUpdated) {
-                Storage::disk('hosting')->delete($this->currentThumbnail);
+            if ($this->thumbnail && Storage::exists($this->currentThumbnail) && $isUpdated) {
+                Storage::delete($this->currentThumbnail);
             }
             return redirect()->route('dashboard.course.show', $this->id)->with('success', 'Course updated successfuly');
         } catch (\Exception $e) {

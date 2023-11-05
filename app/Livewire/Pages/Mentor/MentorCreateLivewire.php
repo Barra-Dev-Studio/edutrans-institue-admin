@@ -31,7 +31,7 @@ class MentorCreateLivewire extends Component
     {
         $this->validate();
         try {
-            $photo = $this->photo->store('photos', 'hosting');
+            $photo = $this->photo->store('photos');
             Mentor::create([
                 'name' => $this->name,
                 'speciality' => $this->speciality,

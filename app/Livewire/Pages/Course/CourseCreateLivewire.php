@@ -107,7 +107,7 @@ class CourseCreateLivewire extends Component
     {
         $this->validate();
         try {
-            $thumbnail = $this->thumbnail->store('thumbnails', 'hosting');
+            $thumbnail = $this->thumbnail->store('thumbnails');
             $course = Course::create([
                 'title' => $this->title,
                 'slug' => $this->slug,

@@ -44,7 +44,7 @@
 }
 
 body {
-    @apply bg-slate-50
+    @apply bg-slate-100
 }
 
 .progress-bar-striped {

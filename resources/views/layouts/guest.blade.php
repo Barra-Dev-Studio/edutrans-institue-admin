@@ -38,10 +38,16 @@
         <meta name="msapplication-TileColor" content="#4C8DAB">
         <meta name="msapplication-TileImage" content="{{ asset('assets/favicon/ms-icon-144x144.png') }}">
         <meta name="theme-color" content="#4C8DAB">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
         @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/icons.css'])
     </head>
     <body data-mode="light" data-sidebar-size="lg">
+        @include('layouts.partials.member.topbar')
         {{ $slot }}
+        @include('layouts.partials.member.footer')
+        @include('layouts.partials.scripts')
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+        @stack('js')
     </body>
 </html>

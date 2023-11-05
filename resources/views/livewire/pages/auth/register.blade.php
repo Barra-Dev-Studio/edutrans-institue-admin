@@ -34,7 +34,7 @@ new #[Layout('layouts.guest')] class extends Component
     }
 }; ?>
 
-<div class="h-screen w-screen flex items-center justify-center">
+<div class="my-16 w-screen flex items-center justify-center">
     <div class="bg-slate-50 p-10 rounded-lg border border-slate-300/40 min-w-[460px] max-w-[460px]">
         <h2 class="mb-8">Register</h2>
         <form wire:submit="register">
