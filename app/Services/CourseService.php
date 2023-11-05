@@ -15,4 +15,9 @@ class CourseService
     {
         return Course::findOrFail($id);
     }
+
+    public static function getBySlug(string $slug)
+    {
+        return Course::where('slug', $slug)->latest()->first();
+    }
 }

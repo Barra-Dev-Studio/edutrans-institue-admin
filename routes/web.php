@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GuestController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\UserController;
@@ -22,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome')->name('home');
 Route::view('/courses', 'courses')->name('courses');
+Route::get('/course/{slug}',[GuestController::class, 'courseDetail'])->name('course.detail');
 
 Route::middleware(['auth', 'can:access-admin'])->group(function () {
     Route::prefix('dashboard')->as('dashboard.')->group(function () {

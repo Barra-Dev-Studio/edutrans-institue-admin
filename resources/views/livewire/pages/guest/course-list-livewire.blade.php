@@ -40,14 +40,14 @@
             </div>
             <div class="grid grid-cols-3 mt-4 gap-4">
                 @forelse($courses as $course)
-                <div class="h-full">
+                <a href="{{ route('course.detail', $course->slug) }}" class="h-full">
                     <x-course-card
                     img="https://images.unsplash.com/photo-1692312344458-9a4d495f7163?auto=format&fit=crop&q=80&w=2071&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     :mentor="$course->mentor->name"
                     :title="$course->title"
                     :description="$course->description"
                     :price="$course->price"></x-course-card>
-                </div>
+                </a>
                 @empty
                 <div class="h-full col-span-3">
                     <p class="text-slate-500">Kursus tidak ditemukan, silakan gunakan kata kunci atau filter yang lain</p>

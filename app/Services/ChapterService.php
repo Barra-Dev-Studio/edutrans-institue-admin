@@ -15,4 +15,18 @@ class ChapterService
     {
         return Chapter::findOrFail($id);
     }
+
+    public static function getByCourseId(string $courseId, bool $format = false)
+    {
+        $chapters = Chapter::where('course_id', $courseId)->orderBy('section', 'ASC')->orderBy('title', 'ASC')->get();
+        if (!$format) {
+            return $chapters;
+        }
+
+        $sections = [];
+        foreach ($chapters as $chapter) {
+            $sections[explode(". ", $chapter->section)[1]][] = $chapter;
+        }
+        return $sections;
+    }
 }
