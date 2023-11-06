@@ -13,7 +13,7 @@ class AssignAdminSeeder extends Seeder
      */
     public function run(): void
     {
-        $admin = User::where('email', 'admin@edutransinstitue.com')->first();
+        $admin = User::where('email', 'admin@edutransinstitute.com')->first();
         $admin->assignRole('admin');
     }
 }
