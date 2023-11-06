@@ -77,7 +77,7 @@
                                 <div>
                                     <a href="#!" class="text-reset notification-item">
                                         <div class="flex px-4 py-2 hover:bg-gray-50/50 dark:hover:bg-zinc-700/50">
-                                            <div class="flex-shrink-0 ltr:mr-3 rtl:ml-3">
+                                            <div class="flex-shrink-0 md:mr-3">
                                                 <img src="{{ url('assets/images/users/avatar-3.jpg') }}"
                                                     class="rounded-full h-8 w-8" alt="user-pic">
                                             </div>
@@ -176,7 +176,7 @@
                         <span class="fw-medium hidden xl:block prose">{{ \Auth()->user()->name }}</span>
                         <i class="mdi mdi-chevron-down align-bottom hidden xl:block"></i>
                     </button>
-                    <div class="dropdown-menu absolute top-0 ltr:-left-3 rtl:-right-3 z-50 hidden w-40 list-none rounded bg-white shadow dark:bg-zinc-800"
+                    <div class="dropdown-menu absolute top-0 md::-left-3 z-50 hidden w-40 list-none rounded bg-white shadow dark:bg-zinc-800"
                         id="profile/log">
                         <div class="border border-gray-50 dark:border-zinc-600" aria-labelledby="navNotifications">
                             <div class="dropdown-item dark:text-gray-100">
