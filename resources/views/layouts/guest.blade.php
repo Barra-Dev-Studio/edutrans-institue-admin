@@ -40,7 +40,13 @@
         <meta name="theme-color" content="#4C8DAB">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
+        @if(env('APP_ENV') === 'local')
         @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/icons.css'])
+        @else
+        <link rel="stylesheet" href="{{ asset('build/assets/app-350be85a.css') }}">
+        <link rel="stylesheet" href="{{ asset('build/assets/icons-adf300ab.css') }}">
+        <script src="{{ asset('build/assets/app-02317797.js') }}"></script>
+        @endif
     </head>
     <body data-mode="light" data-sidebar-size="lg">
         @include('layouts.partials.member.topbar')
