@@ -73,7 +73,7 @@ new #[Layout('layouts.guest')] class extends Component
 }; ?>
 
 <div class="w-screen flex items-center justify-center my-16">
-    <div class="bg-slate-50 p-10 rounded-lg border border-slate-300/40 min-w-[460px] max-w-[460px]">
+    <div class="bg-slate-50 p-10 rounded-lg border border-slate-300/40 md:min-w-[460px] md:max-w-[460px]">
         <h2 class="mb-8">Login</h2>
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />

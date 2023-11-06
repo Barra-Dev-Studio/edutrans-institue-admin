@@ -1,9 +1,9 @@
-<nav class="px-16">
-    <div class="flex items-center justify-between px-8">
+<nav class="md:px-16">
+    <div class="flex items-center justify-between px-6 md:px-8 py-6 md:py-0">
         <div class="flex items-center gap-4 prose">
             <a href="{{ route('home') }}" class="text-lg font-semibold !no-underline">Edutrans Intitute</a>
         </div>
-        <div class="py-5">
+        <div class="py-5 hidden md:block">
             <ul class="flex gap-8 items-center list-none">
                 <li><a href="{{ route('home') }}" class="!no-underline prose hover:text-black">Home</a></li>
                 <li><a href="#" class="!no-underline prose hover:text-black">Instructors</a></li>
@@ -11,7 +11,7 @@
                 <li><a href="{{ route('courses') }}" class="!no-underline prose hover:text-black">Courses</a></li>
             </ul>
         </div>
-        <div class="py-5">
+        <div class="py-5 hidden md:block">
             <ul class="flex gap-2 items-center list-none">
                 @if(Auth()->user())
                 <li><a href="#" class="!no-underline prose hover:text-black text-xl"><i class="bx bx-cart-alt"></i></a></li>

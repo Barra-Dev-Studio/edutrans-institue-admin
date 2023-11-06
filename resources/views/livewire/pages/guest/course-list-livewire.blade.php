@@ -1,5 +1,5 @@
-<div>
-    <div class="grid grid-cols-3 gap-6">
+<div class="mb-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="bg-slate-50 rounded p-8 border border-slate-200">
             <h4 class="mb-3">Filter kategori</h4>
             <div class="border-b border-slate-200 h-1"></div>
@@ -33,12 +33,12 @@
                 </div>
             </div>
         </div>
-        <div class="col-span-2">
+        <div class="md:col-span-2">
             <div class="grid grid-cols-3 items-center gap-4">
                 <x-text-input wire:model.live="query" id="query" class="block w-full h-12 px-4 col-span-2" type="query" name="query" required placeholder="Cari berdasarkan judul atau nama Instruktur" />
                 <button class="bg-sky-800 text-white h-12 rounded hover:bg-sky-900">Cari</button>
             </div>
-            <div class="grid grid-cols-3 mt-4 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 mt-4 gap-4">
                 @forelse($courses as $course)
                 <a href="{{ route('course.detail', $course->slug) }}" class="h-full">
                     <x-course-card

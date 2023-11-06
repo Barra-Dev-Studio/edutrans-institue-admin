@@ -1,8 +1,8 @@
 <x-guest-layout>
-    <div class="bg-sky-900 pt-16 px-16">
-        <div class="px-8">
-            <div class="grid grid-cols-3 items-start">
-                <div class="col-span-2">
+    <div class="bg-sky-900 pt-16 md:px-16">
+        <div class="px-6 md:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 items-end gap-8">
+                <div class="col-span-2 pb-16 md:pb-12">
                     <p class="text-slate-300 mb-4 prose">Kategori {{ $course->category->name }}</p>
                     <h1 class="text-white text-5xl leading-snug">{{ $course->title }}</h1>
                     <div class="flex items-center gap-4 mt-4">
@@ -13,7 +13,7 @@
                         </div>
                     </div>
                 </div>
-                <div>
+                <div class="hidden md:block">
                     <div>
                         <img src="https://images.unsplash.com/photo-1692312344458-9a4d495f7163?auto=format&fit=crop&q=80&w=2071&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-t" alt="">
                     </div>
@@ -21,10 +21,10 @@
             </div>
         </div>
     </div>
-    <div class="px-16 pb-16">
-        <div class="px-8">
-            <div class="grid grid-cols-3">
-                <div class="col-span-2">
+    <div class="md:px-16 pb-16">
+        <div class="px-6 md:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-8">
+                <div class="md:col-span-2">
                     <div class="prose pt-16">
                         <h2>Deskripsi</h2>
                         <p>{{ $course->description }}</p>
@@ -63,6 +63,10 @@
                     </div>
                 </div>
                 <div>
+                    <div class="block md:hidden">
+                        <img src="https://images.unsplash.com/photo-1692312344458-9a4d495f7163?auto=format&fit=crop&q=80&w=2071&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            class="rounded-t" alt="">
+                    </div>
                     <div class="bg-slate-50 p-4 shadow">
                         <h3 class="text-center mb-2">Rp250.000</h3>
                         <p class="text-center text-slate-400">Jaminan uang kembali</p>

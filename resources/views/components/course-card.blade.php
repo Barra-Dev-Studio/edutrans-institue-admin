@@ -1,5 +1,5 @@
 @props(['img', 'mentor', 'title', 'description', 'price'])
-<div class="card bg-slate-50 cursor-pointer h-[435px]">
+<div class="card bg-slate-50 cursor-pointer md:h-[435px]">
     <img class="rounded-tl rounded-tr" src="{{ $img }}" alt="">
     <div class="card-body h-[260px] flex flex-col justify-between">
         <div>

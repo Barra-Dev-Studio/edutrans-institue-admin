@@ -1,22 +1,22 @@
 <x-guest-layout>
-    <div class="grid grid-cols-2 px-16 pt-16 items-center">
-        <div class="pl-8 prose pb-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 md:px-16 pt-4 md:pt-16 items-center">
+        <div class="pl-6 pr-6 md:pr-0 md:pl-8 prose pb-8">
             <p class="font-medium text-sky-800">#TransformasiPositifBersamaEdutrans</p>
             <h1 class="leading-snug mb-0">Menjembatani Ilmu dan Aksi Bersama Edutrans Institute</h1>
             <p class="mt-2">Online course bersertifikat paling diminati berbagai kalangan dengan berbagai materi dan kategori paling update.</p>
-            <div class="flex items-center gap-4">
-                <a href="#" class="bg-sky-800 px-6 py-3 rounded text-white hover:bg-sky-900 no-underline">Jelajahi kursus</a>
+            <div class="flex items-start md:items-center gap-1 md:gap-4 flex-col md:flex-row mt-8 md:mt-0">
+                <a href="{{ route('courses') }}" class="bg-sky-800 px-6 py-3 rounded text-white hover:bg-sky-900 no-underline">Jelajahi kursus</a>
                 <p class="text-sky-800 font-medium">Dipercaya berbagai lembaga dan institusi</p>
             </div>
         </div>
-        <div class="pr-8 flex justify-end">
+        <div class="pr-8 md:flex justify-end hidden">
             <img src="{{ asset('assets/images/hero.png') }}" class="h-[388px]" alt="Edutrans Institute">
         </div>
     </div>
     <div class="bg-sky-900">
-        <div class="px-16 py-10">
-            <div class="px-8">
-                <div class="grid grid-cols-4 items-start justify-between gap-4">
+        <div class="md:px-16 py-10">
+            <div class="px-6 md:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-4 items-start justify-between gap-8 md:gap-4">
                     <div class="flex items-start gap-4">
                         <div class="h-12 w-12 rounded bg-slate-200 flex items-center justify-center text-3xl text-sky-800 mt-2">
                             <i class="bx bx-book-content"></i>
