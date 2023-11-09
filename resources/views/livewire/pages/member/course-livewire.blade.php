@@ -1,6 +1,6 @@
 <div>
-    <div class="grid grid-cols-12 mb-5 space-x-8">
-        <div class="col-span-6 prose">
+    <div class="grid grid-cols-1 md:grid-cols-12 mb-5 md:space-x-8 gap-4 md:gap-0">
+        <div class="md:col-span-6 prose">
             <label class="block font-medium text-gray-700 dark:text-zinc-100 mb-2">Filter </label>
             <div class="grid grid-cols-3 gap-4 items-center">
                 <div>
@@ -20,12 +20,12 @@
                 </div>
             </div>
         </div>
-        <div class="col-span-6 prose">
+        <div class="md:col-span-6 prose">
             <x-input-label for="search" :value="__('Search')" />
             <x-text-input wire:model.live="search" id="search" class="block mt-1 w-full" type="text" name="search" placeholder="Search your course" />
         </div>
     </div>
-    <div class="grid grid-cols-4 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div>
             <x-course-card
                 img="https://images.unsplash.com/photo-1692312344458-9a4d495f7163?auto=format&fit=crop&q=80&w=2071&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
