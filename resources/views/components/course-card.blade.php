@@ -1,6 +1,8 @@
 @props(['img', 'mentor', 'title', 'description', 'price'])
 <div class="card bg-slate-50 cursor-pointer md:h-min-[435px]">
-    <img class="rounded-tl rounded-tr" src="{{ $img }}" alt="">
+    <div class="h-[250px] overflow-hidden">
+        <img class="rounded-tl rounded-tr" src="{{ $img }}" alt="">
+    </div>
     <div class="card-body h-[260px] flex flex-col justify-between">
         <div>
             <div class="flex justify-between items-start">

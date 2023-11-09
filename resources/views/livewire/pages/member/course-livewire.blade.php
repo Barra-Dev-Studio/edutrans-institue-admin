@@ -26,12 +26,21 @@
         </div>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        @forelse($courses as $course)
         <div>
             <x-course-card
-                img="https://images.unsplash.com/photo-1692312344458-9a4d495f7163?auto=format&fit=crop&q=80&w=2071&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                mentor="Khoerul Umam" title="Pengembangan diri dengan public speaking"
-                description="Deskripsi singkat ini terkait dengan materi public speaking yang akan diajarkan..."
-                price="250000"></x-course-card>
+                img="{{ \Storage::url($course->thumbnail) }}"
+                mentor="{{ $course->mentor->name }}" title="{{ $course->title }}"
+                description="{{ $course->description }}"
+                price="{{ $course->price }}"></x-course-card>
         </div>
+        @empty
+        <div>
+            <p class="prose">Belum ada kursus. Akses halaman <a href="{{ route('courses') }}">Katalog</a> untuk melihat list kursus yang tersedia</p>
+        </div>
+        @endforelse
+    </div>
+    <div class="my-5">
+        {{ $courses->onEachSide(1)->links() }}
     </div>
 </div>

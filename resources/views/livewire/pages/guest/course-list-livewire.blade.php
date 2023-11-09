@@ -42,7 +42,7 @@
                 @forelse($courses as $course)
                 <a href="{{ route('course.detail', $course->slug) }}" class="h-full">
                     <x-course-card
-                    img="https://images.unsplash.com/photo-1692312344458-9a4d495f7163?auto=format&fit=crop&q=80&w=2071&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    img="{{ \Storage::url($course->thumbnail) }}"
                     :mentor="$course->mentor->name"
                     :title="$course->title"
                     :description="$course->description"
