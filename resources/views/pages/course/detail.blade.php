@@ -68,10 +68,10 @@
                             class="rounded-t" alt="">
                     </div>
                     <div class="bg-slate-50 p-4 shadow">
-                        <h3 class="text-center mb-2">Rp250.000</h3>
+                        <h3 class="text-center mb-2">Rp{{ number_format($course->price) }}</h3>
                         <p class="text-center text-slate-400">Jaminan uang kembali</p>
                         <div class="flex flex-col gap-2 mt-8">
-                            <button href="{{ route('register') }}" class="text-center flex items-center justify-center gap-4 !no-underline prose bg-sky-800 text-white py-3 px-6 rounded hover:bg-sky-700 hover:text-white"><i class="bx bx-cart-alt"></i> Beli sekarang</button>
+                            <a href="{{ route('checkout', $course->slug) }}" class="text-center flex items-center justify-center gap-4 !no-underline prose bg-sky-800 text-white py-3 px-6 rounded hover:bg-sky-700 hover:text-white"><i class="bx bx-cart-alt"></i> Beli sekarang</a>
                             <button class="text-center !no-underline prose border-sky-800 text-sky-800 py-3 border px-6 rounded hover:bg-sky-700 hover:text-white">Pratinjau</button>
                         </div>
                         <h6 class="mt-8 mb-4">Detail singkat terkait kursus</h6>

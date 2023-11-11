@@ -28,4 +28,17 @@ class MemberController extends Controller
 
         return view('pages.member.play', compact('course', 'sections'));
     }
+
+    public function checkout($slug)
+    {
+        // TODO: Check if course buyable and check another price
+        // If not return 404
+        $course = CourseService::getBySlug($slug);
+        $payments = [
+            'Virtual Account (VA)' => 1904,
+            'QRIS' => 0
+        ];
+
+        return view('pages.member.checkout', compact('course', 'payments'));
+    }
 }

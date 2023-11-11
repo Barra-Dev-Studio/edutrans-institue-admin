@@ -73,6 +73,7 @@
                 @endif
             </ul>
         </div>
+        @guest
         <div class="dropdown relative md:hidden">
             <button type="button"
                 class="btn py-2.5 dropdown-toggle shadow-md shadow-gray-100 dark:shadow-zinc-600 border bg-sky-800 border-gray-500 text-white text-xl leading-tight"
@@ -93,5 +94,6 @@
                 </li>
             </ul>
         </div>
+        @endguest
     </div>
 </nav>
