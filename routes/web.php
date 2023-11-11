@@ -42,6 +42,7 @@ Route::middleware(['auth','can:access-member'])->group(function () {
     Route::prefix('member')->as('member.')->group(function () {
         Route::get('/', [MemberController::class, 'index'])->name('index');
         Route::get('/transaction', [MemberController::class,'transaction'])->name('transaction');
+        Route::get('/play/{slug}', [MemberController::class,'play'])->name('play');
     });
 });
 

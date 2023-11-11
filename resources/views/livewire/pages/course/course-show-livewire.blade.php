@@ -22,7 +22,7 @@
             <div class="card-body">
                 <div class="w-full prose">
                     <h3 class="mb-1 text-slate-700">{{ $course->title }}</h3>
-                    <p class="text-slate-600">{{ $course->description }}</p>
+                    <p class="text-slate-600">{!! $course->description !!}</p>
                     <div class="flex gap-6 items-center">
                         <div>
                             <img class="block h-14 w-14 rounded-full ring-2 ring-white dark:ring-zinc-500"

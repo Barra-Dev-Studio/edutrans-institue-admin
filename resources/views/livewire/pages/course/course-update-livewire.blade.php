@@ -75,8 +75,7 @@
                 <div class="w-full">
                     <div>
                         <x-input-label for="description" :value="__('Description')" />
-                        <x-textarea-input wire:model.live="description" id="description" class="block mt-1 w-full" name="description"
-                            placeholder="Description" required rows="8" />
+                        <livewire:plugin.trix-livewire :value="$description"></livewire:plugin.trix-livewire>
                         <x-input-error :messages="$errors->get('description')" class="mt-2" />
                     </div>
                     <div class="mt-4">
@@ -252,7 +251,7 @@
                                         </tr>
                                         <tr class="border-b border-gray-50 dark:border-zinc-600 dark:bg-zinc-700/50 dark:text-zinc-100 bg-white">
                                             <td class="p-3">Description</td>
-                                            <td class="p-3">{{ $description }}</td>
+                                            <td class="p-3">{!! $description !!}</td>
                                         </tr>
                                         <tr class="border-b border-gray-50 dark:border-zinc-600 dark:bg-zinc-700/50 dark:text-zinc-100 bg-white">
                                             <td class="p-3">Notes</td>

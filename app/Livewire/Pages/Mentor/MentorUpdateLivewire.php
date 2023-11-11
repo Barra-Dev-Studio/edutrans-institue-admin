@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages\Mentor;
 
+use App\Livewire\Plugin\TrixLivewire;
 use App\Models\Mentor;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
@@ -25,6 +26,10 @@ class MentorUpdateLivewire extends Component
         'photo' => ['image', 'max:1024', 'nullable']
     ];
 
+    public $listeners = [
+        TrixLivewire::EVENT_VALUE_UPDATED => 'updateFromTrix'
+    ];
+
     public function mount()
     {
         $mentor = Mentor::find($this->id);
@@ -32,7 +37,11 @@ class MentorUpdateLivewire extends Component
         $this->speciality = $mentor->speciality;
         $this->bio = $mentor->bio;
         $this->currentPhoto = $mentor->photo;
+    }
 
+    public function updateFromTrix($value)
+    {
+        $this->bio = $value;
     }
 
     public function updated($propertyName)

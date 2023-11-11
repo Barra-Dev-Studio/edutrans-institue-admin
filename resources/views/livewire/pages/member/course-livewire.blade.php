@@ -27,13 +27,15 @@
     </div>
     <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
         @forelse($courses as $course)
-        <div>
-            <x-course-card
-                img="{{ \Storage::url($course->thumbnail) }}"
-                mentor="{{ $course->mentor->name }}" title="{{ $course->title }}"
-                description="{{ $course->description }}"
-                price="{{ $course->price }}"></x-course-card>
-        </div>
+        <a href="{{ route('member.play', $course->slug) }}">
+            <div>
+                <x-course-card
+                    img="{{ \Storage::url($course->thumbnail) }}"
+                    mentor="{{ $course->mentor->name }}" title="{{ $course->title }}"
+                    description="{{ strip_tags($course->description) }}"
+                    price="{{ $course->price }}"></x-course-card>
+            </div>
+        </a>
         @empty
         <div>
             <p class="prose">Belum ada kursus. Akses halaman <a href="{{ route('courses') }}">Katalog</a> untuk melihat list kursus yang tersedia</p>

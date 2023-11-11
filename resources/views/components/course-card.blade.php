@@ -11,7 +11,7 @@
             </div>
             <div class="mt-6">
                 <h4 class="mb-3 line-clamp-2">{{ $title }}</h4>
-                <p class="text-slate-500 line-clamp-2">{{ $description }}</p>
+                <p class="text-slate-500 line-clamp-2">{{ strip_tags($description) }}</p>
             </div>
         </div>
         <div class="mt-6">

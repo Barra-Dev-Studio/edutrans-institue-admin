@@ -19,7 +19,7 @@
                     <div class="prose">
                         <h1 class="mb-1 text-slate-800">{{ $mentor->name }}</h1>
                         <span class="text-slate-500">{{ $mentor->speciality }}</span>
-                        <p class="text-slate-600">{{ $mentor->bio }}</p>
+                        <p class="text-slate-600">{!! $mentor->bio !!}</p>
                     </div>
                 </div>
             </div>

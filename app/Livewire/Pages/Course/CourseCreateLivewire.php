@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages\Course;
 
+use App\Livewire\Plugin\TrixLivewire;
 use App\Models\Category;
 use App\Models\Course;
 use App\Models\Mentor;
@@ -51,6 +52,15 @@ class CourseCreateLivewire extends Component
         'isCertified' => ['required'],
         'status' => ['required'],
     ];
+
+    public $listeners = [
+        TrixLivewire::EVENT_VALUE_UPDATED => 'updateFromTrix'
+    ];
+
+    public function updateFromTrix($value)
+    {
+        $this->description = $value;
+    }
 
     public function mount()
     {

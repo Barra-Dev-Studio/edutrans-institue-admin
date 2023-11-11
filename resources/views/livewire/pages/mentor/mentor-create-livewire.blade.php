@@ -25,9 +25,8 @@
             <x-input-error :messages="$errors->get('speciality')" class="mt-2" />
         </div>
         <div class="mt-4">
-            <x-input-label for="bio" :value="__('Email')" />
-            <x-textarea-input wire:model.live="bio" id="bio" class="block mt-1 w-full"
-                name="bio" placeholder="Short bio" required />
+            <x-input-label for="bio" :value="__('Bio')" />
+            <livewire:plugin.trix-livewire :value="$bio"></livewire:plugin.trix-livewire>
             <x-input-error :messages="$errors->get('bio')" class="mt-2" />
         </div>
         <div class="mt-4">

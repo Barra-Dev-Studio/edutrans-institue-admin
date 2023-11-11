@@ -27,7 +27,7 @@
                 <div class="md:col-span-2">
                     <div class="prose pt-16">
                         <h2>Deskripsi</h2>
-                        <p>{{ $course->description }}</p>
+                        <p>{!! $course->description !!}</p>
                         <h2>Catatan</h2>
                         <p>{{ $course->notes ?? 'Tidak ada catatan untuk kursus ini' }}</p>
                         <h2>Konten kursus</h2>

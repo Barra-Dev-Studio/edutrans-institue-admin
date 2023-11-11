@@ -2,7 +2,9 @@
 
 namespace App\Livewire\Pages\Mentor;
 
+use App\Livewire\Plugin\TrixLivewire;
 use App\Models\Mentor;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -21,6 +23,15 @@ class MentorCreateLivewire extends Component
         'bio' => 'required',
         'photo' => ['required', 'image', 'max:1024']
     ];
+
+    public $listeners = [
+        TrixLivewire::EVENT_VALUE_UPDATED => 'updateFromTrix'
+    ];
+
+    public function updateFromTrix($value)
+    {
+        $this->bio = $value;
+    }
 
     public function updated($propertyName)
     {
