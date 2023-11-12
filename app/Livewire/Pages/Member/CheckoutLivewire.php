@@ -52,6 +52,10 @@ class CheckoutLivewire extends Component
             return redirect()->route("member.play", $this->course->slug)->with('success', 'Kamu telah memiliki katalog kelas ini');
         }
 
+        if ($this->selectedPayment == null || !auth()->check()) {
+            return back();
+        }
+
         $data = (object) [
             'total_price' => $this->totalPrice,
             'total_payment' => $this->totalPrice,
