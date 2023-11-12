@@ -15,6 +15,20 @@ class TransactionService
         return $transaction;
     }
 
+    public static function getByRefId($refId)
+    {
+        $transaction = Transaction::where("ref_id", $refId)->first();
+        return $transaction;
+    }
+
+    public static function updateCallback($data)
+    {
+        return Transaction::where('id', $data->data['reference_id'])->where('ref_id', $data->data['id'])->update([
+            'status' => $data->data['status'],
+            'callback_response' => json_encode($data->all())
+        ]);
+    }
+
     public static function process($data)
     {
         DB::beginTransaction();

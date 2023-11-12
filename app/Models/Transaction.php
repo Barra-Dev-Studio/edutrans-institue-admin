@@ -19,7 +19,8 @@ class Transaction extends Model
         'total_payment',
         'status',
         'payment_response',
-        'payment_method'
+        'payment_method',
+        'callback_response'
     ];
 
     public function transactionDetails()

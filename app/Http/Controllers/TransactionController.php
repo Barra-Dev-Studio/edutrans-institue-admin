@@ -2,63 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\CourseService;
+use App\Services\TransactionService;
 use Illuminate\Http\Request;
+use DB;
 
 class TransactionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function callback(Request $request)
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        DB::beginTransaction();
+        try {
+            TransactionService::updateCallback($request);
+            if ($request->data['status'] === 'SUCCEEDED')
+            {
+                foreach ($request->data['basket'] as $item) {
+                    CourseService::addCourseToUser($request->data['reference_id'], $item['reference_id'], $request->data['metadata']['member_id']);
+                }
+            }
+            DB::commit();
+            return response([], 200);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response($e->getMessage(), 500);
+        }
     }
 }
