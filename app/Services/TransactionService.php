@@ -7,8 +7,14 @@ use App\Models\TransactionDetail;
 use Illuminate\Support\Facades\Auth;
 use DB;
 
-class CheckoutService
+class TransactionService
 {
+    public static function getById($id)
+    {
+        $transaction = Transaction::findOrFail($id);
+        return $transaction;
+    }
+
     public static function process($data)
     {
         DB::beginTransaction();
@@ -30,6 +36,7 @@ class CheckoutService
                     'transaction_id' => $transaction->id,
                     'item_id' => $item->id,
                     'item_type' => $item->type,
+                    'item_name' => $item->name,
                     'price' => $item->price,
                     'disc' => $item->disc,
                     'final_price' => $item->final_price_item,
@@ -82,6 +89,7 @@ class CheckoutService
             'transaction_id' => $data->transaction_id,
             'item_id' => $data->item_id,
             'item_type' => $data->item_type,
+            'item_name' => $data->item_name,
             'price' => $data->price,
             'disc' => $data->disc,
             'final_price' => $data->final_price,

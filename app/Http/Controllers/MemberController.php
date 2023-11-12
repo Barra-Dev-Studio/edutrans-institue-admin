@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Services\ChapterService;
-use App\Services\CheckoutService;
 use App\Services\CourseService;
+use App\Services\TransactionService;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller
@@ -16,8 +16,7 @@ class MemberController extends Controller
 
     public function transaction()
     {
-        $memberId = Auth()->user()->id;
-        return view('pages.member.transaction', compact('memberId'));
+        return view('pages.member.transaction.index');
     }
 
     public function play($slug)
@@ -25,7 +24,7 @@ class MemberController extends Controller
         // TODO: Check if course playable
         // If not return 404
         $course = CourseService::getBySlug($slug);
-        if (!CheckoutService::checkIfUserOwnedTheCourse($course->id)) {
+        if (!TransactionService::checkIfUserOwnedTheCourse($course->id)) {
             return abort(404);
         }
 
@@ -45,5 +44,11 @@ class MemberController extends Controller
         ];
 
         return view('pages.member.checkout', compact('course', 'payments'));
+    }
+
+    public function detailTransaction($id)
+    {
+        $transaction = TransactionService::getById($id);
+        return view('pages.member.transaction.show', compact('transaction'));
     }
 }

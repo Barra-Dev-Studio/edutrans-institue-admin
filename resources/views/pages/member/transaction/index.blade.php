@@ -9,7 +9,7 @@
             <h5 class="dark:text-zinc-100">Transaction data</h5>
         </div>
         <div class="card-body">
-            <livewire:pages.member.transaction-table-livewire :memberId="$memberId"></livewire:pages.member.transaction-table-livewire>
+            <livewire:pages.member.transaction-table-livewire></livewire:pages.member.transaction-table-livewire>
         </div>
     </div>
 </x-app-layout>

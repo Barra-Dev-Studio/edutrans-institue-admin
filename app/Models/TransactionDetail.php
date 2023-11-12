@@ -14,6 +14,7 @@ class TransactionDetail extends Model
         'transaction_id',
         'item_id',
         'item_type',
+        'item_name',
         'price',
         'disc',
         'final_price',

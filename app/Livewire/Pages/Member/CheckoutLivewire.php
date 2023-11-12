@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Pages\Member;
 
-use App\Services\CheckoutService;
+use App\Services\TransactionService;
 use Livewire\Component;
 
 class CheckoutLivewire extends Component
@@ -48,7 +48,7 @@ class CheckoutLivewire extends Component
 
     public function submit()
     {
-        if (CheckoutService::checkIfUserOwnedTheCourse($this->course->id)) {
+        if (TransactionService::checkIfUserOwnedTheCourse($this->course->id)) {
             return redirect()->route("member.play", $this->course->slug)->with('success', 'Kamu telah memiliki katalog kelas ini');
         }
 
@@ -69,6 +69,7 @@ class CheckoutLivewire extends Component
                     'title' => $this->course->title,
                     'mentor' => $this->course->mentor->name,
                     'category' => $this->course->category->name,
+                    'name' => $this->course->title,
                     'type' => 'course',
                     'price' => $this->course->price,
                     'disc' => $this->course->discount ?? 0,
@@ -76,7 +77,7 @@ class CheckoutLivewire extends Component
                 ]
             ]
         ];
-        $process = CheckoutService::process($data);
+        $process = TransactionService::process($data);
         return $process ? redirect()->route('member.index') : back();
     }
 

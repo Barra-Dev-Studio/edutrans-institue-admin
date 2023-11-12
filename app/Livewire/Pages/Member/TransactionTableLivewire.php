@@ -12,7 +12,6 @@ class TransactionTableLivewire extends Component
 
     public $showPage = 5;
     public $search = '';
-    public $memberId;
 
     public function updatingSearch()
     {
@@ -27,7 +26,7 @@ class TransactionTableLivewire extends Component
     public function render()
     {
         return view('livewire.pages.member.transaction-table-livewire', [
-            'courses' => Transaction::where('member_id', $this->memberId)->paginate($this->showPage)
+            'transactions' => Transaction::where('member_id', auth()->user()->id)->paginate($this->showPage)
         ]);
     }
 }
