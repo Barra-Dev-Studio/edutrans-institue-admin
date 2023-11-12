@@ -19,18 +19,19 @@ class TransactionService
     {
         DB::beginTransaction();
         try {
-            $response = self::createTransaction($data);
             $transactionData = (object) [
-                'ref_id' => $response->ref_id,
+                'ref_id' => '',
                 'total_item' => count($data->items),
                 'total_price' => $data->total_price,
                 'total_disc' => $data->total_disc,
                 'total_payment' => $data->total_payment,
                 'payment_method' => $data->payment_method,
-                'status' => $response->status,
-                'payment_response' => json_encode($response)
+                'status' => 'PENDING',
+                'payment_response' => json_encode([])
             ];
             $transaction = self::saveTransaction($transactionData);
+            $payment = self::createTransaction($data, $transaction);
+            self::updateTransaction($transaction->id, $payment);
             foreach ($data->items as $item) {
                 $detail = (object) [
                     'transaction_id' => $transaction->id,
@@ -42,15 +43,17 @@ class TransactionService
                     'final_price' => $item->final_price_item,
                 ];
                 $transactionDetail = self::saveTransactionDetail($detail);
-                if ($item->type === 'course') {
-                    $ownedCourse = (object) [
-                        'course_id' => $item->id,
-                        'title' => $item->title,
-                        'mentor' => $item->mentor,
-                        'category' => $item->category,
-                        'transaction_detail_id' => $transactionDetail->id
-                    ];
-                    self::saveOwnedCourse($ownedCourse);
+                if ($data->total_price == 0) {
+                    if ($item->type === 'course') {
+                        $ownedCourse = (object) [
+                            'course_id' => $item->id,
+                            'title' => $item->title,
+                            'mentor' => $item->mentor,
+                            'category' => $item->category,
+                            'transaction_detail_id' => $transactionDetail->id
+                        ];
+                        self::saveOwnedCourse($ownedCourse);
+                    }
                 }
             }
             DB::commit();
@@ -66,6 +69,14 @@ class TransactionService
     {
         $ownedCourse = OwnedCourse::where('member_id', Auth::user()->id)->where('course_id', $courseId)->count();
         return $ownedCourse > 0;
+    }
+
+    private static function updateTransaction($transactionId, $response)
+    {
+        return Transaction::where('id', $transactionId)->update([
+            'ref_id' => $response->id,
+            'payment_response' => json_encode(['provider' => 'xendit', 'data' => $response]),
+        ]);
     }
 
     private static function saveTransaction($data)
@@ -108,14 +119,29 @@ class TransactionService
         ]);
     }
 
-    private static function createTransaction($data)
+    private static function createTransaction($data, $transaction)
     {
         // TODO: Create payment
         if ($data->total_price == 0) {
             return (object) [
-                'ref_id' => 'xxx',
-                'status' => 'SUCCESS',
+                'ref_id' => '',
+                'status' => 'SUCCEEDED',
             ];
+        } else {
+            $items = [];
+            foreach ($data->items as $item) {
+                $items[] = (object) [
+                    'id' => $item->id,
+                    'name' => $item->title,
+                    'category' => $item->category,
+                    'price' => $item->final_price_item,
+                ];
+            }
+
+            $xendit = new XenditService();
+            $xendit->createEWalletPayment($data->payment_method, $transaction->id, $data->total_price, $items, $data->mobile_number ?? '');
+            $response = $xendit->getResponse();
+            return json_decode($response->body());
         }
     }
 }

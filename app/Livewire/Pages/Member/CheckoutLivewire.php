@@ -3,18 +3,18 @@
 namespace App\Livewire\Pages\Member;
 
 use App\Services\TransactionService;
+use App\Services\XenditService;
 use Livewire\Component;
 
 class CheckoutLivewire extends Component
 {
     public $course;
-    public $payments;
-    public $paymentMethod;
 
     public $tax = 0;
     public $totalPrice = 0;
     public $additionalPrice = 0;
     public $disc = 0;
+    public $mobileNumber;
 
     public $selectedPayment = null;
 
@@ -28,22 +28,22 @@ class CheckoutLivewire extends Component
         $this->tax = $this->course->price * (11 / 100);
     }
 
-    public function setSelectedPayment()
+    public function setSelectedPayment($selectedPayment)
     {
-        if ($this->paymentMethod == -1) {
-            $this->selectedPayment = null;
-            $this->additionalPrice = 0;
-        } else {
-            $this->selectedPayment = $this->paymentMethod;
-            $this->additionalPrice = $this->payments[$this->paymentMethod];
-        }
+        $this->selectedPayment = $selectedPayment;
         $this->updatePrice();
     }
 
     public function updatePrice()
     {
         $this->countTax();
-        $this->totalPrice = $this->course->price + $this->tax + $this->additionalPrice;
+        $totalPrice = $this->course->price + $this->tax;
+        if ($this->selectedPayment == null) {
+            $this->totalPrice = $totalPrice;
+        } else {
+            $this->additionalPrice = XenditService::getAdditionalFee($this->selectedPayment, $this->totalPrice);
+            $this->totalPrice = $totalPrice + $this->additionalPrice;
+        }
     }
 
     public function submit()
@@ -63,6 +63,7 @@ class CheckoutLivewire extends Component
             'tax' => $this->tax,
             'additional_price' => $this->additionalPrice,
             'payment_method' => $this->selectedPayment,
+            'mobile_number' => $this->mobileNumber,
             'items' => [
                 (object) [
                     'id' => $this->course->id,

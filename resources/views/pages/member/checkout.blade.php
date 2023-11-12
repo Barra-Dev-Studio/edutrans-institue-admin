@@ -11,7 +11,7 @@
     </div>
     <div class="md:px-16 pb-16 mt-16">
         <div class="px-6 md:px-8">
-            <livewire:pages.member.checkout-livewire :course="$course" :payments="$payments"></livewire:pages.member.checkout-livewire>
+            <livewire:pages.member.checkout-livewire :course="$course"></livewire:pages.member.checkout-livewire>
         </div>
     </div>
 </x-guest-layout>

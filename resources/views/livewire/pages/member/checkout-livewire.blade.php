@@ -13,15 +13,33 @@
                     </div>
                     <div class="mt-4">
                         <x-input-label for="payment_method" :value="__('Metode Pembayaran')" />
-                        <select class='dark:bg-zinc-800 dark:border-zinc-700 w-full rounded border-gray-100 py-2.5
-                                        text-sm text-gray-500 focus:border
-                                        focus:border-violet-500 focus:ring-0 dark:bg-zinc-700/50 dark:text-zinc-100' wire:change="setSelectedPayment" wire:model.live="paymentMethod">
-                            <option value="-1">Select</option>
-                            @foreach($payments as $payment => $additional_price)
-                            <option value="{{ $payment }}">{{ $payment }} (Rp{{ number_format($additional_price) }})
-                            </option>
-                            @endforeach
-                        </select>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div class="card cursor-pointer @if($selectedPayment == 'ID_OVO') bg-sky-100 @endif" wire:click="setSelectedPayment('ID_OVO')">
+                                <div class="card-body">
+                                    <p>OVO</p>
+                                </div>
+                            </div>
+                            <div class="card cursor-pointer @if($selectedPayment == 'ID_DANA') bg-sky-100 @endif" wire:click="setSelectedPayment('ID_DANA')">
+                                <div class="card-body">
+                                    <p>DANA</p>
+                                </div>
+                            </div>
+                            <div class="card cursor-pointer @if($selectedPayment == 'ID_LINKAJA') bg-sky-100 @endif" wire:click="setSelectedPayment('ID_LINKAJA')">
+                                <div class="card-body">
+                                    <p>LINKAJA</p>
+                                </div>
+                            </div>
+                            <div class="card cursor-pointer @if($selectedPayment == 'ID_SHOPEEPAY') bg-sky-100 @endif" wire:click="setSelectedPayment('ID_SHOPEEPAY')">
+                                <div class="card-body">
+                                    <p>SHOPEEPAY</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <x-input-label for="mobile_number" :value="__('Nomor HP')" />
+                        <x-text-input wire:model.live="mobileNumber" id="mobile_number" class="block mt-1 w-full" type="text" name="mobile_number"
+                            placeholder="Nomor HP" required />
                     </div>
                     <div class="mt-8">
                         <h3 class="mb-2">Detail produk</h3>
