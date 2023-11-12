@@ -14,6 +14,9 @@ class OwnedCourse extends Model
         'member_id',
         'course_id',
         'transaction_detail_id',
+        'mentor',
+        'category',
+        'title',
     ];
 
     public function course()

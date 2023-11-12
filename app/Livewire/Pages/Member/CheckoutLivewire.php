@@ -66,6 +66,9 @@ class CheckoutLivewire extends Component
             'items' => [
                 (object) [
                     'id' => $this->course->id,
+                    'title' => $this->course->title,
+                    'mentor' => $this->course->mentor->name,
+                    'category' => $this->course->category->name,
                     'type' => 'course',
                     'price' => $this->course->price,
                     'disc' => $this->course->discount ?? 0,

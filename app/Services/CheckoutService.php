@@ -38,6 +38,9 @@ class CheckoutService
                 if ($item->type === 'course') {
                     $ownedCourse = (object) [
                         'course_id' => $item->id,
+                        'title' => $item->title,
+                        'mentor' => $item->mentor,
+                        'category' => $item->category,
                         'transaction_detail_id' => $transactionDetail->id
                     ];
                     self::saveOwnedCourse($ownedCourse);
@@ -90,6 +93,9 @@ class CheckoutService
         return OwnedCourse::create([
             'member_id' => Auth::user()->id,
             'course_id' => $data->course_id,
+            'title' => $data->title,
+            'mentor' => $data->mentor,
+            'category' => $data->category,
             'transaction_detail_id' => $data->transaction_detail_id,
         ]);
     }
