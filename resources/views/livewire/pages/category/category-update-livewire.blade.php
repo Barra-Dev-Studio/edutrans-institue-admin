@@ -14,7 +14,7 @@
             <x-input-error :messages="$errors->get('description')" class="mt-2" />
         </div>
         <div class="mt-4">
-            <button class="bg-emerald-500 px-6 py-3 text-white rounded" type="submit">Save category</button>
+            <button wire:loading.attr="disabled" wire:target="submit" class="bg-emerald-500 px-6 py-3 text-white rounded" type="submit"><span wire:loading.remove wire:target="submit">Save category</span><span wire:loading wire:target="submit"><x-spinner></x-spinner></span></button>
         </div>
     </form>
 </div>

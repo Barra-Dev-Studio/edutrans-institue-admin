@@ -17,7 +17,7 @@
                     <li class="text-slate-700 prose font-medium p-4 @if($activeTab === 'status') border-l border-sky-500 bg-slate-100 @else hover:bg-slate-100 @endif border-slate-200 cursor-pointer" wire:click="setActiveTab('status')">Status</li>
                     <li class="text-slate-700 prose font-medium p-4 @if($activeTab === 'review') border-l border-sky-500 bg-slate-100 @else hover:bg-slate-100 @endif border-slate-200 cursor-pointer" wire:click="setActiveTab('review')">Review</li>
                 </ul>
-                <button class="bg-emerald-500 px-6 py-3 rounded text-white hover:bg-emerald-600 block w-full" form="create-course-form" type="submit">Save course</button>
+                <button wire:loading.attr="disabled" wire:target="submit" class="bg-emerald-500 px-6 py-3 rounded text-white hover:bg-emerald-600 block w-full" form="create-course-form" type="submit"><span wire:loading.remove wire:target="submit">Save course</span><span wire:loading wire:target="submit"><x-spinner></x-spinner></span></button>
             </div>
         </div>
     </div>
@@ -234,56 +234,56 @@
                                 <table class="table table-striped w-full text-left border border-gray-50 dark:border-zinc-600">
                                     <tbody>
                                         <tr class="border-b border-gray-50 dark:border-zinc-600 dark:bg-zinc-700/50 dark:text-zinc-100 bg-white">
-                                            <td class="p-3">Title</td>
-                                            <td class="p-3">{{ $title }}</td>
+                                            <td class="p-3 prose">Title</td>
+                                            <td class="p-3 prose">{{ $title }}</td>
                                         </tr>
                                         <tr class="border-b border-gray-50 dark:border-zinc-600 dark:bg-zinc-700/50 dark:text-zinc-100 bg-white">
-                                            <td class="p-3">Slug</td>
-                                            <td class="p-3">{{ $slug }}</td>
+                                            <td class="p-3 prose">Slug</td>
+                                            <td class="p-3 prose">{{ $slug }}</td>
                                         </tr>
                                         <tr class="border-b border-gray-50 dark:border-zinc-600 dark:bg-zinc-700/50 dark:text-zinc-100 bg-white">
-                                            <td class="p-3">Description</td>
-                                            <td class="p-3">{!! $description !!}</td>
+                                            <td class="p-3 prose">Description</td>
+                                            <td class="p-3 prose">{!! $description !!}</td>
                                         </tr>
                                         <tr class="border-b border-gray-50 dark:border-zinc-600 dark:bg-zinc-700/50 dark:text-zinc-100 bg-white">
-                                            <td class="p-3">Notes</td>
-                                            <td class="p-3">{{ $notes }}</td>
+                                            <td class="p-3 prose">Notes</td>
+                                            <td class="p-3 prose">{{ $notes }}</td>
                                         </tr>
                                         <tr class="border-b border-gray-50 dark:border-zinc-600 dark:bg-zinc-700/50 dark:text-zinc-100 bg-white">
-                                            <td class="p-3">Category</td>
-                                            <td class="p-3">{{ $selectedCategory != null ? $selectedCategory->name : "" }}</td>
+                                            <td class="p-3 prose">Category</td>
+                                            <td class="p-3 prose">{{ $selectedCategory != null ? $selectedCategory->name : "" }}</td>
                                         </tr>
                                         <tr class="border-b border-gray-50 dark:border-zinc-600 dark:bg-zinc-700/50 dark:text-zinc-100 bg-white">
-                                            <td class="p-3">Price</td>
-                                            <td class="p-3">IDR{{ $price }}</td>
+                                            <td class="p-3 prose">Price</td>
+                                            <td class="p-3 prose">IDR{{ $price }}</td>
                                         </tr>
                                         <tr class="border-b border-gray-50 dark:border-zinc-600 dark:bg-zinc-700/50 dark:text-zinc-100 bg-white">
-                                            <td class="p-3">Mentor</td>
-                                            <td class="p-3">{{ $selectedMentor != null ? $selectedMentor->name : "" }}</td>
+                                            <td class="p-3 prose">Mentor</td>
+                                            <td class="p-3 prose">{{ $selectedMentor != null ? $selectedMentor->name : "" }}</td>
                                         </tr>
                                         <tr class="border-b border-gray-50 dark:border-zinc-600 dark:bg-zinc-700/50 dark:text-zinc-100 bg-white">
-                                            <td class="p-3">Total views</td>
-                                            <td class="p-3">{{ $totalViews }}</td>
+                                            <td class="p-3 prose">Total views</td>
+                                            <td class="p-3 prose">{{ $totalViews }}</td>
                                         </tr>
                                         <tr class="border-b border-gray-50 dark:border-zinc-600 dark:bg-zinc-700/50 dark:text-zinc-100 bg-white">
-                                            <td class="p-3">Total shares</td>
-                                            <td class="p-3">{{ $totalShares }}</td>
+                                            <td class="p-3 prose">Total shares</td>
+                                            <td class="p-3 prose">{{ $totalShares }}</td>
                                         </tr>
                                         <tr class="border-b border-gray-50 dark:border-zinc-600 dark:bg-zinc-700/50 dark:text-zinc-100 bg-white">
-                                            <td class="p-3">Total students</td>
-                                            <td class="p-3">{{ $totalStudents }}</td>
+                                            <td class="p-3 prose">Total students</td>
+                                            <td class="p-3 prose">{{ $totalStudents }}</td>
                                         </tr>
                                         <tr class="border-b border-gray-50 dark:border-zinc-600 dark:bg-zinc-700/50 dark:text-zinc-100 bg-white">
-                                            <td class="p-3">Total duration</td>
-                                            <td class="p-3">{{ $totalDuration }}</td>
+                                            <td class="p-3 prose">Total duration</td>
+                                            <td class="p-3 prose">{{ $totalDuration }}</td>
                                         </tr>
                                         <tr class="border-b border-gray-50 dark:border-zinc-600 dark:bg-zinc-700/50 dark:text-zinc-100 bg-white">
-                                            <td class="p-3">Certificate</td>
-                                            <td class="p-3">{{ $isCertified ? "Yes with certificate" : "No certificate" }}</td>
+                                            <td class="p-3 prose">Certificate</td>
+                                            <td class="p-3 prose">{{ $isCertified ? "Yes with certificate" : "No certificate" }}</td>
                                         </tr>
                                         <tr class="border-b border-gray-50 dark:border-zinc-600 dark:bg-zinc-700/50 dark:text-zinc-100 bg-white">
-                                            <td class="p-3">Status will be</td>
-                                            <td class="p-3">{{ \Str::ucfirst($status) }}</td>
+                                            <td class="p-3 prose">Status will be</td>
+                                            <td class="p-3 prose">{{ \Str::ucfirst($status) }}</td>
                                         </tr>
                                     </tbody>
                                 </table>

@@ -82,9 +82,8 @@
                     </div>
                     @if(auth()->check())
                     <div class="w-full mt-4">
-                        <button
-                            class="!no-underline prose bg-sky-800 text-white py-3 block w-full px-6 rounded hover:bg-sky-700 disabled:bg-sky-300 disabled:text-slate-100" @if(!$selectedPayment && Auth()) disabled @endif>Lanjutkan
-                            pembayaran</button>
+                        <button wire:click="submit" wire:loading.attr="disabled" wire:target="submit"
+                            class="!no-underline prose bg-sky-800 text-white py-3 block w-full px-6 rounded hover:bg-sky-700 disabled:bg-sky-300 disabled:text-slate-100" @if(!$selectedPayment && Auth()) disabled @endif><span wire:loading.remove wire:target="submit">Pembayaran</span><span wire:loading wire:target="submit"><x-spinner></x-spinner></span></button>
                     </div>
                     @endif
                 </div>

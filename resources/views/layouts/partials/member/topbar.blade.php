@@ -90,7 +90,7 @@
                 <li class="box-border hover:text-white hover:bg-sky-800 hover:border-none text-sky-700 rounded border border-sky-700  py-2 px-4 mb-2"><a href="{{ route('login') }}"
                         class="!no-underline prose">Masuk</a>
                 </li>
-                <li class="bg-sky-800 py-3 px-6 rounded hover:bg-sky-700 hover:text-white"><a href="{{ route('register') }}" class="text-white !no-underline prose">Mulaibelajar</a>
+                <li class="bg-sky-800 py-3 px-6 rounded hover:bg-sky-700 hover:text-white"><a href="{{ route('register') }}" class="text-white !no-underline prose">Mulai belajar</a>
                 </li>
             </ul>
         </div>

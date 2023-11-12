@@ -17,7 +17,9 @@ class Transaction extends Model
         'total_price',
         'total_disc',
         'total_payment',
-        'status'
+        'status',
+        'payment_response',
+        'payment_method'
     ];
 
     public function transactionDetails()

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages\Member;
 
+use App\Services\CheckoutService;
 use Livewire\Component;
 
 class CheckoutLivewire extends Component
@@ -13,6 +14,7 @@ class CheckoutLivewire extends Component
     public $tax = 0;
     public $totalPrice = 0;
     public $additionalPrice = 0;
+    public $disc = 0;
 
     public $selectedPayment = null;
 
@@ -42,6 +44,33 @@ class CheckoutLivewire extends Component
     {
         $this->countTax();
         $this->totalPrice = $this->course->price + $this->tax + $this->additionalPrice;
+    }
+
+    public function submit()
+    {
+        if (CheckoutService::checkIfUserOwnedTheCourse($this->course->id)) {
+            return redirect()->route("member.play", $this->course->slug)->with('success', 'Kamu telah memiliki katalog kelas ini');
+        }
+
+        $data = (object) [
+            'total_price' => $this->totalPrice,
+            'total_payment' => $this->totalPrice,
+            'total_disc' => $this->disc,
+            'tax' => $this->tax,
+            'additional_price' => $this->additionalPrice,
+            'payment_method' => $this->selectedPayment,
+            'items' => [
+                (object) [
+                    'id' => $this->course->id,
+                    'type' => 'course',
+                    'price' => $this->course->price,
+                    'disc' => $this->course->discount ?? 0,
+                    'final_price_item' => $this->course->final_price_item ?? $this->course->price
+                ]
+            ]
+        ];
+        $process = CheckoutService::process($data);
+        return $process ? redirect()->route('member.index') : back();
     }
 
     public function render()

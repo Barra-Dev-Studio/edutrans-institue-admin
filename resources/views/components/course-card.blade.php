@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="mt-6">
-            <h3 class="mb-0">Rp{{ number_format($price) }}</h3>
+            <h3 class="mb-0">{{ $price == 0 ? 'Gratis akses' : 'Rp' . number_format($price) }}</h3>
         </div>
     </div>
 </div>
