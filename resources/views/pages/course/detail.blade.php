@@ -64,7 +64,7 @@
                 </div>
                 <div>
                     <div class="block md:hidden">
-                        <img src="{{ \Storage::url($course->mentor->photo) }}"
+                        <img src="{{ \Storage::url($course->thumbnail) }}"
                             class="rounded-t" alt="{{ $course->title }}">
                     </div>
                     <div class="bg-slate-50 p-4 shadow">

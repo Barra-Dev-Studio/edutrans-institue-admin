@@ -35,8 +35,9 @@
                     @endif
                     <div>
                         <x-input-label for="thumbnail" :value="__('Thumbnail')" />
-                        <x-text-input wire:model.live="thumbnail" id="thumbnail" class="block mt-1 w-full" type="file" name="thumbnail"
+                        <x-text-input wire:model.live="thumbnail" id="thumbnail" class="block mt-1 w-full mb-1" type="file" name="thumbnail"
                             placeholder="Photo" required />
+                        <span class="text-slate-500">Pastikan ukuran thumbnail disejajarkan pada 500x300px</span>
                         <x-input-error :messages="$errors->get('thumbnail')" class="mt-2" />
                     </div>
                 </div>
