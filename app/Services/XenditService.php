@@ -32,7 +32,7 @@ class XenditService
             'checkout_method' => $this->checkoutMethod,
             'channel_code' => $channelCode,
             'channel_properties' => [
-                'mobile_number' => $mobileNumber,
+                'mobile_number' => $this->formatMobileNumber($mobileNumber),
                 'success_redirect_url' => env('XENDIT_REDIRECT_URL', '') . '/' . $referenceId,
                 'failure_redirect_url' => env('XENDIT_REDIRECT_URL', '') . '/' . $referenceId,
             ],
@@ -40,7 +40,8 @@ class XenditService
             'metadata' => [
                 'member_id' => auth()->user()->id,
                 'name' => auth()->user()->name,
-                'email' => auth()->user()->email
+                'email' => auth()->user()->email,
+                'mobile_number' => $this->formatMobileNumber($mobileNumber)
             ]
         ];
 
@@ -52,7 +53,7 @@ class XenditService
         $this->response = $response;
     }
 
-    public function createQrisPayment($channelCode = 'ID_DANA', $referenceId, $amount, $items)
+    public function createQrisPayment($channelCode = 'ID_DANA', $referenceId, $amount, $items, $mobileNumber = '')
     {
         $baskets = [];
         foreach ($items as $item) {
@@ -78,7 +79,8 @@ class XenditService
             'metadata' => [
                 'member_id' => auth()->user()->id,
                 'name' => auth()->user()->name,
-                'email' => auth()->user()->email
+                'email' => auth()->user()->email,
+                'mobile_number' => $this->formatMobileNumber($mobileNumber),
             ]
         ];
 
@@ -117,5 +119,19 @@ class XenditService
     private function getApiSecretKey()
     {
         return env("XENDIT_API_SECRET_KEY", "");
+    }
+
+    private function formatMobileNumber($number)
+    {
+        if ($number == '') {
+            return $number;
+        }
+
+        $numbers = str_split($number);
+        if ($numbers[0] == '0') {
+            $numbers[0] = '62';
+        }
+
+        return '+' . implode('', $numbers);
     }
 }

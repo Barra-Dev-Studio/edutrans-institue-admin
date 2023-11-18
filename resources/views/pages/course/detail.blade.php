@@ -6,7 +6,7 @@
                     <p class="text-slate-300 mb-4 prose">Kategori {{ $course->category->name }}</p>
                     <h1 class="text-white text-5xl leading-snug">{{ $course->title }}</h1>
                     <div class="flex items-center gap-4 mt-4">
-                        <img class="inline-block h-10 w-10 rounded-full ring-2 ring-white dark:ring-zinc-500" src="{{ \Storage::url($course->mentor->photo) }}" alt="">
+                        <img class="inline-block h-10 w-10 rounded-full ring-2 ring-white dark:ring-zinc-500" src="{{ \Storage::url($course->mentor->photo) }}" alt="{{ $course->mentor->name }}">
                         <div>
                             <h5 class="text-white">{{ $course->mentor->name }}</h5>
                             <p class="text-slate-300">{{ $course->mentor->speciality }}</p>
@@ -15,7 +15,7 @@
                 </div>
                 <div class="hidden md:block">
                     <div class="h-[250px] overflow-hidden">
-                        <img src="{{ \Storage::url($course->thumbnail) }}" class="rounded-t" alt="">
+                        <img src="{{ \Storage::url($course->thumbnail) }}" class="rounded-t" alt="{{ $course->title }}">
                     </div>
                 </div>
             </div>
@@ -64,8 +64,8 @@
                 </div>
                 <div>
                     <div class="block md:hidden">
-                        <img src="https://images.unsplash.com/photo-1692312344458-9a4d495f7163?auto=format&fit=crop&q=80&w=2071&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                            class="rounded-t" alt="">
+                        <img src="{{ \Storage::url($course->mentor->photo) }}"
+                            class="rounded-t" alt="{{ $course->title }}">
                     </div>
                     <div class="bg-slate-50 p-4 shadow">
                         <h3 class="text-center mb-2">{{ $course->price == 0 ? 'Gratis akses' : 'Rp' . number_format($course->price) }}</h3>

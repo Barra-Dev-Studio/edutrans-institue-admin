@@ -45,7 +45,7 @@
                     </div>
                     @else
                     <div class="w-full h-[600px] overflow-hidden">
-                        <img src="{{ \Storage::url($course->thumbnail) }}" class="w-full" alt="">
+                        <img src="{{ \Storage::url($course->thumbnail) }}" class="w-full" alt="{{ $course->title }}">
                     </div>
                     @endif
                 </div>

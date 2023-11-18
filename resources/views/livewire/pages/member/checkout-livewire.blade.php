@@ -30,8 +30,9 @@
                     </div>
                     <div class="mt-4">
                         <x-input-label for="mobile_number" :value="__('Nomor HP')" />
-                        <x-text-input wire:model.live="mobileNumber" id="mobile_number" class="block mt-1 w-full" type="text" name="mobile_number"
-                            placeholder="Nomor HP" required />
+                        <x-text-input wire:model.live="mobileNumber" id="mobile_number" class="block mt-1 w-full mb-1" type="text" name="mobile_number"
+                            placeholder="08123xxx" required />
+                        <span class="text-slate-500">Jika memilih metode pembayaran Ewallet, pastikan Nomor HP yang dimasukan yang terdaftar di Ewallet yang dipilih</span>
                     </div>
                     <div class="mt-8">
                         <h3 class="mb-2">Detail produk</h3>

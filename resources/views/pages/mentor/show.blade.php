@@ -13,7 +13,7 @@
         <div class="card-body">
             <div class="grid grid-cols-4 gap-8">
                 <div class="w-full h-full overflow-hidden rounded">
-                    <img src="{{ \Storage::url($mentor->photo) }}" alt="">
+                    <img src="{{ \Storage::url($mentor->photo) }}" alt="{{ $mentor->name }}">
                 </div>
                 <div class="col-span-3">
                     <div class="prose">

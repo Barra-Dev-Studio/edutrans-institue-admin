@@ -166,7 +166,7 @@ class TransactionService
                 $response = $xendit->getResponse();
                 return json_decode($response->body());
             } else if ($method == 'QRIS') {
-                $xendit->createQrisPayment('ID_DANA', $transaction->id, $data->total_price, $items);
+                $xendit->createQrisPayment('ID_DANA', $transaction->id, $data->total_price, $items, $data->mobile_number ?? '');
                 $response = $xendit->getResponse();
                 return json_decode($response->body());
             }
