@@ -87,6 +87,13 @@ class TransactionService
         }
     }
 
+    public static function getBalance()
+    {
+        $xendit = new XenditService();
+        $xendit->getBalances();
+        return $xendit->getResponse();
+    }
+
     public static function checkIfUserOwnedTheCourse($courseId)
     {
         $ownedCourse = OwnedCourse::where('member_id', Auth::user()->id)->where('course_id', $courseId)->count();

@@ -27,4 +27,14 @@ class Transaction extends Model
     {
         return $this->hasMany(TransactionDetail::class);
     }
+
+    public function member()
+    {
+        return $this->belongsTo(User::class, 'member_id', 'id');
+    }
+
+    public function paymentMethod()
+    {
+        return $this->belongsTo(PaymentMethod::class, 'payment_method', 'code');
+    }
 }

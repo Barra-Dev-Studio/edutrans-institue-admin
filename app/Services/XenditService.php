@@ -93,6 +93,16 @@ class XenditService
         $this->response = $response;
     }
 
+    public function getBalances()
+    {
+        $headers = [
+            'Content-Type' => 'application/json',
+        ];
+
+        $response = Http::withBasicAuth($this->getApiSecretKey(), '')->withHeaders($headers)->get('https://api.xendit.co/balance');
+        $this->response = $response;
+    }
+
     public static function getAdditionalFee($channelCode, $amount)
     {
         $channelCodes = [

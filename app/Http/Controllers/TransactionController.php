@@ -9,6 +9,21 @@ use DB;
 
 class TransactionController extends Controller
 {
+    public function index()
+    {
+        $transaction = TransactionService::getBalance();
+        $transaction = json_decode($transaction->body());
+        return view('pages.transaction.index', compact('transaction'));
+    }
+
+    public function show(string $id)
+    {
+        $transaction = TransactionService::getById($id);
+        $paymentResponse = ($transaction->payment_response);
+        $callbackResponse = ($transaction->callback_response);
+        return view('pages.transaction.show', compact('transaction', 'paymentResponse', 'callbackResponse'));
+    }
+
     public function callback(Request $request)
     {
         DB::beginTransaction();

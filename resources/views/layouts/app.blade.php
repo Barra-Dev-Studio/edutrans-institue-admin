@@ -51,6 +51,7 @@
     <link rel="stylesheet" href="{{ asset('build/assets/icons-adf300ab.css') }}">
     <script src="{{ asset('build/assets/app-02317797.js') }}"></script>
     @endif
+    @stack('css')
 </head>
 
 <body data-mode="light" data-sidebar-size="lg">
