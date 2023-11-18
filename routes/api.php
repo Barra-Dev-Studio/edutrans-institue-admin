@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/payment/callback', [TransactionController::class, 'callback'])->name('payment.callback');
+Route::post('/payment/qris/callback', [TransactionController::class, 'callbackQris'])->name('payment.callback.qris');
