@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\TransactionService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -34,6 +35,14 @@ class PaymentController extends Controller
         $qrStrings = $paymentResponse->data->qr_string;
         $expiredAt = $paymentResponse->data->expires_at;
         $amount = $paymentResponse->data->amount;
+
+        if (Carbon::parse($expiredAt)->isPast()) {
+            return abort(404);
+        }
+
+        if ($transaction->status == 'SUCCEEDED') {
+            return redirect()->route('payment.index', $transaction->id);
+        }
 
         return view('pages.payment.qris', compact('qrStrings','expiredAt','amount'));
     }
