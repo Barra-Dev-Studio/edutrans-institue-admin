@@ -32,8 +32,8 @@ class XenditService
             'channel_code' => $channelCode,
             'channel_properties' => [
                 'mobile_number' => $mobileNumber,
-                'success_redirect_url' => env('XENDIT_SUCCESS_REDIRECT_URL', ''),
-                'failure_redirect_url' => env('XENDIT_FAILURE_REDIRECT_URL', ''),
+                'success_redirect_url' => env('XENDIT_REDIRECT_URL', '') . '/' . $referenceId,
+                'failure_redirect_url' => env('XENDIT_REDIRECT_URL', '') . '/' . $referenceId,
             ],
             'basket' => $baskets,
             'metadata' => [
@@ -57,7 +57,8 @@ class XenditService
             'ID_OVO' => '0.03',
             'ID_DANA' => '0.03',
             'ID_LINKAJA' => '0.03',
-            'ID_SHOPEEPAY' => '0.04'
+            'ID_SHOPEEPAY' => '0.04',
+            'QRIS' => '0.007'
         ];
 
         return $amount * $channelCodes[$channelCode];

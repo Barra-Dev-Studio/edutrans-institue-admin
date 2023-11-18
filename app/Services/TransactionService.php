@@ -6,6 +6,7 @@ use App\Models\Transaction;
 use App\Models\TransactionDetail;
 use Illuminate\Support\Facades\Auth;
 use DB;
+use Illuminate\Support\Str;
 
 class TransactionService
 {
@@ -71,10 +72,9 @@ class TransactionService
                 }
             }
             DB::commit();
-            return true;
+            return self::getRedirectUrl($payment);
         } catch (\Exception $e) {
             DB::rollBack();
-            dd($e);
             return false;
         }
     }
@@ -90,6 +90,7 @@ class TransactionService
         return Transaction::where('id', $transactionId)->update([
             'ref_id' => $response->id,
             'payment_response' => json_encode(['provider' => 'xendit', 'data' => $response]),
+            'status' => $response->status,
         ]);
     }
 
@@ -135,11 +136,18 @@ class TransactionService
 
     private static function createTransaction($data, $transaction)
     {
-        // TODO: Create payment
         if ($data->total_price == 0) {
             return (object) [
-                'ref_id' => '',
+                'id' => Str::uuid(),
+                'ref_id' => Str::uuid(),
                 'status' => 'SUCCEEDED',
+                'reference_id' => $transaction->id,
+                'price' => 0,
+                'channel_code' => 'FREE_ITEM',
+                'actions' => (object) [
+                    'desktop_web_checkout_url' => '',
+                    'mobile_deeplink_checkout_url' => ''
+                ]
             ];
         } else {
             $items = [];
@@ -157,5 +165,18 @@ class TransactionService
             $response = $xendit->getResponse();
             return json_decode($response->body());
         }
+    }
+
+    private static function getRedirectUrl($payment)
+    {
+        $data = [
+            'ID_OVO' => route('payment.index', $payment->reference_id),
+            'ID_DANA' => $payment->actions->desktop_web_checkout_url ?? '',
+            'ID_LINKAJA' => $payment->actions->desktop_web_checkout_url ?? '',
+            'ID_SHOPEEPAY' => $payment->actions->mobile_deeplink_checkout_url ?? '',
+            'FREE_ITEM' => route('payment.index', $payment->reference_id),
+        ];
+
+        return $data[$payment->channel_code] ?? false;
     }
 }

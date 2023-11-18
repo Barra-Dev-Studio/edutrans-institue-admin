@@ -5,7 +5,7 @@
             <h4 class="uppercase mb-2 text-gray-600 text-[21px] dark:text-gray-100">Sorry, page not found</h4>
         </div>
         <div class="mt-12 text-center">
-            <a class="btn bg-violet-500 border-transparent focus:ring focus:ring-violet-50 py-2 text-white" href="{{ url('/') }}">Back to Home</a>
+            <a class="!no-underline prose bg-sky-800 text-white py-3 px-6 rounded hover:bg-sky-700 hover:text-white" href="{{ url('/') }}">Back to Home</a>
         </div>
     </div>
 </x-guest-layout>

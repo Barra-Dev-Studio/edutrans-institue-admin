@@ -12,29 +12,21 @@
                         </div>
                     </div>
                     <div class="mt-4">
-                        <x-input-label for="payment_method" :value="__('Metode Pembayaran')" />
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                            <div class="card cursor-pointer @if($selectedPayment == 'ID_OVO') bg-sky-100 @endif" wire:click="setSelectedPayment('ID_OVO')">
-                                <div class="card-body">
-                                    <p>OVO</p>
+                        <x-input-label for="payment_method" :value="__('Pilih Metode Pembayaran')" />
+                        @foreach($paymentMethods as $type => $payments)
+                        <div class="mb-4">
+                            <x-input-label for="payment_method" :value="$type" />
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-4">
+                                @foreach($payments as $payment)
+                                <div class="card mb-0 cursor-pointer @if($selectedPayment == $payment->code) border-sky-500 @endif" wire:click="setSelectedPayment('{{ $payment->code }}')">
+                                    <div class="card-body flex">
+                                        <img src="{{ \Storage::url('paymentmethods/' . $payment->logo)}}" class="w-full h-[30px]" alt="{{ $payment->name }}">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="card cursor-pointer @if($selectedPayment == 'ID_DANA') bg-sky-100 @endif" wire:click="setSelectedPayment('ID_DANA')">
-                                <div class="card-body">
-                                    <p>DANA</p>
-                                </div>
-                            </div>
-                            <div class="card cursor-pointer @if($selectedPayment == 'ID_LINKAJA') bg-sky-100 @endif" wire:click="setSelectedPayment('ID_LINKAJA')">
-                                <div class="card-body">
-                                    <p>LINKAJA</p>
-                                </div>
-                            </div>
-                            <div class="card cursor-pointer @if($selectedPayment == 'ID_SHOPEEPAY') bg-sky-100 @endif" wire:click="setSelectedPayment('ID_SHOPEEPAY')">
-                                <div class="card-body">
-                                    <p>SHOPEEPAY</p>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
+                        @endforeach
                     </div>
                     <div class="mt-4">
                         <x-input-label for="mobile_number" :value="__('Nomor HP')" />
@@ -80,7 +72,7 @@
                             </div>
                             <div class="mt-8">
                                 <x-input-label for="payment_method" :value="__('Metode pembayaran')" />
-                                <p class="text-slate-700">{{ $selectedPayment == null ? 'Silakan pilih metode pembayaran untuk melanjutkan proses pemesanan' : $selectedPayment }}</p>
+                                <p class="text-slate-700">{{ $selectedPayment == null ? 'Silakan pilih metode pembayaran untuk melanjutkan proses pemesanan' : $selectedPaymentShow->name }}</p>
                             </div>
                             <div class="mt-8">
                                 <x-input-label for="payment_method" :value="__('Informasi pemesan')" />
@@ -102,6 +94,9 @@
                     <div class="w-full mt-4">
                         <button wire:click="submit" wire:loading.attr="disabled" wire:target="submit"
                             class="!no-underline prose bg-sky-800 text-white py-3 block w-full px-6 rounded hover:bg-sky-700 disabled:bg-sky-300 disabled:text-slate-100" @if(!$selectedPayment && Auth()) disabled @endif><span wire:loading.remove wire:target="submit">Pembayaran</span><span wire:loading wire:target="submit"><x-spinner></x-spinner></span></button>
+                    </div>
+                    <div class="mt-4">
+                        <x-flash-notification></x-flash-notification>
                     </div>
                     @endif
                 </div>

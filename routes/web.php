@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\MentorController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,7 @@ Route::view('/', 'welcome')->name('home');
 Route::view('/courses', 'courses')->name('courses');
 Route::get('/course/{slug}',[GuestController::class, 'courseDetail'])->name('course.detail');
 Route::get('/checkout/{slug}', [MemberController::class,'checkout'])->name('checkout');
+Route::get('payment/{transactionId}', [PaymentController::class, 'index'])->name('payment.index');
 
 Route::middleware(['auth', 'can:access-admin'])->group(function () {
     Route::prefix('dashboard')->as('dashboard.')->group(function () {

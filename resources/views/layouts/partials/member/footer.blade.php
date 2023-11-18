@@ -1,10 +1,12 @@
 <div>
+    @guest
     <div class="bg-sky-800 py-4 md:px-16">
         <div class="px-6 md:px-8 flex justify-between items-start md:items-center gap-8 md:gap-4 flex-col md:flex-row py-6 md:py-2">
             <h3 class="text-white">Belajar bersama Edutrans Institute untuk mengembangkan<br>skill dan karir yang dimimpikan</h3>
             <a href="{{ route('register') }}" class="bg-slate-50 text-sky-800 px-6 py-3 rounded font-medium">Daftar sekarang</a>
         </div>
     </div>
+    @endguest
     <div class="bg-sky-950 py-10 md:px-16">
         <div class="px-6 md:px-8 grid grid-cols-1 md:grid-cols-12 gap-8 justify-between items-start">
             <div class="md:col-span-5">

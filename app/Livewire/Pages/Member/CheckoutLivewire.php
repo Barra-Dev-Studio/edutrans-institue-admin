@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages\Member;
 
+use App\Models\PaymentMethod;
 use App\Services\TransactionService;
 use App\Services\XenditService;
 use Livewire\Component;
@@ -9,6 +10,7 @@ use Livewire\Component;
 class CheckoutLivewire extends Component
 {
     public $course;
+    public $paymentMethods;
 
     public $tax = 0;
     public $totalPrice = 0;
@@ -17,10 +19,12 @@ class CheckoutLivewire extends Component
     public $mobileNumber;
 
     public $selectedPayment = null;
+    public $selectedPaymentShow = null;
 
     public function mount()
     {
         $this->updatePrice();
+        $this->getPaymentMethods();
     }
 
     public function countTax()
@@ -31,6 +35,7 @@ class CheckoutLivewire extends Component
     public function setSelectedPayment($selectedPayment)
     {
         $this->selectedPayment = $selectedPayment;
+        $this->selectedPaymentShow = PaymentMethod::where('code', $selectedPayment)->where('is_active', true)->first();
         $this->updatePrice();
     }
 
@@ -44,6 +49,16 @@ class CheckoutLivewire extends Component
             $this->additionalPrice = XenditService::getAdditionalFee($this->selectedPayment, $this->totalPrice);
             $this->totalPrice = $totalPrice + $this->additionalPrice;
         }
+    }
+
+    public function getPaymentMethods()
+    {
+        $paymentMethods = [];
+        $data = PaymentMethod::where('is_active', true)->get();
+        foreach ($data as $payment) {
+            $paymentMethods[$payment->type][] = $payment;
+        }
+        $this->paymentMethods = $paymentMethods;
     }
 
     public function submit()
@@ -79,7 +94,7 @@ class CheckoutLivewire extends Component
             ]
         ];
         $process = TransactionService::process($data);
-        return $process ? redirect()->route('member.index') : back();
+        return $process ? redirect($process) : back()->with('error', 'Terjadi kesalahan di sisi kami, silakan hubungi kamu untuk lebih lanjut');
     }
 
     public function render()
