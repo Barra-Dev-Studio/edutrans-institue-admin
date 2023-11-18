@@ -27,6 +27,7 @@ Route::view('/courses', 'courses')->name('courses');
 Route::get('/course/{slug}',[GuestController::class, 'courseDetail'])->name('course.detail');
 Route::get('/checkout/{slug}', [MemberController::class,'checkout'])->name('checkout');
 Route::get('payment/{transactionId}', [PaymentController::class, 'index'])->name('payment.index');
+Route::get('payment/qris/{transactionId}', [PaymentController::class, 'qris'])->name('payment.qris');
 
 Route::middleware(['auth', 'can:access-admin'])->group(function () {
     Route::prefix('dashboard')->as('dashboard.')->group(function () {

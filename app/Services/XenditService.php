@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Services;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
 
 class XenditService
@@ -48,6 +49,45 @@ class XenditService
         ];
 
         $response = Http::withBasicAuth($this->getApiSecretKey(), '')->withHeaders($headers)->post('https://api.xendit.co/ewallets/charges', $body);
+        $this->response = $response;
+    }
+
+    public function createQrisPayment($channelCode = 'ID_DANA', $referenceId, $amount, $items)
+    {
+        $baskets = [];
+        foreach ($items as $item) {
+            $baskets[] = [
+                'reference_id' => $item->id,
+                'name' => $item->name,
+                'category' => $item->category,
+                'currency' => 'IDR',
+                'price' => (int) $item->price,
+                'quantity' => 1,
+                'type' => 'PRODUCT',
+            ];
+        }
+
+        $body = [
+            'reference_id' => $referenceId,
+            'currency' => $this->currency,
+            'type' => 'DYNAMIC',
+            'amount' => (int) $amount,
+            'channel_code' => $channelCode,
+            'basket' => $baskets,
+            'expires_at' => Carbon::now()->addMinutes(15),
+            'metadata' => [
+                'member_id' => auth()->user()->id,
+                'name' => auth()->user()->name,
+                'email' => auth()->user()->email
+            ]
+        ];
+
+        $headers = [
+            'Content-Type' => 'application/json',
+            'api-version' => '2022-07-31'
+        ];
+
+        $response = Http::withBasicAuth($this->getApiSecretKey(), '')->withHeaders($headers)->post('https://api.xendit.co/qr_codes', $body);
         $this->response = $response;
     }
 

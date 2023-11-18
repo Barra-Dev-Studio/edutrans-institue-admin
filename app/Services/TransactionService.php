@@ -30,7 +30,7 @@ class TransactionService
         ]);
     }
 
-    public static function process($data)
+    public static function process($data, $method)
     {
         DB::beginTransaction();
         try {
@@ -45,7 +45,7 @@ class TransactionService
                 'payment_response' => json_encode([])
             ];
             $transaction = self::saveTransaction($transactionData);
-            $payment = self::createTransaction($data, $transaction);
+            $payment = self::createTransaction($data, $transaction, $method);
             self::updateTransaction($transaction->id, $payment);
             foreach ($data->items as $item) {
                 $detail = (object) [
@@ -72,7 +72,7 @@ class TransactionService
                 }
             }
             DB::commit();
-            return self::getRedirectUrl($payment);
+            return self::getRedirectUrl($payment, $method);
         } catch (\Exception $e) {
             DB::rollBack();
             return false;
@@ -134,7 +134,7 @@ class TransactionService
         ]);
     }
 
-    private static function createTransaction($data, $transaction)
+    private static function createTransaction($data, $transaction, $method)
     {
         if ($data->total_price == 0) {
             return (object) [
@@ -161,21 +161,36 @@ class TransactionService
             }
 
             $xendit = new XenditService();
-            $xendit->createEWalletPayment($data->payment_method, $transaction->id, $data->total_price, $items, $data->mobile_number ?? '');
-            $response = $xendit->getResponse();
-            return json_decode($response->body());
+            if ($method == 'EWALLET') {
+                $xendit->createEWalletPayment($data->payment_method, $transaction->id, $data->total_price, $items, $data->mobile_number ?? '');
+                $response = $xendit->getResponse();
+                return json_decode($response->body());
+            } else if ($method == 'QRIS') {
+                $xendit->createQrisPayment('ID_DANA', $transaction->id, $data->total_price, $items);
+                $response = $xendit->getResponse();
+                return json_decode($response->body());
+            }
+            return false;
         }
     }
 
-    private static function getRedirectUrl($payment)
+    private static function getRedirectUrl($payment, $method)
     {
-        $data = [
-            'ID_OVO' => route('payment.index', $payment->reference_id),
-            'ID_DANA' => $payment->actions->desktop_web_checkout_url ?? '',
-            'ID_LINKAJA' => $payment->actions->desktop_web_checkout_url ?? '',
-            'ID_SHOPEEPAY' => $payment->actions->mobile_deeplink_checkout_url ?? '',
-            'FREE_ITEM' => route('payment.index', $payment->reference_id),
-        ];
+        $data = [];
+        if ($method == 'EWALLET') {
+            $data = [
+                'ID_OVO' => route('payment.index', $payment->reference_id),
+                'ID_DANA' => $payment->actions->desktop_web_checkout_url ?? '',
+                'ID_LINKAJA' => $payment->actions->desktop_web_checkout_url ?? '',
+                'ID_SHOPEEPAY' => $payment->actions->mobile_deeplink_checkout_url ?? '',
+                'FREE_ITEM' => route('payment.index', $payment->reference_id),
+            ];
+        } else if ($method == 'QRIS') {
+            $data = [
+                'ID_DANA' => route('payment.qris', $payment->reference_id),
+                'ID_LINKAJA' => route('payment.qris', $payment->reference_id),
+            ];
+        }
 
         return $data[$payment->channel_code] ?? false;
     }

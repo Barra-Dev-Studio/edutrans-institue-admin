@@ -93,7 +93,8 @@ class CheckoutLivewire extends Component
                 ]
             ]
         ];
-        $process = TransactionService::process($data);
+        $method = $this->selectedPayment == 'QRIS' ? 'QRIS' : 'EWALLET';
+        $process = TransactionService::process($data, $method);
         return $process ? redirect($process) : back()->with('error', 'Terjadi kesalahan di sisi kami, silakan hubungi kamu untuk lebih lanjut');
     }
 
