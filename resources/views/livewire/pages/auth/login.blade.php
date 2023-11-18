@@ -43,8 +43,7 @@ new #[Layout('layouts.guest')] class extends Component
         $redirectTo = $user->hasRole('admin') ? RouteServiceProvider::HOME : RouteServiceProvider::MEMBER;
 
         $this->redirect(
-            session('url.intended', $redirectTo),
-            navigate: true
+            session('url.intended', $redirectTo)
         );
     }
 

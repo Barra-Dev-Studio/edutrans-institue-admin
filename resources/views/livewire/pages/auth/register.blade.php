@@ -30,7 +30,7 @@ new #[Layout('layouts.guest')] class extends Component
         auth()->login($user);
 
         $user->assignRole('member');
-        $this->redirect(RouteServiceProvider::MEMBER, navigate: true);
+        $this->redirect(RouteServiceProvider::MEMBER);
     }
 }; ?>
 
