@@ -22,6 +22,28 @@ class TransactionController extends Controller
                 DB::commit();
                 return response([], 200);
             } else {
+                DB::commit();
+                return response([], 400);
+            }
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response($e->getMessage(), 500);
+        }
+    }
+
+    public function callbackQris(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            TransactionService::updateCallbackQris($request);
+            if ($request->data['status'] === 'SUCCEEDED') {
+                foreach ($request->data['basket'] as $item) {
+                    CourseService::addCourseToUser($request->data['reference_id'], $item['reference_id'], $request->data['metadata']['member_id']);
+                }
+                DB::commit();
+                return response([], 200);
+            } else {
+                DB::commit();
                 return response([], 400);
             }
         } catch (\Exception $e) {

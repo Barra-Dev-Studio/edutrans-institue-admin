@@ -30,6 +30,14 @@ class TransactionService
         ]);
     }
 
+    public static function updateCallbackQris($data)
+    {
+        return Transaction::where('id', $data->data['reference_id'])->where('ref_id', $data->data['qr_id'])->update([
+            'status' => $data->data['status'],
+            'callback_response' => json_encode($data->all())
+        ]);
+    }
+
     public static function process($data, $method)
     {
         DB::beginTransaction();
