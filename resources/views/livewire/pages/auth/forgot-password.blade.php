@@ -37,7 +37,7 @@ new #[Layout('layouts.guest')] class extends Component
     <div class="bg-slate-50 p-10 rounded-lg border border-slate-300/40 min-w-[460px]  max-w-[460px]">
         <h2 class="mb-1">Forgot password</h2>
 
-        <div class="mb-8 text-sm text-gray-600">
+        <div class="mb-8 text-lg text-gray-600">
             {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a
             password reset link that will allow you to choose a new one.') }}
         </div>

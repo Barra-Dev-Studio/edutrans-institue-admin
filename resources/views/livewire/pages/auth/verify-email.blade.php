@@ -9,8 +9,7 @@ new #[Layout('layouts.guest')] class extends Component
     {
         if (auth()->user()->hasVerifiedEmail()) {
             $this->redirect(
-                session('url.intended', RouteServiceProvider::HOME),
-                navigate: true
+                session('url.intended', RouteServiceProvider::HOME)
             );
 
             return;
@@ -28,14 +27,14 @@ new #[Layout('layouts.guest')] class extends Component
         session()->invalidate();
         session()->regenerateToken();
 
-        $this->redirect('/', navigate: true);
+        $this->redirect('/');
     }
 }; ?>
 
 <div class="h-screen w-screen flex items-center justify-center">
     <div class="bg-slate-50 p-10 rounded-lg border border-slate-300/40 min-w-[460px] max-w-[460px]">
         <h2 class="mb-1">Verify email</h2>
-        <div class="@if (session('status') == 'verification-link-sent') mb-2 @else mb-8 @endif text-sm text-gray-600">
+        <div class="@if (session('status') == 'verification-link-sent') mb-2 @else mb-8 @endif text-lg text-gray-600">
             {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
         </div>
 

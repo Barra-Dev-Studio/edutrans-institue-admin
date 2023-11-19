@@ -26,10 +26,7 @@ new #[Layout('layouts.guest')] class extends Component
 
         session(['auth.password_confirmed_at' => time()]);
 
-        $this->redirect(
-            session('url.intended', RouteServiceProvider::HOME),
-            navigate: true
-        );
+        $this->redirect(session('url.intended', RouteServiceProvider::HOME));
     }
 }; ?>
 

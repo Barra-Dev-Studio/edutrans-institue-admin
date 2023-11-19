@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EmailVerifyController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\MentorController;
@@ -30,6 +31,10 @@ Route::get('/checkout/{slug}', [MemberController::class,'checkout'])->name('chec
 Route::get('payment/{transactionId}', [PaymentController::class, 'index'])->name('payment.index');
 Route::get('payment/qris/{transactionId}', [PaymentController::class, 'qris'])->name('payment.qris');
 
+Route::get('/email/verify', [EmailVerifyController::class, 'index'])->middleware('auth')->name('verification.notice');
+Route::get('/email/verify/{id}/{hash}', [EmailVerifyController::class, 'request'])->middleware(['auth', 'signed'])->name('verification.verify');
+Route::post('/email/verification-notification', [EmailVerifyController::class, 'resend'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
 Route::middleware(['auth', 'can:access-admin'])->group(function () {
     Route::prefix('dashboard')->as('dashboard.')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('index');
@@ -44,7 +49,7 @@ Route::middleware(['auth', 'can:access-admin'])->group(function () {
     });
 });
 
-Route::middleware(['auth','can:access-member'])->group(function () {
+Route::middleware(['auth','can:access-member', 'verified'])->group(function () {
     Route::prefix('member')->as('member.')->group(function () {
         Route::get('/', [MemberController::class, 'index'])->name('index');
         Route::get('/transaction', [MemberController::class,'transaction'])->name('transaction');
