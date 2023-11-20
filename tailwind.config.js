@@ -26,6 +26,7 @@ export default {
         },
         fontFamily: {
             primary: ["IBM Plex Sans", "sans-serif"],
+            handwrite: ["Bad script", "cursive"],
         },
         extend: {
             fontSize: {

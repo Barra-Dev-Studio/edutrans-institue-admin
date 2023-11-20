@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-  <title>Edutrans Institute</title>
+  <title>Edutrans Institute by Hendi Pratama</title>
   <meta name="title" content="Edutrans Institute" />
   <meta name="description"
     content="EDUTRANS.ID adalah lembaga training yang bertujuan untuk mengoptimasi proses pendidikan yang bermutu untuk menciptakan transformasi positif dalam kehidupan individu, organisasi, dan lembaga. Pendiri EDUTRANS.ID Dr. Hendi Pratama, percaya bahwa optimalisasi pendidikan merupakan kunci peningkatan produktivitas dan kesejahteraan." />
