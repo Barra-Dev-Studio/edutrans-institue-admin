@@ -13,8 +13,8 @@
         </li>
         <li>
           <a href="{{ route('dashboard.course.index') }}" class="pl-6 pr-4 py-3 block text-sm font-medium text-gray-700 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
-            <i data-feather="users"></i>
-            <span data-key="t-mentor" class="prose"> Course</span>
+            <i data-feather="book"></i>
+            <span data-key="t-course" class="prose"> Course</span>
           </a>
         </li>
         <li>
@@ -22,6 +22,13 @@
                 class="pl-6 pr-4 py-3 block text-sm font-medium text-gray-700 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
                 <i data-feather="shopping-cart"></i>
                 <span data-key="t-transaction" class="prose"> Transactions</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('dashboard.post.index') }}"
+                class="pl-6 pr-4 py-3 block text-sm font-medium text-gray-700 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
+                <i data-feather="clipboard"></i>
+                <span data-key="t-post" class="prose"> Post</span>
             </a>
         </li>
         <li>

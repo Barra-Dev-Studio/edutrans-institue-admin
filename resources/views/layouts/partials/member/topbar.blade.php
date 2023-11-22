@@ -10,7 +10,7 @@
         <div class="py-5 hidden md:block">
             <ul class="flex gap-8 items-center list-none">
                 <li><a href="{{ route('home') }}" class="!no-underline prose hover:text-black">Home</a></li>
-                <li><a href="#" class="!no-underline prose hover:text-black">Instructors</a></li>
+                <li><a href="{{ route('blog') }}" class="!no-underline prose hover:text-black">Blog</a></li>
                 <li><a href="#" class="!no-underline prose hover:text-black">Categories</a></li>
                 <li><a href="{{ route('courses') }}" class="!no-underline prose hover:text-black">Courses</a></li>
             </ul>
@@ -43,7 +43,7 @@
                                     <hr class="border-gray-50 dark:border-gray-700 block md:hidden">
                                     <div class="dropdown-item dark:text-gray-100">
                                         <a class="px-3 py-2 hover:bg-gray-50/50 block dark:hover:bg-zinc-700/50 prose !no-underline"
-                                            href="{{ route('member.index') }}">
+                                            href="{{ Auth()->user()->can('access-admin') ? route('dashboard.index') : route('member.index') }}">
                                             <i class="mdi mdi-home text-16 align-middle mr-1"></i> Dashboard
                                         </a>
                                     </div>
