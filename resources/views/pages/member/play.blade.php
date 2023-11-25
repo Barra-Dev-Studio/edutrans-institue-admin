@@ -5,6 +5,6 @@
     </x-breadcrumb>
     <x-flash-notification></x-flash-notification>
     <div class="mb-24">
-        <livewire:pages.member.course-play-livewire :course="$course" :sections="$sections"></livewire:pages.member.course-play-livewire>
+        <livewire:pages.member.course-play-livewire :course="$course" :sections="$sections" :selectedChapter="$selectedChapter"></livewire:pages.member.course-play-livewire>
     </div>
 </x-app-layout>

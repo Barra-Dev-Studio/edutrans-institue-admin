@@ -22,7 +22,7 @@ class ChapterProgress extends Model
         return $this->belongsTo(OwnedCourse::class);
     }
 
-    public function lastChapter()
+    public function chapter()
     {
         return $this->belongsTo(Chapter::class, 'last_chapter_id');
     }

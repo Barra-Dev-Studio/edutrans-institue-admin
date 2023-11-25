@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Services;
+use App\Models\ChapterProgress;
+use App\Models\Course;
 use App\Models\OwnedCourse;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
@@ -139,13 +141,32 @@ class TransactionService
 
     private static function saveOwnedCourse($data)
     {
-        return OwnedCourse::create([
+        $ownedCourse = OwnedCourse::create([
             'member_id' => Auth::user()->id,
             'course_id' => $data->course_id,
             'title' => $data->title,
             'mentor' => $data->mentor,
             'category' => $data->category,
             'transaction_detail_id' => $data->transaction_detail_id,
+        ]);
+        $courseInformation = Course::with('chapters')->findOrFail($data->course_id);
+        $chapters = [];
+
+        foreach($courseInformation->chapters as $chapter) {
+            $chapters[] = (object) [
+                'id' => $chapter->id,
+                'duration' => $chapter->duration,
+                'start' => 0,
+                'watch' => 0,
+                'is_completed' => false
+            ];
+        }
+
+        return ChapterProgress::create([
+            'owned_course_id' => $ownedCourse->id,
+            'last_chapter_id' => $courseInformation->chapters[0]->id,
+            'total_duration' => $courseInformation->total_duration,
+            'chapters_completed' => json_encode($chapters)
         ]);
     }
 

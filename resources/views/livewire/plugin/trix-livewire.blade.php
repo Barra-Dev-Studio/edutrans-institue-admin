@@ -1,6 +1,5 @@
 <div>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.css" />
-
     <input id="{{ $trixId }}" type="hidden" name="content" value="{{ $value }}">
     <trix-editor input="{{ $trixId }}" class="bg-white overflow-auto"></trix-editor>
 

@@ -30,7 +30,7 @@
     </div>
     <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
         @forelse($courses as $course)
-        <a href="{{ route('member.play', $course->course->slug) }}" wire:key="{{ $course->id }}">
+        <a href="{{ route('member.play', $course->id) }}" wire:key="{{ $course->id }}">
             <div>
                 <x-course-card
                     img="{{ \Storage::url($course->course->thumbnail) }}"

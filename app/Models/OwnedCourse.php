@@ -28,4 +28,9 @@ class OwnedCourse extends Model
     {
         return $this->belongsTo(TransactionDetail::class);
     }
+
+    public function chapterProgress()
+    {
+        return $this->hasOne(ChapterProgress::class);
+    }
 }

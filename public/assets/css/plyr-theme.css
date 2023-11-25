@@ -1,0 +1,42 @@
+.plyr__control.plyr__tab-focus {
+    outline-color: #00ff59;
+}
+
+.plyr__menu__container .plyr__control[role=menuitemradio][aria-checked=true]:before {
+    background: #00b3ff;
+}
+
+.plyr--full-ui input[type=range] {
+    color: #00b3ff;
+}
+
+.plyr--full-ui input[type=range].plyr__tab-focus::-webkit-slider-runnable-track {
+    outline-color: #00b3ff;
+}
+
+.plyr--full-ui input[type=range].plyr__tab-focus::-moz-range-track {
+    outline-color: #00b3ff;
+}
+
+.plyr--full-ui input[type=range].plyr__tab-focus::-ms-track {
+    outline-color: #00b3ff;
+}
+
+.plyr--audio .plyr__control.plyr__tab-focus,
+.plyr--audio .plyr__control:hover,
+.plyr--audio .plyr__control[aria-expanded=true] {
+    background: #00b3ff;
+    color: #fff;
+}
+
+.plyr--video .plyr__control.plyr__tab-focus,
+.plyr--video .plyr__control:hover,
+.plyr--video .plyr__control[aria-expanded=true] {
+    background: #00b3ff;
+    color: #fff;
+}
+
+.plyr__control--overlaid {
+    background: #00b3ff;
+    color: #fff;
+}

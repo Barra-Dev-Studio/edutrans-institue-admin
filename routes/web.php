@@ -60,7 +60,7 @@ Route::middleware(['auth','can:access-member', 'verified'])->group(function () {
         Route::get('/', [MemberController::class, 'index'])->name('index');
         Route::get('/transaction', [MemberController::class,'transaction'])->name('transaction');
         Route::get('/transaction/{id}', [MemberController::class,'detailTransaction'])->name('transaction.show');
-        Route::get('/play/{slug}', [MemberController::class,'play'])->name('play');
+        Route::get('/play/{id}/{chapterId?}', [MemberController::class,'play'])->name('play');
     });
 });
 
