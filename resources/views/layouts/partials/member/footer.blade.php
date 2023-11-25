@@ -10,8 +10,9 @@
     <div class="bg-sky-950 py-10 md:px-16">
         <div class="px-6 md:px-8 grid grid-cols-1 md:grid-cols-12 gap-8 justify-between items-start">
             <div class="md:col-span-5">
-                <h3 class="text-white">Education Transformation Indonesia<br>(Edutrans)</h3>
-                <p class="text-slate-400 font-light mt-3">adalah lembaga training yang bertujuan untuk mengoptimasi proses pendidikan yang bermutu untuk menciptakan transformasi positif dalam kehidupan individu, organisasi, dan lembaga.</p>
+                <h3 class="text-white">Education Institute</h3>
+                <p class="text-slate-400 font-light mt-3">Edutrans Institute merupakan sebuah platform transformasi edukasi yang memiliki misi untuk menyederhanakan & mempermudah proses
+                pembelajaran melalui berbagai pilihan e-course sesuai dengan kebutuhan pelanggan dan industri masa kini tentunya.</p>
                 <div class="flex mt-8 items-center gap-4">
                     <div class="w-10 h-10 bg-sky-200 rounded-full flex items-center justify-center">
                         <a href="https://www.youtube.com/c/landersudiarto" class="text-2xl text-sky-950"><i class="bx bxl-youtube"></i></a>
@@ -36,18 +37,16 @@
             <div class="md:col-span-2">
                 <h3 class="text-white mb-3">Useful Links</h3>
                 <ul class="list-none text-slate-400 flex flex-col gap-2">
-                    <li><a href="#" class="!no-underline hover:text-white">Home</a></li>
-                    <li><a href="#" class="!no-underline hover:text-white">Instructors</a></li>
-                    <li><a href="#" class="!no-underline hover:text-white">Categories</a></li>
-                    <li><a href="#" class="!no-underline hover:text-white">Courses</a></li>
-                    <li><a href="#" class="!no-underline hover:text-white">Cart</a></li>
+                    <li><a href="{{ route('home')}}" class="!no-underline hover:text-white">Home</a></li>
+                    <li><a href="{{ route('blog') }}" class="!no-underline hover:text-white">Blog</a></li>
+                    <li><a href="{{ route('courses') }}" class="!no-underline hover:text-white">Courses</a></li>
                 </ul>
             </div>
             <div class="md:col-span-2">
                 <h3 class="text-white mb-3">Siap belajar?</h3>
                 <ul class="list-none text-slate-400 flex flex-col gap-2">
-                    <li><a href="#" class="!no-underline hover:text-white">Masuk</a></li>
-                    <li><a href="#" class="!no-underline hover:text-white">Daftar</a></li>
+                    <li><a href="{{ route('login') }}" class="!no-underline hover:text-white">Masuk</a></li>
+                    <li><a href="{{ route('register') }}" class="!no-underline hover:text-white">Daftar</a></li>
                 </ul>
             </div>
             <div class="md:col-span-3">

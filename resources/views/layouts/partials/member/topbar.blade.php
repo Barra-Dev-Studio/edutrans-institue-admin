@@ -2,7 +2,7 @@
     <div class="flex items-center justify-between px-6 md:px-8 py-6 md:py-0">
         <div class="flex items-center gap-4">
             <img src="{{ asset('assets/images/logo.png') }}" class="hidden md:block" height="50" width="50" alt="">
-            <div class="prose flex flex-col md:flex-row gap-2">
+            <div class="prose flex flex-col md:flex-row gap-0 md:gap-2">
                 <a href="{{ route('home') }}" class="text-lg font-semibold !no-underline">Edutrans Intitute</a>
                 <span class="font-handwrite text-lg font-semibold">by Hendi Pratama</span>
             </div>
@@ -11,7 +11,7 @@
             <ul class="flex gap-8 items-center list-none">
                 <li><a href="{{ route('home') }}" class="!no-underline prose hover:text-black">Home</a></li>
                 <li><a href="{{ route('blog') }}" class="!no-underline prose hover:text-black">Blog</a></li>
-                <li><a href="#" class="!no-underline prose hover:text-black">Categories</a></li>
+                <!-- <li><a href="#" class="!no-underline prose hover:text-black">Categories</a></li> -->
                 <li><a href="{{ route('courses') }}" class="!no-underline prose hover:text-black">Courses</a></li>
             </ul>
         </div>
@@ -36,7 +36,7 @@
                                 <div class="border border-gray-50 dark:border-zinc-600" aria-labelledby="navNotifications">
                                     <ul class="flex flex-col gap-4 items-start list-none md:hidden px-3 py-2">
                                         <li><a href="{{ route('home') }}" class="!no-underline prose hover:text-black">Home</a></li>
-                                        <li><a href="#" class="!no-underline prose hover:text-black">Instructors</a></li>
+                                        <li><a href="{{ route('blog') }}" class="!no-underline prose hover:text-black">Blog</a></li>
                                         <li><a href="#" class="!no-underline prose hover:text-black">Categories</a></li>
                                         <li><a href="{{ route('courses') }}" class="!no-underline prose hover:text-black">Courses</a></li>
                                     </ul>
@@ -88,7 +88,7 @@
                 style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 40px);"
                 data-popper-placement="bottom-start">
                 <li><a href="{{ route('home') }}" class="!no-underline prose hover:text-black dropdown-item py-2 block w-full whitespace-nowrap" >Home</a></li>
-                <li><a href="#" class="!no-underline prose hover:text-black dropdown-item py-2 block w-full whitespace-nowrap">Instructors</a></li>
+                <li><a href="{{ route('blog') }}" class="!no-underline prose hover:text-black dropdown-item py-2 block w-full whitespace-nowrap">Blog</a></li>
                 <li><a href="#" class="!no-underline prose hover:text-black dropdown-item py-2 block w-full whitespace-nowrap">Categories</a></li>
                 <li><a href="{{ route('courses') }}" class="!no-underline prose hover:text-black dropdown-item py-2 block w-full whitespace-nowrap mb-4">Courses</a></li>
                 <li class="box-border hover:text-white hover:bg-sky-800 hover:border-none text-sky-700 rounded border border-sky-700  py-2 px-4 mb-2"><a href="{{ route('login') }}"
