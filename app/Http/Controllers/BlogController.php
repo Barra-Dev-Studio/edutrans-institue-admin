@@ -9,6 +9,11 @@ class BlogController extends Controller
 {
     public function index()
     {
+        $blog = PostService::count();
+        if (!$blog) {
+            return abort(404);
+        }
+    
         return view('pages.blog.index');
     }
 

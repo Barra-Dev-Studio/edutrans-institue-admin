@@ -30,4 +30,9 @@ class PostService
     {
         return Post::where('id', $id)->increment('views');
     }
+
+    public static function count()
+    {
+        return Post::count();
+    }
 }
