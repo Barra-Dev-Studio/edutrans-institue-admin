@@ -40,6 +40,7 @@
                     <li><a href="{{ route('home')}}" class="!no-underline hover:text-white">Home</a></li>
                     <li><a href="{{ route('blog') }}" class="!no-underline hover:text-white">Blog</a></li>
                     <li><a href="{{ route('courses') }}" class="!no-underline hover:text-white">Courses</a></li>
+                    <li><a href="{{ route('about') }}" class="!no-underline hover:text-white">About</a></li>
                 </ul>
             </div>
             <div class="md:col-span-2">
