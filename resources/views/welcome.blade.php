@@ -121,31 +121,31 @@
                         </div>
                     </div>
                     <div class="card bg-slate-50 h-full flex items-center cursor-pointer hover:scale-105">
-                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
                             <img src="{{ asset('assets/images/clients/kemenkeu.svg') }}" class="w-20" alt="">
                             <h6>Kementerian Keuangan Republik Indonesia</h6>
                         </div>
                     </div>
                     <div class="card bg-slate-50 h-full flex items-center cursor-pointer hover:scale-105">
-                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center">
-                            <img src="{{ asset('assets/images/clients/ahm.svg') }}" class="w-26" alt="">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/ahm.svg') }}" class="w-24" alt="">
                             <h6>PT. AHM Jakarta</h6>
                         </div>
                     </div>
                     <div class="card bg-slate-50 h-full flex items-center cursor-pointer hover:scale-105">
-                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
                             <img src="{{ asset('assets/images/clients/kpu.svg') }}" class="w-20" alt="">
                             <h6>Komisi Pemilihan Umum</h6>
                         </div>
                     </div>
                     <div class="card bg-slate-50 h-full flex items-center cursor-pointer hover:scale-105">
-                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
                             <img src="{{ asset('assets/images/clients/kominfo.svg') }}" class="w-20" alt="">
                             <h6>Kementerian Komunikasi dan Informatika</h6>
                         </div>
                     </div>
                     <div class="card bg-slate-50 h-full flex items-center cursor-pointer hover:scale-105">
-                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
                             <img src="{{ asset('assets/images/clients/pemda_jateng.svg') }}" class="w-20" alt="">
                             <h6>Pemerintah Provinsi Jawa Tengah</h6>
                         </div>
