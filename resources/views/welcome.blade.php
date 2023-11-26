@@ -109,4 +109,157 @@
             </div>
         </div>
     </section>
+    <section class="bg-slate-200/40">
+        <div class="md:px-16 py-10">
+            <div class="px-6 md:px-8">
+                <h3 class="mb-8">Klien Korporasi dan Pemerintahan</h3>
+                <div class="grid grid-cols-2 md:grid-cols-6 gap-4 items-center">
+                    <div class="card bg-slate-50 h-full flex items-center cursor-pointer hover:scale-105">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center">
+                            <img src="{{ asset('assets/images/clients/mahkamah_agung.svg') }}" class="w-16" alt="">
+                            <h6>Mahkamah Agung Republik Indonesia</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center cursor-pointer hover:scale-105">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center">
+                            <img src="{{ asset('assets/images/clients/kemenkeu.svg') }}" class="w-20" alt="">
+                            <h6>Kementerian Keuangan Republik Indonesia</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center cursor-pointer hover:scale-105">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center">
+                            <img src="{{ asset('assets/images/clients/ahm.svg') }}" class="w-26" alt="">
+                            <h6>PT. AHM Jakarta</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center cursor-pointer hover:scale-105">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center">
+                            <img src="{{ asset('assets/images/clients/kpu.svg') }}" class="w-20" alt="">
+                            <h6>Komisi Pemilihan Umum</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center cursor-pointer hover:scale-105">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center">
+                            <img src="{{ asset('assets/images/clients/kominfo.svg') }}" class="w-20" alt="">
+                            <h6>Kementerian Komunikasi dan Informatika</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center cursor-pointer hover:scale-105">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center">
+                            <img src="{{ asset('assets/images/clients/pemda_jateng.svg') }}" class="w-20" alt="">
+                            <h6>Pemerintah Provinsi Jawa Tengah</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body text-center">
+                            <h6>Halo BCA</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body text-center">
+                            <h6>BPD JATENG</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body text-center">
+                            <h6>CICIL.CO.ID</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body text-center">
+                            <h6>BPJS Ketenagakerjaan</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body text-center">
+                            <h6>HIPWEE</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body text-center">
+                            <h6>SCARLETT</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body text-center">
+                            <h6>AKSORO.ID</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body text-center">
+                            <h6>DPRD Kota Semarang</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body text-center">
+                            <h6>DPRD Kota Salatiga</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body text-center">
+                            <h6>DPRD Jawa Tengah</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body text-center">
+                            <h6>BP3IP JAKARTA</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body text-center">
+                            <h6>Telkomsel</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body text-center">
+                            <h6>KUNCIE</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body text-center">
+                            <h6>IKIGAI CONSULTING</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body text-center">
+                            <h6>BKKBN</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body text-center">
+                            <h6>Pemerintahan Kota Semarang</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body text-center">
+                            <h6>BBPVP</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body text-center">
+                            <h6>Katadata</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="md:px-16 py-10">
+            <div class="px-6 md:px-8">
+                <h3 class="mb-8">Klien Lembaga Pendidikan</h3>
+                <div class="grid grid-cols-2 md:grid-cols-8 gap-4 items-center">
+                    @foreach(explode(', ', 'UIN WALISONGO, Universitas Esa Unggul, UNIKA Soegijapranoto, USM, UNTAG, UNISSULA, UNDIP, POLTEKPEL SORONG, POLTEKKES
+                    Semarang, UNSOED, UNIVERSITAS SANATA DARMA, UGM, UNY, UMS SURAKARTA, UNS SOLO, POLTEKKES TANJUNG KARANG, UNTIDAR,
+                    UNDIKSHA, SMA PRADITA DIRGANTARA, SMA Karangturi, UNNES, UNAIR, UIN SUKA, UIN GUS DUR, UIN Kudus, UIN Salatiga, BINUS') as $university)
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body text-center">
+                            <h6>{{ $university }}</h6>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </section>
 </x-guest-layout>
