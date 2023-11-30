@@ -1,8 +1,8 @@
-<nav class="md:px-16">
+<nav class="md:px-16 py-3">
     <div class="flex items-center justify-between px-6 md:px-8 py-6 md:py-0">
         <div class="flex items-center gap-4">
             <img src="{{ asset('assets/images/logo.png') }}" class="hidden md:block" height="50" width="50" alt="">
-            <div class="prose flex flex-col md:flex-row gap-0 md:gap-2">
+            <div class="prose flex flex-col">
                 <a href="{{ route('home') }}" class="text-lg font-semibold !no-underline">Edutrans Intitute</a>
                 <span class="font-handwrite text-lg font-semibold">by Hendi Pratama</span>
             </div>

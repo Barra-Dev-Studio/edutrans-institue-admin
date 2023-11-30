@@ -12,6 +12,7 @@ class GuestController extends Controller
     {
         $course = CourseService::getBySlug($slug);
         $chapters = ChapterService::getByCourseId($course->id, true);
-        return view("pages.course.detail", compact("course", "chapters"));
+        $previews = ChapterService::getPreviews($course->id);
+        return view("pages.course.detail", compact("course", "chapters", "previews"));
     }
 }

@@ -10,7 +10,7 @@
                     @foreach($chapters as $chapter)
                     <a href="{{ route('member.play', [$course->id, $chapter->id]) }}"
                         class="px-5 text-slate-700  prose font-medium py-2 @if(!$loop->last) border-b border-slate-100 @endif @if($selectedChapter->id === $chapter->id) border-l border-sky-500 bg-slate-100 @else hover:bg-slate-200 @endif border-slate-200 cursor-pointer flex justify-between items-center gap-4">
-                            <span>{{ explode('. ', $chapter->title)[1] }}</span>
+                            <span>{{ trim(explode('.', $chapter->title)[1]) }}</span>
                             @if($this->checkIfCompleted($chapter->id)) <i class="bx bx-check-circle text-emerald-600"></i> @endif
                         </a>
                     @endforeach
@@ -26,15 +26,15 @@
     <div class="md:col-span-3 order-first md:order-last">
         <div class="card dark:border-zinc-600 dark:bg-zinc-800 bg-slate-50 w-full">
             <div class="card-body pb-4 border-b border-slate-200 flex justify-between items-center">
-                <h5 class="dark:text-zinc-100">{{ explode('. ', $selectedChapter->title)[1] }}</h5>
+                <h5 class="dark:text-zinc-100">{{ trim(explode('.', $selectedChapter->title)[1]) }}</h5>
             </div>
             <div class="card-body">
                 <div class="w-full">
                     <livewire:plugin.plyr-livewire wire:ignore :embedId="$selectedChapter->playback_url"></livewire:plugin.plyr-livewire>
                     <div class="grid grid-cols-1 mt-8 gap-4">
-                        <div class="card">
+                        <div class="card bg-white">
                             <div class="card-body">
-                                <h4>Description</h4>
+                                <h4>Deskripsi</h4>
                                 <p class="mt-4 text-slate-500 text-16">{{ $selectedChapter->description }}</p>
                             </div>
                         </div>

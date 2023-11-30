@@ -46,4 +46,13 @@ class CourseService
             );
         }
     }
+
+    public static function getPopularCourse()
+    {
+        return Course::where('status', 'PUBLISHED')
+            ->with('mentor')
+            ->orderBy('total_students', 'desc')
+            ->limit(3)
+            ->get();
+    }
 }

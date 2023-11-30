@@ -39,30 +39,34 @@ Route::get('/email/verify/{id}/{hash}', [EmailVerifyController::class, 'request'
 Route::post('/email/verification-notification', [EmailVerifyController::class, 'resend'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
-Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
+Route::get('/post/{slug}', [BlogController::class, 'show'])->name('blog.show');
 
-Route::middleware(['auth', 'can:access-admin'])->group(function () {
-    Route::prefix('dashboard')->as('dashboard.')->group(function () {
-        Route::get('/', [DashboardController::class, 'index'])->name('index');
-        Route::get('profile', [DashboardController::class, 'profile'])->name('profile');
+Route::middleware(['auth'])->group(function () {
+    Route::get('profile', [DashboardController::class, 'profile'])->name('dashboard.profile');
 
-        Route::resource('category', CategoryController::class);
-        Route::resource('user', UserController::class);
-        Route::resource('mentor', MentorController::class);
-        Route::resource('course', CourseController::class);
-        Route::resource('chapter', ChapterController::class);
-        Route::resource('transaction', TransactionController::class)->only('index', 'show');
-        Route::resource('post', PostController::class);
+    Route::middleware(['can:access-admin'])->group(function () {
+        Route::prefix('dashboard')->as('dashboard.')->group(function () {
+            Route::get('/', [DashboardController::class, 'index'])->name('index');
+
+            Route::resource('category', CategoryController::class);
+            Route::resource('user', UserController::class);
+            Route::resource('mentor', MentorController::class);
+            Route::resource('course', CourseController::class);
+            Route::resource('chapter', ChapterController::class);
+            Route::resource('transaction', TransactionController::class)->only('index', 'show');
+            Route::resource('post', PostController::class);
+        });
+    });
+
+    Route::middleware(['can:access-member', 'verified'])->group(function () {
+        Route::prefix('member')->as('member.')->group(function () {
+            Route::get('/', [MemberController::class, 'index'])->name('index');
+            Route::get('/transaction', [MemberController::class,'transaction'])->name('transaction');
+            Route::get('/transaction/{id}', [MemberController::class,'detailTransaction'])->name('transaction.show');
+            Route::get('/play/{id}/{chapterId?}', [MemberController::class,'play'])->name('play');
+        });
     });
 });
 
-Route::middleware(['auth','can:access-member', 'verified'])->group(function () {
-    Route::prefix('member')->as('member.')->group(function () {
-        Route::get('/', [MemberController::class, 'index'])->name('index');
-        Route::get('/transaction', [MemberController::class,'transaction'])->name('transaction');
-        Route::get('/transaction/{id}', [MemberController::class,'detailTransaction'])->name('transaction.show');
-        Route::get('/play/{id}/{chapterId?}', [MemberController::class,'play'])->name('play');
-    });
-});
 
 require __DIR__.'/auth.php';

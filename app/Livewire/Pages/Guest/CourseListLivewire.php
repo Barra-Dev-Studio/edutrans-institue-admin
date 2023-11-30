@@ -42,8 +42,13 @@ class CourseListLivewire extends Component
 
     public function render()
     {
+        $courses = Course::where('category_id', 'like', $this->selectedCategory !== 'all' ? $this->selectedCategory : '%%')
+            ->where('title', 'like', '%'. $this->query . '%')
+            ->with('mentor')
+            ->orderBy($this->selectedSort == 'terbaru' ? 'created_at' : 'total_students', 'desc')
+            ->paginate($this->showPage);
         return view('livewire.pages.guest.course-list-livewire', [
-            'courses' => Course::where('category_id', 'like', $this->selectedCategory !== 'all' ? $this->selectedCategory : '%%')->where('title', 'like', '%'. $this->query . '%')->with('mentor')->paginate($this->showPage),
+            'courses' => $courses
         ]);
     }
 }

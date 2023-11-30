@@ -3,7 +3,7 @@
         <div class="pl-6 pr-6 md:pr-0 md:pl-8 prose pb-8">
             <p class="font-medium text-sky-800 hidden md:block">#TransformasiDirimuBersamaEdutransInstitute</p>
             <p class="font-medium text-sky-800 block md:hidden">#TransformasiDirimu<br>BersamaEdutransInstitute</p>
-            <h1 class="leading-snug mb-0">Optimalkan Masa Depan Kamu Bersama Edutrans Institute <span class="font-handwrite font-semibold">by Hendi Pratama</span></h1>
+            <h1 class="leading-snug mb-0">Optimalkan Masa Depan Kamu Bersama Edutrans Institute</h1>
             <p class="mt-2">Online course bersertifikat paling dipercaya berbagai kalangan dengan berbagai materi dan kategori yang langsung bisa diaplikasikan.</p>
             <div class="flex items-start md:items-center gap-1 md:gap-4 flex-col md:flex-row mt-8 md:mt-0">
                 <a href="{{ route('courses') }}" class="bg-sky-800 px-6 py-3 rounded text-white hover:bg-sky-900 no-underline">Jelajahi kursus</a>

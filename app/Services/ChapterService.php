@@ -25,8 +25,17 @@ class ChapterService
 
         $sections = [];
         foreach ($chapters as $chapter) {
-            $sections[explode(". ", $chapter->section)[1]][] = $chapter;
+            $sections[trim(explode(".", $chapter->section)[1])][] = $chapter;
         }
         return $sections;
+    }
+
+    public static function getPreviews($courseId)
+    {
+        return Chapter::where('course_id', $courseId)
+            ->where('is_preview', true)
+            ->orderBy('section', 'ASC')
+            ->orderBy('title', 'ASC')
+            ->get(["id", "playback_url", "title"]);
     }
 }

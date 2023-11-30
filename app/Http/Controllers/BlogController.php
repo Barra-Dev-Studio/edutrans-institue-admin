@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\CourseService;
 use App\Services\PostService;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class BlogController extends Controller
         if (!$blog) {
             return abort(404);
         }
-    
+
         return view('pages.blog.index');
     }
 
@@ -26,7 +27,8 @@ class BlogController extends Controller
         }
 
         $anotherPosts = PostService::getAnotherPost($post->id);
+        $courses = CourseService::getPopularCourse();
         PostService::addViews($post->id);
-        return view('pages.blog.show', compact('post', 'anotherPosts'));
+        return view('pages.blog.show', compact('post', 'anotherPosts', 'courses'));
     }
 }
