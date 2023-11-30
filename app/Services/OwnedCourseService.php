@@ -17,6 +17,11 @@ class OwnedCourseService
         return OwnedCourse::where('member_id', auth()->id())->where('id', $id)->with(['course', 'chapterProgress'])->latest()->first();
     }
 
+    public static function getByCourseId(string $courseId)
+    {
+        return OwnedCourse::where('member_id', auth()->id())->where('course_id', $courseId)->with(['course', 'chapterProgress'])->latest()->first();
+    }
+
     public static function getLastChapterProgress()
     {
         $ownedCourse = OwnedCourse::where('member_id', auth()->id())->with(['course', 'chapterProgress.chapter'])->latest()->first();

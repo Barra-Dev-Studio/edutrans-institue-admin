@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\OwnedCourse;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
+use App\Notifications\CoursePaid;
 use Illuminate\Support\Facades\Auth;
 use DB;
 use Illuminate\Support\Str;
@@ -82,6 +83,11 @@ class TransactionService
                 }
             }
             DB::commit();
+            if ($data->total_payment == 0) {
+                foreach ($data->items as $item) {
+                    auth()->user()->notify(new CoursePaid($item->id));
+                }
+            }
             return self::getRedirectUrl($payment, $method);
         } catch (\Exception $e) {
             DB::rollBack();

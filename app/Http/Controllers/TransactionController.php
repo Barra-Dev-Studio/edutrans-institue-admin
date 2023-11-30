@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Notifications\CoursePaid;
 use App\Services\CourseService;
 use App\Services\TransactionService;
 use Illuminate\Http\Request;
@@ -29,10 +31,11 @@ class TransactionController extends Controller
         DB::beginTransaction();
         try {
             TransactionService::updateCallback($request);
-            if ($request->data['status'] === 'SUCCEEDED')
-            {
+            if ($request->data['status'] === 'SUCCEEDED') {
+                $user = User::find($request->data['metadata']['member_id']);
                 foreach ($request->data['basket'] as $item) {
                     CourseService::addCourseToUser($request->data['reference_id'], $item['reference_id'], $request->data['metadata']['member_id']);
+                    $user->notify(new CoursePaid($item['reference_id']));
                 }
                 DB::commit();
                 return response([], 200);
@@ -52,8 +55,10 @@ class TransactionController extends Controller
         try {
             TransactionService::updateCallbackQris($request);
             if ($request->data['status'] === 'SUCCEEDED') {
+                $user = User::find($request->data['metadata']['member_id']);
                 foreach ($request->data['basket'] as $item) {
                     CourseService::addCourseToUser($request->data['reference_id'], $item['reference_id'], $request->data['metadata']['member_id']);
+                    $user->notify(new CoursePaid($item['reference_id']));
                 }
                 DB::commit();
                 return response([], 200);
