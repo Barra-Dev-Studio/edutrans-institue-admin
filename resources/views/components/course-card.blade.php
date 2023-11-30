@@ -9,7 +9,7 @@
                 <p class="font-bold line-clamp-2">{{ $mentor }}</p>
             </div>
             <div class="mt-6">
-                <h5 class="mb-3 line-clamp-3">{{ $title }} iyahak</h5>
+                <h5 class="mb-3 line-clamp-3">{{ $title }}</h5>
                 <p class="text-slate-500 line-clamp-2">{{ strip_tags($description) }}</p>
             </div>
         </div>
