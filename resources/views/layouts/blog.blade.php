@@ -26,6 +26,7 @@
   <meta name="msapplication-TileImage" content="{{ asset('assets/favicon/ms-icon-144x144.png') }}">
   <meta name="theme-color" content="#4C8DAB">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script async src="https://eu.umami.is/script.js" data-website-id="690e8481-ce7b-4556-bba7-b5e9fe0ef587"></script>
 
   @if(env('APP_ENV') === 'local')
   @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/icons.css'])

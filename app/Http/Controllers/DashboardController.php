@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\WidgetService;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -11,7 +12,14 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $widgets = [
+            'course' => WidgetService::getTotalCourse(),
+            'user' => WidgetService::getTotalUser(),
+            'transaction' => WidgetService::getTotalTransaction(),
+            'post' => WidgetService::getTotalPost()
+        ];
+
+        return view('dashboard', compact('widgets'));
     }
 
     /**

@@ -9,7 +9,7 @@
                     <p class="prose hover:text-sky-800">Semua kategori</p>
                 </div>
                 @forelse($categories as $category)
-                <div class="flex cursor-pointer items-center gap-4" wire:click="selectCategory('{{ $category->id }}')">
+                <div class="flex cursor-pointer items-center gap-4" wire:key="{{ $category->id }}" wire:click="selectCategory('{{ $category->id }}')">
                     <div class="h-4 w-4 @if($selectedCategory == $category->id) bg-sky-700 @else bg-slate-300 @endif rounded"></div>
                     <p class="prose hover:text-sky-800">{{ $category->name }}</p>
                 </div>
