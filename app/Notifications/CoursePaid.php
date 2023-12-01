@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\OwnedCourse;
 use App\Services\CourseService;
 use App\Services\OwnedCourseService;
 use Illuminate\Bus\Queueable;
@@ -17,9 +18,9 @@ class CoursePaid extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct($courseId)
+    public function __construct($courseId, $memberId)
     {
-        $this->ownedCourse = OwnedCourseService::getByCourseId($courseId);
+        $this->ownedCourse = OwnedCourse::where('course_id', $courseId)->where('member_id', $memberId)->first();
     }
 
     /**

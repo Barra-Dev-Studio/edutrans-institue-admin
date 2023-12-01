@@ -35,7 +35,7 @@ class TransactionController extends Controller
                 $user = User::find($request->data['metadata']['member_id']);
                 foreach ($request->data['basket'] as $item) {
                     CourseService::addCourseToUser($request->data['reference_id'], $item['reference_id'], $request->data['metadata']['member_id']);
-                    $user->notify(new CoursePaid($item['reference_id']));
+                    $user->notify(new CoursePaid($item['reference_id'], $request->data['metadata']['member_id']));
                 }
                 DB::commit();
                 return response([], 200);
@@ -58,7 +58,7 @@ class TransactionController extends Controller
                 $user = User::find($request->data['metadata']['member_id']);
                 foreach ($request->data['basket'] as $item) {
                     CourseService::addCourseToUser($request->data['reference_id'], $item['reference_id'], $request->data['metadata']['member_id']);
-                    $user->notify(new CoursePaid($item['reference_id']));
+                    $user->notify(new CoursePaid($item['reference_id'], $request->data['metadata']['member_id']));
                 }
                 DB::commit();
                 return response([], 200);
