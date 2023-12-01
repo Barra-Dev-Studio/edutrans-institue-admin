@@ -3,6 +3,7 @@
 namespace App\Notifications;
 
 use App\Models\OwnedCourse;
+use App\Models\User;
 use App\Services\CourseService;
 use App\Services\OwnedCourseService;
 use Illuminate\Bus\Queueable;
@@ -14,13 +15,18 @@ class CoursePaid extends Notification
 {
     use Queueable;
     protected $ownedCourse;
+    protected $user;
 
     /**
      * Create a new notification instance.
      */
     public function __construct($courseId, $memberId)
     {
-        $this->ownedCourse = OwnedCourse::where('course_id', $courseId)->where('member_id', $memberId)->first();
+        $this->ownedCourse = OwnedCourse::where('course_id', $courseId)
+            ->where('member_id', $memberId)
+            ->with('course.mentor')
+            ->first();
+        $this->user = User::find($memberId);
     }
 
     /**
@@ -41,7 +47,7 @@ class CoursePaid extends Notification
         $url = route('member.play', $this->ownedCourse->id);
         return (new MailMessage)
                     ->subject('Pembelian kelas di Edutrans Institute berhasil!')
-                    ->greeting('Hallo ' . auth()->user()->name)
+                    ->greeting('Hallo ' . $this->user->name)
                     ->line('Kamu telah berhasil membeli kursus dengan judul ' . $this->ownedCourse->course->title . ' oleh ' . $this->ownedCourse->course->mentor->name)
                     ->line('Berikut kamu bisa akses detail kursusnya di bawah ini, ya.')
                     ->action('Mulai kursus', $url)
