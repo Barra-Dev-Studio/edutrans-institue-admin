@@ -41,7 +41,7 @@ class BlogIndexLivewire extends Component
     public function render()
     {
         return view('livewire.pages.blog.blog-index-livewire', [
-            'posts' => Post::where('title', 'like', '%' . $this->search . '%')->whereNot('id', $this->featuredPost->id)->paginate($this->showPage)
+            'posts' => Post::where('title', 'like', '%' . $this->search . '%')->whereNot('id', $this->featuredPost->id)->where('status', 'PUBLISH')->paginate($this->showPage)
         ]);
     }
 }
