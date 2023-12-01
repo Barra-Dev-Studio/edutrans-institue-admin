@@ -113,7 +113,7 @@ class TransactionService
     {
         $checkIfUserAlreadyPay = self::getById($transactionId);
         if ($checkIfUserAlreadyPay->status === 'SUCCEEDED') {
-            $course = CourseService::getById($courseId);
+            $course = Course::where('id', $courseId)->with(['mentor', 'category'])->first();
             $transactionDetail = TransactionDetail::where('transaction_id', $transactionId)->where('item_id', $courseId)->first();
             $ownedCourse = (object) [
                 'member_id' => $userId,
