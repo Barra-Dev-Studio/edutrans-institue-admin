@@ -30,21 +30,15 @@ class CourseService
         if ($checkIfUserAlreadyPay->status === 'SUCCEEDED') {
             $course = self::getById($courseId);
             $transactionDetail = TransactionDetail::where('transaction_id', $transactionId)->where('item_id', $courseId)->first();
-            OwnedCourse::updateOrCreate(
-                [
-                    'member_id' => $userId,
-                    'course_id' => $courseId,
-                    'transaction_detail_id' => $transactionDetail->id,
-                ],
-                [
-                    'member_id' => $userId,
-                    'course_id' => $courseId,
-                    'transaction_detail_id' => $transactionDetail->id,
-                    'mentor' => $course->mentor->name,
-                    'category' => $course->category->name,
-                    'title' => $course->title,
-                ]
-            );
+            $ownedCourse = (object) [
+                'member_id' => $userId,
+                'course_id' => $course->id,
+                'title' => $course->title,
+                'mentor' => $course->mentor,
+                'category' => $course->category,
+                'transaction_detail_id' => $transactionDetail->id
+            ];
+            TransactionService::saveOwnedCourse($ownedCourse);
             return Course::where('id', $courseId)->increment('total_students');
         }
     }
