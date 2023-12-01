@@ -90,6 +90,7 @@ class TransactionService
             }
             return self::getRedirectUrl($payment, $method);
         } catch (\Exception $e) {
+            dd($e);
             DB::rollBack();
             return false;
         }
