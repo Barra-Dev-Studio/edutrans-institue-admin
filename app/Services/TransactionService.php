@@ -72,6 +72,7 @@ class TransactionService
                 if ($data->total_price == 0) {
                     if ($item->type === 'course') {
                         $ownedCourse = (object) [
+                            'member_id' => Auth()->id(),
                             'course_id' => $item->id,
                             'title' => $item->title,
                             'mentor' => $item->mentor,
@@ -167,7 +168,7 @@ class TransactionService
     private static function saveOwnedCourse($data)
     {
         $ownedCourse = OwnedCourse::create([
-            'member_id' => Auth::user()->id,
+            'member_id' => $data->member_id,
             'course_id' => $data->course_id,
             'title' => $data->title,
             'mentor' => $data->mentor,
