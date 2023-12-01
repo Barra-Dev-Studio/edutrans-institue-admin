@@ -119,8 +119,8 @@ class TransactionService
                 'member_id' => $userId,
                 'course_id' => $course->id,
                 'title' => $course->title,
-                'mentor' => $course->mentor,
-                'category' => $course->category,
+                'mentor' => $course->mentor->name,
+                'category' => $course->category->name,
                 'transaction_detail_id' => $transactionDetail->id
             ];
             self::saveOwnedCourse($ownedCourse);
