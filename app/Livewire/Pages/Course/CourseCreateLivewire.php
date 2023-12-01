@@ -6,6 +6,7 @@ use App\Livewire\Plugin\TrixLivewire;
 use App\Models\Category;
 use App\Models\Course;
 use App\Models\Mentor;
+use App\Services\CourseService;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Str;

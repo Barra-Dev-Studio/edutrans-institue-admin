@@ -67,7 +67,7 @@
                         <div class="flex flex-col gap-2 list-none text-slate-500">
                             <p class="mb-0 mt-0"><i class="bx bx-time-five"></i> Video akses selamanya</p>
                             <p class="mb-0 mt-0"><i class="bx bx-laptop"></i> Akses di semua perangkat</p>
-                            <p class="mb-0 mt-0"><i class="bx bx-hourglass"></i> Total durasi kursus {{ $course->total_duration }}</p>
+                            <p class="mb-0 mt-0"><i class="bx bx-hourglass"></i> Total durasi kursus {{ floor($course->total_duration/60) }}:{{ $course->total_duration%60 }}</p>
                             <p class="mb-0 mt-0"><i class="bx bx-book"></i> Total konten kursus {{ $course->chapters->count() }} konten</p>
                             @if($course->is_certified)
                             <p class="mb-0 mt-0"><i class="bx bx-file"></i> Sertifikat kursus</p>

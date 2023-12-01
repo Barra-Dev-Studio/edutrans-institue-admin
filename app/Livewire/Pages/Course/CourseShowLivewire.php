@@ -4,6 +4,7 @@ namespace App\Livewire\Pages\Course;
 
 use App\Imports\ChaptersImport;
 use App\Models\Chapter;
+use App\Services\CourseService;
 use App\Traits\DatatableModalTrait;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -94,6 +95,8 @@ class CourseShowLivewire extends Component
                     'is_preview' => $this->isPreview,
                     'course_id' => $this->course->id,
                 ]);
+                CourseService::syncTotalDuration($this->course->id);
+
                 return redirect()->route('dashboard.course.show', $this->course->id)->with('success', 'Chapter created successfuly');
             } else if ($this->state === 'update') {
                 Chapter::where('id', $this->chapterId)->update([
@@ -104,6 +107,8 @@ class CourseShowLivewire extends Component
                     'playback_url' => $this->playbackUrl,
                     'is_preview' => $this->isPreview,
                 ]);
+                CourseService::syncTotalDuration($this->course->id);
+
                 return redirect()->route('dashboard.course.show', $this->course->id)->with('success', 'Chapter updated successfuly');
             }
         } catch (\Exception $e) {
@@ -114,6 +119,7 @@ class CourseShowLivewire extends Component
     public function importChapters()
     {
         Excel::import(new ChaptersImport($this->course->id), $this->chapterFile);
+        CourseService::syncTotalDuration($this->course->id);
         return redirect()->route('dashboard.course.show', $this->course->id)->with('success', 'Chapters has beed imported');
     }
 

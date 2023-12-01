@@ -44,6 +44,7 @@ class CourseListLivewire extends Component
     {
         $courses = Course::where('category_id', 'like', $this->selectedCategory !== 'all' ? $this->selectedCategory : '%%')
             ->where('title', 'like', '%'. $this->query . '%')
+            ->where('status', 'PUBLISHED')
             ->with('mentor')
             ->orderBy($this->selectedSort == 'terbaru' ? 'created_at' : 'total_students', 'desc')
             ->paginate($this->showPage);
