@@ -48,7 +48,7 @@
   @if(env('APP_ENV') === 'local')
   @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/icons.css'])
   @else
-  <link rel="stylesheet" href="{{ asset('build/assets/app-2ac0a40e.css') }}">
+  <link rel="stylesheet" href="{{ asset('build/assets/app-df8b1321.css') }}">
   <link rel="stylesheet" href="{{ asset('build/assets/icons-adf300ab.css') }}">
   <script src="{{ asset('build/assets/app-02317797.js') }}"></script>
   @endif
