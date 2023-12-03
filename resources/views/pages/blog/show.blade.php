@@ -52,7 +52,7 @@
                                             <img src="{{ \Storage::url($post->thumbnail) }}" alt="{{ $post->title }}">
                                         </div>
                                         <div class="col-span-3">
-                                            <h6 class="mb-0">{{ $post->title }}</h6>
+                                            <h6 class="mb-0 line-clamp-2">{{ $post->title }}</h6>
                                             <p class="line-clamp-2 text-sm text-slate-500 mt-0">{{ $post->description }}</p>
                                         </div>
                                     </div>
@@ -78,6 +78,7 @@
                                     </div>
                                 </a>
                                 @empty
+                                <p>Nantikan kursus menarik di Edutrans Institute</p>
                                 @endforelse
                             </div>
                         </div>
