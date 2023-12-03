@@ -22,20 +22,28 @@
     <div class="md:p-16">
         <div class="px-6 md:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
-                <div class="card md:col-span-2">
-                    <div class="card-body bg-white">
-                        <div class="prose p-1 md:p-8">
-                            <h1>{{ $post->title }}</h1>
-                            <p class="text-slate-500"><span class="mr-8">{{ $post->author }}</span><span>{{ \Carbon\Carbon::parse($post->created_at)->format('d F, Y') }}</span></p>
-                            @foreach(explode(',', $post->tags) as $tag)
-                            <span class="bg-slate-200 text-slate-600 text-sm px-4 py-2 rounded">{{ $tag }}</span>
-                            @endforeach
+                <div class="md:col-span-2">
+                    <div class="card">
+                        <div class="card-body bg-white">
+                            <div class="prose p-1 md:p-8">
+                                <h1>{{ $post->title }}</h1>
+                                <p class="text-slate-500"><span class="mr-8">{{ $post->author }}</span><span>{{ \Carbon\Carbon::parse($post->created_at)->format('d F, Y') }}</span></p>
+                                @foreach(explode(',', $post->tags) as $tag)
+                                <span class="bg-slate-200 text-slate-600 text-sm px-4 py-2 rounded">{{ $tag }}</span>
+                                @endforeach
+                            </div>
+                            <div class="prose mt-8 px-1 md:px-8">
+                                <img src="{{ \Storage::url($post->thumbnail) }}" class="rounded" alt="{{ $post->title }}">
+                            </div>
+                            <div class="prose mt-8 px-1 md:px-8">
+                                {!! $post->content !!}
+                            </div>
                         </div>
-                        <div class="prose mt-8 px-1 md:px-8">
-                            <img src="{{ \Storage::url($post->thumbnail) }}" class="rounded" alt="{{ $post->title }}">
-                        </div>
-                        <div class="prose mt-8 px-1 md:px-8">
-                            {!! $post->content !!}
+                    </div>
+                    <div class="card">
+                        <div class="card-body bg-white pb-8">
+                            <p class="text-slate-500 mb-6">Jika kamu merasa postingan ini bermanfaat, bagikan dengan cara klik tombol di bawah</p>
+                            {!! $shareComponent !!}
                         </div>
                     </div>
                 </div>

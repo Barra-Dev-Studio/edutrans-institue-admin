@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\CourseService;
 use App\Services\PostService;
 use Illuminate\Http\Request;
+use Jorenvh\Share\ShareFacade as Share;
 
 class BlogController extends Controller
 {
@@ -29,6 +30,13 @@ class BlogController extends Controller
         $anotherPosts = PostService::getAnotherPost($post->id);
         $courses = CourseService::getPopularCourse();
         PostService::addViews($post->id);
-        return view('pages.blog.show', compact('post', 'anotherPosts', 'courses'));
+
+        $shareComponent = Share::page(route('blog.show', $slug), $post->title)
+            ->facebook()
+            ->twitter()
+            ->linkedin()
+            ->whatsapp();
+
+        return view('pages.blog.show', compact('post', 'anotherPosts', 'courses', 'shareComponent'));
     }
 }

@@ -201,4 +201,10 @@ select{
 .accordion-item .accordion-header.active{
    @apply text-violet-500;
 }
+#social-links ul {
+    @apply flex gap-4
+}
+.social-button {
+    @apply border border-slate-200 rounded p-4 text-lg hover:bg-sky-800 hover:text-slate-50 text-slate-700
+}
 
