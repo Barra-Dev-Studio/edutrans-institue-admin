@@ -39,8 +39,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card bg-white">
-                    <div class="card-body">
+                <div class="card border-none">
+                    <div class="card-body bg-white border border-gray-50 sticky top-8">
                         <div class="prose mb-8">
                             <h4 class="text-slate-800 mb-1">Mungkin kamu tertarik</h4>
                             <p class="line-clamp-2 text-sm text-slate-500 mt-0 mb-4">Baca artikel lain yang menarik di bawah ini</p>
