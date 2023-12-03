@@ -128,6 +128,18 @@ class TransactionService
         }
     }
 
+    public static function getTransactionStatistic()
+    {
+        $statistics = (object) [
+            'success' => Transaction::where('status', 'SUCCEEDED')->count(),
+            'pending' => Transaction::where('status', 'PENDING')->count(),
+            'failed' => Transaction::where('status', 'FAILED')->count(),
+            'total' => Transaction::count()
+        ];
+
+        return $statistics;
+    }
+
     private static function updateTransaction($transactionId, $response)
     {
         return Transaction::where('id', $transactionId)->update([

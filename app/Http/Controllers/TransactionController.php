@@ -15,7 +15,9 @@ class TransactionController extends Controller
     {
         $transaction = TransactionService::getBalance();
         $transaction = json_decode($transaction->body());
-        return view('pages.transaction.index', compact('transaction'));
+        $statistics = TransactionService::getTransactionStatistic();
+
+        return view('pages.transaction.index', compact('transaction', 'statistics'));
     }
 
     public function show(string $id)

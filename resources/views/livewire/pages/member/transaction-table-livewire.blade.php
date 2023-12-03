@@ -48,7 +48,7 @@
                                     - {{ $detail->item_name }} ({{ $detail->item_type }})
                                 @endforeach
                             </td>
-                            <td class="p-3">{{ $transaction->payment_method }}</td>
+                            <td class="p-3">{{ $transaction->paymentMethod->name }}</td>
                             <td class="p-3">Rp{{ number_format($transaction->total_disc) }}</td>
                             <td class="p-3">Rp{{ number_format($transaction->total_payment) }}</td>
                             <td class="p-3">{{ $transaction->status }}</td>
