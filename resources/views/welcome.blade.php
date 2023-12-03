@@ -151,92 +151,110 @@
                         </div>
                     </div>
                     <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
-                        <div class="card-body text-center">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/bca.png') }}" class="w-28" alt="">
                             <h6>Halo BCA</h6>
                         </div>
                     </div>
                     <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
-                        <div class="card-body text-center">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/bpdjateng.png') }}" class="w-28" alt="">
                             <h6>BPD JATENG</h6>
                         </div>
                     </div>
                     <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
-                        <div class="card-body text-center">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/cicil.png') }}" class="w-20" alt="">
                             <h6>CICIL.CO.ID</h6>
                         </div>
                     </div>
                     <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
-                        <div class="card-body text-center">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/bpjsk.png') }}" class="w-28" alt="">
                             <h6>BPJS Ketenagakerjaan</h6>
                         </div>
                     </div>
                     <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
-                        <div class="card-body text-center">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/hipwee.png') }}" class="w-20" alt="">
                             <h6>HIPWEE</h6>
                         </div>
                     </div>
                     <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
-                        <div class="card-body text-center">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/scarlett.png') }}" class="w-20" alt="">
                             <h6>SCARLETT</h6>
                         </div>
                     </div>
                     <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
-                        <div class="card-body text-center">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/aksoro.png') }}" class="w-20" alt="">
                             <h6>AKSORO.ID</h6>
                         </div>
                     </div>
                     <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
-                        <div class="card-body text-center">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/dprdsemarang.png') }}" class="w-28" alt="">
                             <h6>DPRD Kota Semarang</h6>
                         </div>
                     </div>
                     <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
-                        <div class="card-body text-center">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/dprdsalatiga.png') }}" class="w-20" alt="">
                             <h6>DPRD Kota Salatiga</h6>
                         </div>
                     </div>
                     <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
-                        <div class="card-body text-center">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/dprdjateng.png') }}" class="w-20" alt="">
                             <h6>DPRD Jawa Tengah</h6>
                         </div>
                     </div>
                     <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
-                        <div class="card-body text-center">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/bp3ip.png') }}" class="w-28" alt="">
                             <h6>BP3IP JAKARTA</h6>
                         </div>
                     </div>
                     <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
-                        <div class="card-body text-center">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/telkomsel.webp') }}" class="w-28" alt="">
                             <h6>Telkomsel</h6>
                         </div>
                     </div>
                     <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
-                        <div class="card-body text-center">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/kuncie.png') }}" class="w-28" alt="">
                             <h6>KUNCIE</h6>
                         </div>
                     </div>
                     <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
-                        <div class="card-body text-center">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/ikigai.png') }}" class="w-28" alt="">
                             <h6>IKIGAI CONSULTING</h6>
                         </div>
                     </div>
                     <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
-                        <div class="card-body text-center">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/bkkbn.png') }}" class="w-28" alt="">
                             <h6>BKKBN</h6>
                         </div>
                     </div>
                     <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
-                        <div class="card-body text-center">
-                            <h6>Pemerintahan Kota Semarang</h6>
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/semarang.png') }}" class="w-20" alt="">
+                            <h6>Pemerintah Kota Semarang</h6>
                         </div>
                     </div>
                     <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
-                        <div class="card-body text-center">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/bbpvp.png') }}" class="w-24" alt="">
                             <h6>BBPVP</h6>
                         </div>
                     </div>
                     <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
-                        <div class="card-body text-center">
+                        <div class="card-body flex flex-col justify-center text-center gap-0 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/katadata.png') }}" class="w-32" alt="">
                             <h6>Katadata</h6>
                         </div>
                     </div>
@@ -248,16 +266,169 @@
         <div class="md:px-16 py-10">
             <div class="px-6 md:px-8">
                 <h3 class="mb-8">Klien Lembaga Pendidikan</h3>
-                <div class="grid grid-cols-2 md:grid-cols-8 gap-4 items-center">
-                    @foreach(explode(', ', 'UIN WALISONGO, Universitas Esa Unggul, UNIKA Soegijapranoto, USM, UNTAG, UNISSULA, UNDIP, POLTEKPEL SORONG, POLTEKKES
-                    Semarang, UNSOED, UNIVERSITAS SANATA DARMA, UGM, UNY, UMS SURAKARTA, UNS SOLO, POLTEKKES TANJUNG KARANG, UNTIDAR,
-                    UNDIKSHA, SMA PRADITA DIRGANTARA, SMA Karangturi, UNNES, UNAIR, UIN SUKA, UIN GUS DUR, UIN Kudus, UIN Salatiga, BINUS') as $university)
+                <div class="grid grid-cols-2 md:grid-cols-7 gap-4 items-center">
                     <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
-                        <div class="card-body text-center">
-                            <h6>{{ $university }}</h6>
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/uinwalisongo.png') }}" class="w-32" alt="">
+                            <h6>UIN Walisongo</h6>
                         </div>
                     </div>
-                    @endforeach
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/univesaunggul.png') }}" class="w-24" alt="">
+                            <h6>Universitas Esa Unggul</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/unika.png') }}" class="w-32" alt="">
+                            <h6>UNIKA Soegijapranoto</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/usm.png') }}" class="w-24" alt="">
+                            <h6>Universitas Semarang</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/untag.png') }}" class="w-28" alt="">
+                            <h6>Universitas 17 Agustus</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/unissula.png') }}" class="w-28" alt="">
+                            <h6>Universitas Islam Sultan Agung</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/undip.png') }}" class="w-24" alt="">
+                            <h6>Universitas Diponegoro</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/poltekpelsorong.png') }}" class="w-44" alt="">
+                            <h6>POLTEKPEL Sorong</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/poltekkessemarang.png') }}" class="w-58" alt="">
+                            <h6>POLTEKKES Semarang</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/unsoed.png') }}" class="w-44" alt="">
+                            <h6>Universitas Jendral Soedirman</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/univsanatadharma.png') }}" class="w-58" alt="">
+                            <h6>Universitas Sanata Dharma</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/ugm.png') }}" class="w-24" alt="">
+                            <h6>Universitas Gadjah Mada</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/uny.png') }}" class="w-24" alt="">
+                            <h6>Universitas Negeri Yogyakarta</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/ums.png') }}" class="w-44" alt="">
+                            <h6>Universitas Muhamadiyah Surakarta</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/uns.png') }}" class="w-24" alt="">
+                            <h6>Universitas Negeri Solo</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/poltekkestanjungkarang.png') }}" class="w-24" alt="">
+                            <h6>POLTEKKES Tanjung Karang</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/untidar.png') }}" class="w-24" alt="">
+                            <h6>Universitas Tidar</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/undikhsa.png') }}" class="w-24" alt="">
+                            <h6>Universitas Pendidikan Ganesa</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/smapd.png') }}" class="w-24" alt="">
+                            <h6>SMA Pradita Dirgantara</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/smakarangturi.png') }}" class="w-24" alt="">
+                            <h6>SMA Karangturi</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/unnes.png') }}" class="w-24" alt="">
+                            <h6>Universitas Negeri Semarang</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/unair.png') }}" class="w-24" alt="">
+                            <h6>Universitas Airlangga</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/uinsuka.png') }}" class="w-24" alt="">
+                            <h6>UIN Sunan Kalijaga</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/uingusdur.png') }}" class="w-24" alt="">
+                            <h6>UIN Gusdur</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/uinkudus.png') }}" class="w-24" alt="">
+                            <h6>UIN Kudus</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/uinsalatiga.png') }}" class="w-24" alt="">
+                            <h6>UIN Salatiga</h6>
+                        </div>
+                    </div>
+                    <div class="card bg-slate-50 h-full flex items-center justify-center cursor-pointer hover:scale-105">
+                        <div class="card-body flex flex-col justify-center text-center gap-4 items-center w-full">
+                            <img src="{{ asset('assets/images/clients/binus.png') }}" class="w-44" alt="">
+                            <h6>Binus</h6>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
