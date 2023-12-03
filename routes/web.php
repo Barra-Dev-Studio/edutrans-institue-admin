@@ -49,6 +49,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/', [DashboardController::class, 'index'])->name('index');
 
             Route::resource('category', CategoryController::class);
+            Route::get('user/export', [UserController::class, 'export'])->name('user.export');
             Route::resource('user', UserController::class);
             Route::resource('mentor', MentorController::class);
             Route::resource('course', CourseController::class);

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UsersExport;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Services\UserService;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -51,5 +54,11 @@ class UserController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Failed to delete user ' . $e->getMessage());
         }
+    }
+
+    public function export()
+    {
+        $filename = "users-" . Carbon::now()->format('d-m-Y') . ".xlsx";
+        return Excel::download(new UsersExport, $filename);
     }
 }

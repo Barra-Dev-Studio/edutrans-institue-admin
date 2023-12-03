@@ -28,7 +28,7 @@ class UserTableLivewire extends Component
     public function render()
     {
         return view('livewire.pages.user.user-table-livewire', [
-            'users' => User::where('name', 'like', '%' . $this->search . '%')->paginate($this->showPage)
+            'users' => User::where('name', 'like', '%' . $this->search . '%')->role('member')->paginate($this->showPage)
         ]);
     }
 }

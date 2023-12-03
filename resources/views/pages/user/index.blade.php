@@ -4,7 +4,8 @@
         <x-breadcrumb-item>User management</x-breadcrumb-item>
     </x-breadcrumb>
 
-    <div class="flex justify-end items-center mb-4">
+    <div class="flex justify-end items-center mb-4 gap-4">
+        <a href="{{ route('dashboard.user.export') }}" class="bg-sky-500 px-6 py-3 rounded text-white hover:bg-sky-600 prose !no-underline">Export users</a>
         <a href="{{ route('dashboard.user.create') }}" class="bg-emerald-500 px-6 py-3 rounded text-white hover:bg-emerald-600 prose !no-underline">Create new user</a>
     </div>
     <x-flash-notification></x-flash-notification>
