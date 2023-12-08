@@ -23,6 +23,7 @@ class CourseCreateLivewire extends Component
     public $notes;
     public $category;
     public $price;
+    public $discountPrice = 0;
     public $mentor;
     public $totalViews = 0;
     public $totalShares = 0;
@@ -45,6 +46,7 @@ class CourseCreateLivewire extends Component
         'notes' => ['required'],
         'category' => ['required'],
         'price' => ['required'],
+        'discountPrice' => ['required'],
         'mentor' => ['required'],
         'totalViews' => ['required'],
         'totalShares' => ['required'],
@@ -127,6 +129,7 @@ class CourseCreateLivewire extends Component
                 'category_id' => $this->category,
                 'mentor_id' => $this->mentor,
                 'price' => $this->price,
+                'discount_price' => $this->discountPrice,
                 'total_views' => $this->totalViews,
                 'total_shares' => $this->totalShares,
                 'total_students' => $this->totalStudents,

@@ -12,7 +12,8 @@
                 <h5 class="dark:text-zinc-100">Playback</h5>
             </div>
             <div class="card-body">
-                <x-player.main :playerPlaybackUrl="$chapter->playback_url"></x-player.main>
+                <livewire:plugin.plyr-livewire id="player" :embedId="$chapter->playback_url" :autoplay="false"
+                    wire:key="{{ $chapter->id }}"></livewire:plugin.plyr-livewire>
             </div>
         </div>
         <div class="card dark:border-zinc-600 dark:bg-zinc-800 bg-slate-50">

@@ -116,6 +116,12 @@
                             placeholder="Price" required />
                         <x-input-error :messages="$errors->get('price')" class="mt-2" />
                     </div>
+                    <div class="mt-4">
+                        <x-input-label for="discountPrice" :value="__('Discount price')" />
+                        <x-text-input wire:model.live="discountPrice" id="discountPrice" class="block mt-1 w-full" type="number" name="discountPrice"
+                                      placeholder="Discount price" required />
+                        <x-input-error :messages="$errors->get('discountPrice')" class="mt-2" />
+                    </div>
                 </div>
             </div>
         </div>

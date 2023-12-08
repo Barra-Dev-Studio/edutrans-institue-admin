@@ -25,6 +25,7 @@ class CourseUpdateLivewire extends Component
     public $notes;
     public $category;
     public $price;
+    public $discountPrice;
     public $mentor;
     public $totalViews = 0;
     public $totalShares = 0;
@@ -47,6 +48,7 @@ class CourseUpdateLivewire extends Component
         'notes' => ['required'],
         'category' => ['required'],
         'price' => ['required'],
+        'discountPrice' => ['required'],
         'mentor' => ['required'],
         'totalViews' => ['required'],
         'totalShares' => ['required'],
@@ -78,6 +80,7 @@ class CourseUpdateLivewire extends Component
         $this->status = $course->status;
         $this->notes = $course->note;
         $this->price = $course->price;
+        $this->discountPrice = $course->discount_price;
         $this->mentor = $course->mentor_id;
         $this->category = $course->category_id;
         $this->totalViews = $course->total_views;
@@ -148,6 +151,7 @@ class CourseUpdateLivewire extends Component
                 'category_id' => $this->category,
                 'mentor_id' => $this->mentor,
                 'price' => $this->price,
+                'discount_price' => $this->discountPrice,
                 'total_views' => $this->totalViews,
                 'total_shares' => $this->totalShares,
                 'total_students' => $this->totalStudents,

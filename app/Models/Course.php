@@ -15,6 +15,7 @@ class Course extends Model
         'slug',
         'description',
         'price',
+        'discount_price',
         'category_id',
         'mentor_id',
         'thumbnail',

@@ -29,6 +29,7 @@
                             <th class="p-3">Title</th>
                             <th class="p-3">Mentor</th>
                             <th class="p-3">Category</th>
+                            <th class="p-3">Price</th>
                             <th class="p-3" width="100px">Action</th>
                         </tr>
                     </thead>
@@ -41,6 +42,14 @@
                             <td class="p-3">{{ $course->title }}</td>
                             <td class="p-3">{{ $course->mentor->name ?? "Deleted" }}</td>
                             <td class="p-3">{{ $course->category->name ?? "Deleted" }}</td>
+                            <td class="p-3">
+                                @if($course->discount_price > 0)
+                                    <span class="line-through">{{ number_format($course->price) }}</span>
+                                    <span>{{ number_format($course->discount_price) }}</span>
+                                @else
+                                    <span>{{ $course->price }}</span>
+                                @endif
+                            </td>
                             <td class="p-3 flex">
                                 <a href="{{ route('dashboard.course.show', $course->id) }}"
                                     class="p-2 flex items-center bg-sky-400 hover:bg-sky-300 rounded-tl rounded-bl text-lg !no-underline">
