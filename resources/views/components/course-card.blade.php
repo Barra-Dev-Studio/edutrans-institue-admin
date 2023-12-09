@@ -43,11 +43,11 @@
             <i class="bx bxs-star text-xl text-amber-500"></i>
             <i class="bx bxs-star text-xl text-amber-500"></i>
             <i class="bx bxs-star text-xl text-amber-500"></i>
-            <span class="ml-1">(45)</span>
+            <span class="ml-1">({{ $course->total_ratings }})</span>
         </div>
         <div class="flex items-center">
             <i class="dripicons-graduation text-xl text-blue-500 mb-0"></i>
-            <span class="ml-1 mb-1">(45)</span>
+            <span class="ml-1 mb-1">({{ $course->total_students }})</span>
         </div>
     </div>
 </div>

@@ -31,6 +31,7 @@ class CourseUpdateLivewire extends Component
     public $totalShares = 0;
     public $totalStudents = 0;
     public $totalDuration = 0;
+    public $totalRatings = 0;
     public $isCertified = false;
     public $status = "DRAFT";
 
@@ -54,6 +55,7 @@ class CourseUpdateLivewire extends Component
         'totalShares' => ['required'],
         'totalStudents' => ['required'],
         'totalDuration' => ['required'],
+        'totalRatings' => ['required'],
         'isCertified' => ['required'],
         'status' => ['required'],
     ];
@@ -87,6 +89,7 @@ class CourseUpdateLivewire extends Component
         $this->totalShares = $course->total_shares;
         $this->totalDuration = $course->total_duration;
         $this->totalStudents = $course->total_students;
+        $this->totalRatings = $course->total_ratings;
         $this->currentThumbnail = $course->thumbnail;
 
         $this->selectedCategory = Category::find($course->category_id);
@@ -156,6 +159,7 @@ class CourseUpdateLivewire extends Component
                 'total_shares' => $this->totalShares,
                 'total_students' => $this->totalStudents,
                 'total_duration' => $this->totalDuration,
+                'total_ratings' => $this->totalRatings,
                 'is_certified' => $this->isCertified,
                 'status' => $this->status,
                 'thumbnail' => $thumbnail

@@ -41,8 +41,7 @@ class CheckoutLivewire extends Component
 
     public function updatePrice()
     {
-        $this->countTax();
-        $totalPrice = $this->course->price + $this->tax;
+        $totalPrice = $this->course->discount_price > 0 ? $this->course->discount_price : $this->course->price;
         if ($this->selectedPayment == null) {
             $this->totalPrice = $totalPrice;
         } else {
@@ -69,6 +68,10 @@ class CheckoutLivewire extends Component
 
         if ($this->selectedPayment == null || !auth()->check()) {
             return back();
+        }
+
+        if (!$this->mobileNumber || $this->mobileNumber === '') {
+            return back()->with('error', 'Pastikan nomor HP sudah terisi dengan baik');
         }
 
         $data = (object) [

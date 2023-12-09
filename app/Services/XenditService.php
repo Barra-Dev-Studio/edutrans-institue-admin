@@ -113,7 +113,7 @@ class XenditService
             'QRIS' => '0.007'
         ];
 
-        return $amount * $channelCodes[$channelCode];
+        return ceil($amount * $channelCodes[$channelCode]);
     }
 
     public function getResponse()

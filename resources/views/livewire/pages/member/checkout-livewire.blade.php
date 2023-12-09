@@ -18,7 +18,7 @@
                             <x-input-label for="payment_method" :value="$type" />
                             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-4">
                                 @foreach($payments as $payment)
-                                <div class="card mb-0 cursor-pointer @if($selectedPayment == $payment->code) border-sky-500 @endif" wire:click="setSelectedPayment('{{ $payment->code }}')">
+                                <div class="card bg-white mb-0 cursor-pointer @if($selectedPayment == $payment->code) border-sky-500 @endif" wire:click="setSelectedPayment('{{ $payment->code }}')">
                                     <div class="card-body flex">
                                         <img src="{{ \Storage::url('paymentmethods/' . $payment->logo)}}" class="w-full h-[30px]" alt="{{ $payment->name }}">
                                     </div>
@@ -36,7 +36,7 @@
                     </div>
                     <div class="mt-8">
                         <h3 class="mb-2">Detail produk</h3>
-                        <div class="card bg-slate-50">
+                        <div class="card bg-white">
                             <div class="card-body flex gap-4 items-center">
                                 <div>
                                     <img src="{{ \Storage::url($course->thumbnail) }}" class="w-[70px] rounded"
@@ -51,19 +51,21 @@
                     </div>
                 </div>
                 <div class="md:pl-8">
-                    <div class="card">
+                    <div class="card bg-white">
                         <div class="card-body">
                             <div>
                                 <x-input-label for="payment_method" :value="__('Detail pemesanan')" />
                                 <div class="flex gap-2 flex-col mt-4">
                                     <div class="flex gap-8 justify-between items-center">
                                         <p class="text-slate-700">{{ $course->title }}</p>
-                                        <p class="text-right text-slate-700">Rp{{ number_format($course->price) }}</p>
-                                    </div>
-                                    <div class="flex gap-8 justify-between items-center">
-                                        <p class="text-slate-700">PPN 11%</p>
-                                        <p class="text-right text-slate-700">Rp{{ number_format($tax)
-                                            }}</p>
+                                        @if($course->discount_price > 0)
+                                            <div>
+                                                <p class="text-right text-slate-700 line-through">Rp{{ number_format($course->price) }}</p>
+                                                <p class="text-right text-slate-700">Rp{{ number_format($course->discount_price) }}</p>
+                                            </div>
+                                        @else
+                                            <p class="text-right text-slate-700">Rp{{ number_format($course->price) }}</p>
+                                        @endif
                                     </div>
                                     <div class="flex gap-8 justify-between items-center">
                                         <p class="text-slate-700">Biaya transaksi</p>

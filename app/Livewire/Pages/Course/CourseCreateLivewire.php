@@ -29,6 +29,7 @@ class CourseCreateLivewire extends Component
     public $totalShares = 0;
     public $totalStudents = 0;
     public $totalDuration = 0;
+    public $totalRatings = 0;
     public $isCertified = false;
     public $status = "DRAFT";
 
@@ -52,6 +53,7 @@ class CourseCreateLivewire extends Component
         'totalShares' => ['required'],
         'totalStudents' => ['required'],
         'totalDuration' => ['required'],
+        'totalRatings' => ['required'],
         'isCertified' => ['required'],
         'status' => ['required'],
     ];
@@ -134,6 +136,7 @@ class CourseCreateLivewire extends Component
                 'total_shares' => $this->totalShares,
                 'total_students' => $this->totalStudents,
                 'total_duration' => $this->totalDuration,
+                'total_ratings' => $this->totalRatings,
                 'is_certified' => $this->isCertified,
                 'status' => $this->status,
                 'thumbnail' => $thumbnail

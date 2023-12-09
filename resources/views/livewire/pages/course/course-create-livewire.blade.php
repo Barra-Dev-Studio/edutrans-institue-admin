@@ -181,6 +181,12 @@
                             name="totalDuration" placeholder="Total duration" required />
                         <x-input-error :messages="$errors->get('totalDurations')" class="mt-2" />
                     </div>
+                    <div class="mt-4">
+                        <x-input-label for="totalRatings" :value="__('Total ratings')" />
+                        <x-text-input wire:model.live="totalRatings" id="totalRatings" class="block mt-1 w-full" type="number"
+                                      name="totalRatings" placeholder="Total ratings" required />
+                        <x-input-error :messages="$errors->get('totalRatings')" class="mt-2" />
+                    </div>
                 </div>
             </div>
         </div>

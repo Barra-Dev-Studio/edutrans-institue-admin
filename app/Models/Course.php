@@ -24,6 +24,7 @@ class Course extends Model
         'total_shares',
         'total_students',
         'total_duration',
+        'total_ratings',
         'is_certified',
         'status',
     ];
