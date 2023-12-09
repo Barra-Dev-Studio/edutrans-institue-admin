@@ -32,11 +32,7 @@
         @forelse($courses as $course)
         <a href="{{ route('member.play', $course->id) }}" wire:key="{{ $course->id }}">
             <div>
-                <x-course-card
-                    img="{{ \Storage::url($course->course->thumbnail) }}"
-                    mentor="{{ $course->course->mentor->name }}" title="{{ $course->course->title }}"
-                    description="{{ strip_tags($course->course->description) }}"
-                    price="{{ $course->course->price }}"></x-course-card>
+                <x-own-course-card :course="$course->course"></x-own-course-card>
             </div>
         </a>
         @empty

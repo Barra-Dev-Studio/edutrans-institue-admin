@@ -42,11 +42,15 @@ class CourseListLivewire extends Component
 
     public function render()
     {
+        $order = [$this->selectedSort == 'terbaru' ? 'created_at' : 'total_students', 'desc'];
+        if ($this->selectedSort === 'promo') {
+            $order = ['discount_price', 'desc'];
+        }
         $courses = Course::where('category_id', 'like', $this->selectedCategory !== 'all' ? $this->selectedCategory : '%%')
             ->where('title', 'like', '%'. $this->query . '%')
             ->where('status', 'PUBLISHED')
             ->with('mentor')
-            ->orderBy($this->selectedSort == 'terbaru' ? 'created_at' : 'total_students', 'desc')
+            ->orderBy($order[0], $order[1])
             ->paginate($this->showPage);
         return view('livewire.pages.guest.course-list-livewire', [
             'courses' => $courses

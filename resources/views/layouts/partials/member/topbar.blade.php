@@ -3,8 +3,8 @@
         <div class="flex items-center gap-4">
             <img src="{{ asset('assets/images/logo.png') }}" class="hidden md:block" height="50" width="50" alt="">
             <div class="prose flex flex-col">
-                <a href="{{ route('home') }}" class="text-lg font-semibold !no-underline">Edutrans Intitute</a>
-                <span class="font-handwrite text-lg font-semibold">by Hendi Pratama</span>
+                <a href="{{ route('home') }}" class="text-lg font-semibold !no-underline">Edutrans Institute</a>
+                <span class="font-handwrite text-sm font-semibold">by Hendi Pratama</span>
             </div>
         </div>
         <div class="py-5 hidden md:block">

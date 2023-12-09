@@ -1,5 +1,5 @@
 @props(['course'])
-<div class="card bg-slate-50 cursor-pointer h-full flex flex-col justify-between">
+<div class="card bg-white cursor-pointer h-full flex flex-col justify-between">
     <div>
         <div class="h-[170px] overflow-hidden">
             <img class="rounded-tl rounded-tr h-full w-full object-cover" src="{{ \Storage::url($course->thumbnail) }}" alt="{{ $course->title }}">
@@ -16,21 +16,6 @@
                             <p class="font-bold mb-0 line-clamp-1">{{ $course->mentor->name }}</p>
                             <p class="text-slate-500 line-clamp-1">{{ $course->mentor->speciality }}</p>
                         </div>
-                    </div>
-                </div>
-                <div class="mt-4 flex justify-between items-center">
-                    <div>
-                        @if($course->discount_price > 0)
-                            <h6 class="line-through text-red-700">Rp{{ number_format($course->price) }}</h6>
-                            <h5 class="mb-0">Rp{{ number_format($course->discount_price) }}</h5>
-                        @else
-                            <h5 class="mb-0">{{ $course->price == 0 ? 'Gratis!' : 'Rp' . number_format($course->price) }}</h5>
-                        @endif
-                    </div>
-                    <div>
-                        @if($course->discount_price > 0)
-                        <span class="px-4 py-2 rounded-full text-white bg-red-700 animate-pulse">Promo diskon</span>
-                        @endif
                     </div>
                 </div>
             </div>

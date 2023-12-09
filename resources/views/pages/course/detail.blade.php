@@ -6,7 +6,9 @@
                     <p class="text-slate-300 mb-4 prose">Kategori {{ $course->category->name }}</p>
                     <h1 class="text-white text-5xl leading-snug">{{ $course->title }}</h1>
                     <div class="flex items-center gap-4 mt-4">
-                        <img class="inline-block h-10 w-10 rounded-full ring-2 ring-white dark:ring-zinc-500" src="{{ \Storage::url($course->mentor->photo) }}" alt="{{ $course->mentor->name }}">
+                        <div class="h-10 w-10 rounded-full ring-2 ring-white overflow-hidden">
+                            <img class="inline-block object-cover h-full w-full" src="{{ \Storage::url($course->mentor->photo) }}" alt="{{ $course->mentor->name }}">
+                        </div>
                         <div>
                             <h5 class="text-white">{{ $course->mentor->name }}</h5>
                             <p class="text-slate-300">{{ $course->mentor->speciality }}</p>

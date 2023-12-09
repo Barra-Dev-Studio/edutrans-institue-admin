@@ -3,14 +3,29 @@
         <div class="px-6 md:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-8">
                 <div class="md:col-span-2">
-                    <div class="prose pt-16">
-                        <h2>Deskripsi</h2>
-                        <p>{!! $course->description !!}</p>
-                        <h2>Catatan</h2>
-                        <p>{{ $course->notes ?? 'Tidak ada catatan untuk kursus ini' }}</p>
-                        <h2>Konten kursus</h2>
+                    <div class="pt-10">
+                        <h1 class="mb-4 text-slate-700">Tentang kursus ini</h1>
+                        <p class="!text-lg !text-slate-600 text-justify">{!! $course->description !!}</p>
+                        @if($course->notes && $course->notes === '-')
+                        <h1 class="mt-4 text-slate-700">Catatan</h1>
+                        <p class="!text-lg !text-green-600">{{ $course->notes ?? 'Tidak ada catatan untuk kursus ini' }}</p>
+                        @endif
+                        <h1 class="text-slate-700 mt-16 mb-4">Meet your instructor</h1>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div>
+                                <p class="!text-lg !text-slate-600 text-justify">{!! $course->mentor->bio !!}</p>
+                            </div>
+                            <div>
+                                <div class="sticky top-8">
+                                    <img class="inline-block object-cover rounded" src="{{ \Storage::url($course->mentor->photo) }}" alt="{{ $course->mentor->name }}">
+                                    <h2 class="mt-4 text-slate-700">{{ $course->mentor->name }}</h2>
+                                    <p class="text-slate-400 text-lg">{{ $course->mentor->speciality }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <h1 class="mt-4 text-slate-700">Konten kursus</h1>
                     </div>
-                    <div class="mt-8">
+                    <div class="mt-4">
                         <div data-tw-accordion="collapse">
                             @foreach($chapters as $section => $chapter)
                             <div class="text-slate-700 accordion-item">
@@ -52,10 +67,37 @@
                     <div class="block md:hidden">
                         <img src="{{ \Storage::url($course->thumbnail) }}" class="rounded-t" alt="{{ $course->title }}">
                     </div>
-                    <div class="bg-slate-50 p-4 shadow prose">
-                        <h2 class="text-center mb-2">{{ $course->price == 0 ? 'Gratis akses' : 'Rp' . number_format($course->price) }}</h2>
-                        <p class="text-center text-slate-400">Jaminan uang kembali</p>
-                        <div class="flex flex-col gap-2 mt-8">
+                    <div class="bg-slate-50 p-4 shadow prose sticky top-8">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                @if($course->discount_price > 0)
+                                    <h6 class="line-through text-red-700">Rp{{ number_format($course->price) }}</h6>
+                                    <h5 class="mb-0">Rp{{ number_format($course->discount_price) }}</h5>
+                                @else
+                                    <h5 class="mb-0">{{ $course->price == 0 ? 'Gratis!' : 'Rp' . number_format($course->price) }}</h5>
+                                @endif
+                            </div>
+                            <div>
+                                @if($course->discount_price > 0)
+                                    <span class="px-4 py-2 rounded-full text-white bg-red-700 animate-pulse">Promo diskon</span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center">
+                                <i class="bx bxs-star text-xl text-amber-500"></i>
+                                <i class="bx bxs-star text-xl text-amber-500"></i>
+                                <i class="bx bxs-star text-xl text-amber-500"></i>
+                                <i class="bx bxs-star text-xl text-amber-500"></i>
+                                <i class="bx bxs-star text-xl text-amber-500"></i>
+                                <span class="ml-1">(45)</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="dripicons-graduation text-xl text-blue-500 mb-0"></i>
+                                <span class="ml-1 mb-1">(45)</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2 mt-4">
                             <a href="{{ route('checkout', $course->slug) }}"
                                 class="text-center flex items-center justify-center gap-4 !no-underline prose bg-sky-800 text-white py-3 px-6 rounded hover:bg-sky-700 hover:text-white"><i
                                     class="bx bx-cart-alt"></i> Beli sekarang</a>
@@ -65,10 +107,11 @@
                         </div>
                         <h3 class="mt-8 mb-4">Detail singkat terkait kursus</h3>
                         <div class="flex flex-col gap-2 list-none text-slate-500">
-                            <p class="mb-0 mt-0"><i class="bx bx-time-five"></i> Video akses selamanya</p>
-                            <p class="mb-0 mt-0"><i class="bx bx-laptop"></i> Akses di semua perangkat</p>
-                            <p class="mb-0 mt-0"><i class="bx bx-hourglass"></i> Total durasi kursus {{ floor($course->total_duration/60) }}:{{ $course->total_duration%60 }}</p>
-                            <p class="mb-0 mt-0"><i class="bx bx-book"></i> Total konten kursus {{ $course->chapters->count() }} konten</p>
+                            <p class="mb-0 mt-0 flex items-center gap-2 cursor-pointer hover:text-black"><i class="bx bx-time-five"></i> Video akses selamanya</p>
+                            <p class="mb-0 mt-0 flex items-center gap-2 cursor-pointer hover:text-black"><i class="bx bx-laptop"></i> Akses di semua perangkat</p>
+                            <p class="mb-0 mt-0 flex items-center gap-2 cursor-pointer hover:text-black"><i class="bx bx-hourglass"></i> Total durasi kursus {{ floor($course->total_duration/60) }}:{{ $course->total_duration%60 }}</p>
+                            <p class="mb-0 mt-0 flex items-center gap-2 cursor-pointer hover:text-black"><i class="bx bx-book"></i> Total konten kursus {{ $course->chapters->count() }} konten</p>
+                            <p class="mb-0 mt-0 flex items-center gap-2 cursor-pointer hover:text-black"><i class="bx bx-money-withdraw"></i> Jaminan uang kembali</p>
                             @if($course->is_certified)
                             <p class="mb-0 mt-0"><i class="bx bx-file"></i> Sertifikat kursus</p>
                             @endif
