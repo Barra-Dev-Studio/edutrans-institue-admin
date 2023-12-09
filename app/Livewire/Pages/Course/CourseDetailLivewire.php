@@ -9,6 +9,7 @@ class CourseDetailLivewire extends Component
     public $course;
     public $previews;
     public $chapters;
+    public $sections;
 
     public function showPreview($chapterId)
     {

@@ -23,5 +23,5 @@
             </div>
         </div>
     </div>
-    <livewire:pages.course.course-detail-livewire :$course :$previews :$chapters></livewire:pages.course.course-detail-livewire>
+    <livewire:pages.course.course-detail-livewire :$course :$previews :$chapters :$sections></livewire:pages.course.course-detail-livewire>
 </x-guest-layout>

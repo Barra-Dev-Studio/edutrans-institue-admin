@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\ChapterService;
 use App\Services\CourseService;
+use App\Services\SectionService;
 use Illuminate\Http\Request;
 
 class GuestController extends Controller
@@ -17,6 +18,7 @@ class GuestController extends Controller
 
         $chapters = ChapterService::getByCourseId($course->id, true);
         $previews = ChapterService::getPreviews($course->id);
-        return view("pages.course.detail", compact("course", "chapters", "previews"));
+        $sections = SectionService::getByCourseId($course->id);
+        return view("pages.course.detail", compact("course", "chapters", "previews", "sections"));
     }
 }

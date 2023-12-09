@@ -10,7 +10,7 @@
                                 <div class="!text-lg !text-slate-600 text-justify">{{ $course->notes ?? 'Tidak ada catatan untuk kursus ini' }}</div>
                             </div>
                         @endif
-                        <h1 class="text-slate-600 mt-16 mb-4">Meet your instructor</h1>
+                        <h1 class="text-slate-700 mt-16 mb-4">Meet your instructor</h1>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div class="order-last md:order-first">
                                 <div class="!text-lg !text-slate-600 text-justify">{!! $course->mentor->bio !!}</div>
@@ -18,12 +18,20 @@
                             <div>
                                 <div class="sticky top-8">
                                     <img class="inline-block object-cover rounded" src="{{ \Storage::url($course->mentor->photo) }}" alt="{{ $course->mentor->name }}">
-                                    <h2 class="mt-4 text-slate-700">{{ $course->mentor->name }}</h2>
+                                    <h2 class="mt-4 text-slate-600">{{ $course->mentor->name }}</h2>
                                     <p class="text-slate-400 text-lg">{{ $course->mentor->speciality }}</p>
                                 </div>
                             </div>
                         </div>
-                        <h1 class="mt-4 text-slate-700">Konten kursus</h1>
+                        <div>
+                            @forelse($sections as $section)
+                                <h1 class="text-slate-700 mt-16 mb-4">{{ $section->title }}</h1>
+                                <img class="inline-block w-full rounded" src="{{ \Storage::url($section->photo) }}" alt="{{ $section->title }}">
+                                <div class="!text-lg !text-slate-600 text-justify mt-8">{!! $section->content !!}</div>
+                            @empty
+                            @endforelse
+                        </div>
+                        <h1 class="mt-8 text-slate-700">Konten kursus</h1>
                     </div>
                     <div class="mt-4">
                         <div data-tw-accordion="collapse">
