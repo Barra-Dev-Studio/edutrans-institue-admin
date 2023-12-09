@@ -10,6 +10,7 @@ use App\Http\Controllers\GuestController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\RatingController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
@@ -57,10 +58,16 @@ Route::middleware(['auth'])->group(function () {
             Route::resource('chapter', ChapterController::class);
             Route::resource('transaction', TransactionController::class)->only('index', 'show');
             Route::resource('post', PostController::class);
+
             Route::get('/section/{courseId}/create', [SectionController::class, 'create'])->name('section.create');
             Route::get('/section/{id}/show', [SectionController::class, 'show'])->name('section.show');
             Route::get('/section/{courseId}', [SectionController::class, 'index'])->name('section.index');
             Route::resource('section', SectionController::class)->only('edit', 'destroy');
+
+            Route::get('/rating/{courseId}/create', [RatingController::class, 'create'])->name('rating.create');
+            Route::get('/rating/{id}/show', [RatingController::class, 'show'])->name('rating.show');
+            Route::get('/rating/{courseId}', [RatingController::class, 'index'])->name('rating.index');
+            Route::resource('rating', RatingController::class)->only('edit', 'destroy');
         });
     });
 

@@ -31,45 +31,66 @@
                             @empty
                             @endforelse
                         </div>
-                        <h1 class="mt-8 text-slate-700">Konten kursus</h1>
                     </div>
-                    <div class="mt-4">
-                        <div data-tw-accordion="collapse">
-                            @foreach($chapters as $section => $chapter)
-                            <div class="text-slate-700 accordion-item">
-                                <h2>
-                                    <button type="button"
-                                        class="flex items-center justify-between w-full p-3 font-medium text-left border @if($loop->last) border-b @else border-b-0 @endif border-gray-100 rounded-t accordion-header group hover:bg-gray-50/50 dark:hover:bg-zinc-700/50 dark:border-zinc-600 @if($loop->first) active @endif">
-                                        <span class="text-15">{{ $section }}</span>
-                                        <i class="mdi mdi-plus text-xl group-[.active]:hidden block"></i>
-                                        <i class="mdi mdi-minus text-xl group-[.active]:block hidden"></i>
-                                    </button>
-                                </h2>
+                    <div class="mt-8">
+                        <h1 class="text-slate-700">Konten kursus</h1>
+                        <div class="mt-4">
+                            <div data-tw-accordion="collapse">
+                                @foreach($chapters as $section => $chapter)
+                                <div class="text-slate-700 accordion-item">
+                                    <h2>
+                                        <button type="button"
+                                            class="flex items-center justify-between w-full p-3 font-medium text-left border @if($loop->last) border-b @else border-b-0 @endif border-gray-100 rounded-t accordion-header group hover:bg-gray-50/50 dark:hover:bg-zinc-700/50 dark:border-zinc-600 @if($loop->first) active @endif">
+                                            <span class="text-15">{{ $section }}</span>
+                                            <i class="mdi mdi-plus text-xl group-[.active]:hidden block"></i>
+                                            <i class="mdi mdi-minus text-xl group-[.active]:block hidden"></i>
+                                        </button>
+                                    </h2>
 
-                                <div class="accordion-body block bg-slate-50">
-                                    <div
-                                        class="p-5 font-light @if($loop->last) border-b border-l border-r @else border-b-0 border @endif border-gray-100 dark:border-zinc-600">
-                                        <div class="flex flex-col gap-4">
-                                            @foreach($chapter as $item)
-                                            <div class="flex items-center justify-between">
-                                                <p class="prose">{{ trim(explode(".", $item->title)[1]) }}</p>
-                                                <div
-                                                    class="flex gap-4 @if($item->is_preview) justify-between @else justify-end @endif min-w-[125px]">
-                                                    @if($item->is_preview)
-                                                    <button wire:click="showPreview('{{ $item->id }}')"
-                                                        class="prose !no-underline text-blue-600 font-medium">Pratinjau</button>
-                                                    @endif
-                                                    <p class="text-right prose font-medium">{{ $item->duration }}m</p>
+                                    <div class="accordion-body block bg-slate-50">
+                                        <div
+                                            class="p-5 font-light @if($loop->last) border-b border-l border-r @else border-b-0 border @endif border-gray-100 dark:border-zinc-600">
+                                            <div class="flex flex-col gap-4">
+                                                @foreach($chapter as $item)
+                                                <div class="flex items-center justify-between">
+                                                    <p class="prose">{{ trim(explode(".", $item->title)[1]) }}</p>
+                                                    <div
+                                                        class="flex gap-4 @if($item->is_preview) justify-between @else justify-end @endif min-w-[125px]">
+                                                        @if($item->is_preview)
+                                                        <button wire:click="showPreview('{{ $item->id }}')"
+                                                            class="prose !no-underline text-blue-600 font-medium">Pratinjau</button>
+                                                        @endif
+                                                        <p class="text-right prose font-medium">{{ $item->duration }}m</p>
+                                                    </div>
                                                 </div>
+                                                @endforeach
                                             </div>
-                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
+                                @endforeach
                             </div>
-                            @endforeach
                         </div>
                     </div>
+                    @if(count($ratings) % 3 === 0)
+                    <div class="mt-8">
+                        <h1 class="text-slate-700">Bagaimana kata sebagian dari mereka?</h1>
+                        <div class="columns-1 md:columns-3 gap-6 space-y-6 mt-4">
+                            @forelse($ratings as $rating)
+                                <div class="aspect-video p-4 rounded bg-white shadow">
+                                    <div class="flex items-center gap-4 mb-4">
+                                        <div class="h-10 w-10 rounded-full ring-2 ring-white overflow-hidden">
+                                            <img class="inline-block object-cover h-full w-full" src="{{ \Storage::url($rating->photo) }}" alt="{{ $rating->name }}">
+                                        </div>
+                                        <h6>{{ $rating->name  }}</h6>
+                                    </div>
+                                    <p class="text-slate-600 italic text-16">{{ $rating->content }}</p>
+                                </div>
+                            @empty
+                            @endforelse
+                        </div>
+                    </div>
+                    @endif
                 </div>
                 <div>
                     <div class="block md:hidden">

@@ -11,7 +11,11 @@
                     <li class="text-slate-700 prose font-medium p-4 @if($activeTab === 'managechapter') border-l border-sky-500 bg-slate-100 @else hover:bg-slate-200 @endif border-slate-200 cursor-pointer" wire:click="setActiveTab('managechapter')">{{ $state == 'create' ? 'Add new' : 'Update' }} chapters</li>
                     <li class="text-slate-700 prose font-medium p-4 @if($activeTab === 'bulkupload') border-l border-sky-500 bg-slate-100 @else hover:bg-slate-200 @endif border-slate-200 cursor-pointer" wire:click="setActiveTab('bulkupload')">Bulk upload chapters</li>
                     <li class="text-slate-700 prose font-medium p-4 hover:bg-slate-200 border-slate-200 cursor-pointer">
-                        <a class="text-slate-700 !no-underline" href="{{ route('dashboard.section.index', $course->id) }}">Course section</a></li>
+                        <a class="text-slate-700 !no-underline" href="{{ route('dashboard.section.index', $course->id) }}">Course section</a>
+                    </li>
+                    <li class="text-slate-700 prose font-medium p-4 hover:bg-slate-200 border-slate-200 cursor-pointer">
+                        <a class="text-slate-700 !no-underline" href="{{ route('dashboard.rating.index', $course->id) }}">Rating management</a>
+                    </li>
                 </ul>
             </div>
         </div>
