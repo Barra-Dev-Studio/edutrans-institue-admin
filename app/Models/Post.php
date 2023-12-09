@@ -18,6 +18,7 @@ class Post extends Model
         'tags',
         'description',
         'author',
+        'keyword',
         'views',
         'status',
     ];

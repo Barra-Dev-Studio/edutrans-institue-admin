@@ -55,6 +55,12 @@
             <x-input-error :messages="$errors->get('description')" class="mt-2" />
         </div>
         <div class="mt-4">
+            <x-input-label for="keyword" :value="__('Keyword')" />
+            <x-text-input wire:model.live="keyword" id="keyword" class="block mt-1 w-full" type="text" name="keyword"
+                              placeholder="Keyword" required />
+            <x-input-error :messages="$errors->get('description')" class="mt-2" />
+        </div>
+        <div class="mt-4">
             <button wire:loading.attr="disabled" wire:target="submit" class="bg-emerald-500 px-6 py-3 text-white rounded" type="submit">
                 <span wire:loading.remove wire:target="submit">Add new post</span>
                 <span wire:loading wire:target="submit"><x-spinner></x-spinner></span>

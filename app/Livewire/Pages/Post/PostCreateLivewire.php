@@ -26,6 +26,7 @@ class PostCreateLivewire extends Component
     public $author;
     public $description;
     public $status;
+    public $keyword;
 
     protected $rules = [
         'title' => 'required',
@@ -35,6 +36,7 @@ class PostCreateLivewire extends Component
         'author' => 'required',
         'description' => 'required',
         'status' => 'required',
+        'keyword' => 'required',
         'thumbnail' => ['required', 'image', 'max:1024']
     ];
 
@@ -70,9 +72,10 @@ class PostCreateLivewire extends Component
                 'author' => $this->author,
                 'description' => $this->description,
                 'status' => $this->status,
-                'thumbnail' => $thumbnail
+                'thumbnail' => $thumbnail,
+                'keyword' => $this->keyword,
             ]);
-            return redirect()->route('dashboard.post.index')->with('success', 'Post created successfuly');
+            return redirect()->route('dashboard.post.index')->with('success', 'Post created successfully');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Failed to add new post');
         }

@@ -29,6 +29,7 @@ class PostUpdateLivewire extends Component
     public $author;
     public $description;
     public $status;
+    public $keyword;
 
     protected $rules = [
         'title' => 'required',
@@ -38,6 +39,7 @@ class PostUpdateLivewire extends Component
         'author' => 'required',
         'description' => 'required',
         'status' => 'required',
+        'keyword' => 'required',
     ];
 
     public function mount()
@@ -51,6 +53,7 @@ class PostUpdateLivewire extends Component
         $this->author = $post->author;
         $this->description = $post->description;
         $this->status = $post->status;
+        $this->keyword = $post->keyword;
     }
 
     public $listeners = [
@@ -85,7 +88,8 @@ class PostUpdateLivewire extends Component
                 'author' => $this->author,
                 'description' => $this->description,
                 'status' => $this->status,
-                'thumbnail' => $thumbnail
+                'thumbnail' => $thumbnail,
+                'keyword' => $this->keyword,
             ]);
             if (Storage::exists($this->currentThumbnail) && $isUpdated && $this->thumbnail) {
                 Storage::delete($this->currentThumbnail);
