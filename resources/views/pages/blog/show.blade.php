@@ -4,6 +4,7 @@
     <meta name="title" content="{{ $post->title }} | Edutrans Institue" />
     <meta name="description" content="{{ $post->description }}" />
     <meta name="author" content="{{ $post->author }}" />
+        <meta name="keywords" content="{{ $post->keyword }}"/>
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ route('blog.show', $post->slug) }}" />
