@@ -4,16 +4,16 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-8">
                 <div class="md:col-span-2">
                     <div class="pt-10">
-                        <p class="!text-lg !text-slate-600 text-justify">{!! $course->description !!}</p>
+                        <div class="!text-lg !text-slate-600 text-justify">{!! $course->description !!}</div>
                         @if($course->notes && $course->notes === '-')
                             <div class="bg-amber-50 border border-slate-300 mt-4 p-4 rounded">
-                                <p class="!text-lg !text-slate-600 text-justify">{{ $course->notes ?? 'Tidak ada catatan untuk kursus ini' }}</p>
+                                <div class="!text-lg !text-slate-600 text-justify">{{ $course->notes ?? 'Tidak ada catatan untuk kursus ini' }}</div>
                             </div>
                         @endif
                         <h1 class="text-slate-600 mt-16 mb-4">Meet your instructor</h1>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div class="order-last md:order-first">
-                                <p class="!text-lg !text-slate-600 text-justify">{!! $course->mentor->bio !!}</p>
+                                <div class="!text-lg !text-slate-600 text-justify">{!! $course->mentor->bio !!}</div>
                             </div>
                             <div>
                                 <div class="sticky top-8">
