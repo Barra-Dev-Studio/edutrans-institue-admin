@@ -4,15 +4,15 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-8">
                 <div class="md:col-span-2">
                     <div class="pt-10">
-                        <h1 class="mb-4 text-slate-700">Tentang kursus ini</h1>
                         <p class="!text-lg !text-slate-600 text-justify">{!! $course->description !!}</p>
                         @if($course->notes && $course->notes === '-')
-                        <h1 class="mt-4 text-slate-700">Catatan</h1>
-                        <p class="!text-lg !text-green-600">{{ $course->notes ?? 'Tidak ada catatan untuk kursus ini' }}</p>
+                            <div class="bg-amber-50 border border-slate-300 mt-4 p-4 rounded">
+                                <p class="!text-lg !text-slate-600 text-justify">{{ $course->notes ?? 'Tidak ada catatan untuk kursus ini' }}</p>
+                            </div>
                         @endif
-                        <h1 class="text-slate-700 mt-16 mb-4">Meet your instructor</h1>
+                        <h1 class="text-slate-600 mt-16 mb-4">Meet your instructor</h1>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <div>
+                            <div class="order-last md:order-first">
                                 <p class="!text-lg !text-slate-600 text-justify">{!! $course->mentor->bio !!}</p>
                             </div>
                             <div>
