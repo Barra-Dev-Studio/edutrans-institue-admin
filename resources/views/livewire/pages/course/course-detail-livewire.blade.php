@@ -72,7 +72,7 @@
                             </div>
                         </div>
                     </div>
-                    @if(count($ratings) % 3 === 0)
+                    @if(count($ratings) > 0 && count($ratings) % 3 === 0)
                     <div class="mt-8">
                         <h1 class="text-slate-700">Bagaimana kata sebagian dari mereka?</h1>
                         <div class="columns-1 md:columns-3 gap-6 space-y-6 mt-4">
