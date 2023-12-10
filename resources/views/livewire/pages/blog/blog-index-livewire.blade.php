@@ -14,7 +14,7 @@
                                 <span class="text-slate-500 mr-4">{{ $featuredPost->author }}</span><span class="text-slate-400">{{ \Carbon\Carbon::parse($featuredPost->created_at)->format('d F, Y') }}</span>
                             </div>
                             @foreach(explode(',', $featuredPost->tags) as $tag)
-                            <span class="bg-blue-100 text-blue-600 text-sm px-4 py-2 rounded">{{ $tag }}</span>
+                            <span class="bg-blue-100 text-blue-600 text-sm px-4 py-2 rounded mb-2">{{ $tag }}</span>
                             @endforeach
                         </div>
                     </div>
@@ -30,7 +30,7 @@
         <a href="{{ route('blog.show', $post->slug) }}">
             <div class="card h-full bg-slate-50">
                 <div class="card-body h-full flex flex-col justify-between">
-                    <div class="mb-0 md:mb-4 hidden md:block">
+                    <div class="mb-0 md:mb-4 block">
                         <img src="{{ \Storage::url($post->thumbnail) }}" class="rounded" alt="{{ $post->thumbnail}}">
                         <div class="hidden md:block md:mt-8">
                             @foreach(explode(',', $post->tags) as $tag)
