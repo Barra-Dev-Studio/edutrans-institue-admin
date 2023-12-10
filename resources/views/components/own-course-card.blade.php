@@ -1,7 +1,7 @@
 @props(['course'])
 <div class="card bg-white cursor-pointer h-full flex flex-col justify-between">
     <div>
-        <div class="h-[170px] overflow-hidden">
+        <div class="h-[180px] overflow-hidden">
             <img class="rounded-tl rounded-tr h-full w-full object-cover" src="{{ \Storage::url($course->thumbnail) }}" alt="{{ $course->title }}">
         </div>
         <div class="card-body !pt-0 flex flex-col justify-between">
