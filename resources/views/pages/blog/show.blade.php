@@ -4,7 +4,7 @@
     <meta name="title" content="{{ $post->title }} | Edutrans Institue" />
     <meta name="description" content="{{ $post->description }}" />
     <meta name="author" content="{{ $post->author }}" />
-        <meta name="keywords" content="{{ $post->keyword }}"/>
+    <meta name="keywords" content="{{ $post->keyword }}"/>
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ route('blog.show', $post->slug) }}" />
@@ -29,15 +29,18 @@
                             <div class="prose p-1 md:p-8">
                                 <h1>{{ $post->title }}</h1>
                                 <p class="text-slate-500"><span class="mr-8">{{ $post->author }}</span><span>{{ \Carbon\Carbon::parse($post->created_at)->format('d F, Y') }}</span></p>
-                                @foreach(explode(',', $post->tags) as $tag)
-                                <span class="bg-slate-200 text-slate-600 text-sm px-4 py-2 rounded">{{ $tag }}</span>
-                                @endforeach
+                                <span class="bg-slate-200 text-slate-600 text-sm px-4 py-2 rounded">{{ $post->category->name ?? 'Uncategorized' }}</span>
                             </div>
                             <div class="prose mt-8 px-1 md:px-8">
                                 <img src="{{ \Storage::url($post->thumbnail) }}" class="rounded" alt="{{ $post->title }}">
                             </div>
                             <div class="prose mt-8 px-1 md:px-8">
                                 {!! $post->content !!}
+                            </div>
+                            <div class="prose mt-8 px-1 md:px-8">
+                                @foreach(explode(',', $post->tags) as $tag)
+                                    <span class="bg-slate-200 text-slate-600 text-sm px-4 py-2 rounded">{{ $tag }}</span>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -51,6 +54,27 @@
                 <div class="card border-none">
                     <div class="card-body bg-white border border-gray-50 sticky top-8">
                         <div class="prose mb-8">
+                            <h4 class="text-slate-800 mb-1">Jelajahi kursus populer</h4>
+                            <p class="line-clamp-2 text-sm text-slate-500 mt-0 mb-4">Ikuti kursus populer di bawah ini</p>
+                            <div class="flex flex-col justify-center">
+                                @forelse($courses as $course)
+                                    <a href="{{ route('course.detail', $course->slug )}}" class="!no-underline">
+                                        <div class="grid grid-cols-4 gap-4 items-center border-b border-slate-200 hover:bg-slate-100 rounded">
+                                            <div class="w-full col-span-1">
+                                                <img src="{{ \Storage::url($course->thumbnail) }}" alt="{{ $course->title }}">
+                                            </div>
+                                            <div class="col-span-3">
+                                                <h6 class="mb-0">{{ $course->title }}</h6>
+                                                <p class="line-clamp-2 text-sm text-slate-500 mt-0">oleh {{ $course->mentor->name }}</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                @empty
+                                    <p>Nantikan kursus menarik di Edutrans Institute</p>
+                                @endforelse
+                            </div>
+                        </div>
+                        <div class="prose">
                             <h4 class="text-slate-800 mb-1">Mungkin kamu tertarik</h4>
                             <p class="line-clamp-2 text-sm text-slate-500 mt-0 mb-4">Baca artikel lain yang menarik di bawah ini</p>
                             <div class="flex flex-col justify-center">
@@ -67,27 +91,6 @@
                                     </div>
                                 </a>
                                 @empty
-                                @endforelse
-                            </div>
-                        </div>
-                        <div class="prose">
-                            <h4 class="text-slate-800 mb-1">Jelajahi kursus populer</h4>
-                            <p class="line-clamp-2 text-sm text-slate-500 mt-0 mb-4">Ikuti kursus populer di bawah ini</p>
-                            <div class="flex flex-col justify-center">
-                                @forelse($courses as $course)
-                                <a href="{{ route('course.detail', $course->slug )}}" class="!no-underline">
-                                    <div class="grid grid-cols-4 gap-4 items-center border-b border-slate-200 hover:bg-slate-100 rounded">
-                                        <div class="w-full col-span-1">
-                                            <img src="{{ \Storage::url($course->thumbnail) }}" alt="{{ $course->title }}">
-                                        </div>
-                                        <div class="col-span-3">
-                                            <h6 class="mb-0">{{ $course->title }}</h6>
-                                            <p class="line-clamp-2 text-sm text-slate-500 mt-0">oleh {{ $course->mentor->name }}</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                @empty
-                                <p>Nantikan kursus menarik di Edutrans Institute</p>
                                 @endforelse
                             </div>
                         </div>

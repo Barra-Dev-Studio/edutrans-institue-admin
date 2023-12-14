@@ -13,9 +13,7 @@
                             <div class="mb-4">
                                 <span class="text-slate-500 mr-4">{{ $featuredPost->author }}</span><span class="text-slate-400">{{ \Carbon\Carbon::parse($featuredPost->created_at)->format('d F, Y') }}</span>
                             </div>
-                            @foreach(explode(',', $featuredPost->tags) as $tag)
-                            <span class="bg-blue-100 text-blue-600 text-sm px-4 py-2 rounded mb-2">{{ $tag }}</span>
-                            @endforeach
+                            <span class="bg-blue-100 text-blue-600 text-sm px-4 py-2 rounded mb-2">{{ $featuredPost->category->name ?? 'Uncategorized' }}</span>
                         </div>
                     </div>
                     <div class="hidden md:block">
@@ -33,16 +31,15 @@
                     <div class="mb-0 md:mb-4 block">
                         <img src="{{ \Storage::url($post->thumbnail) }}" class="rounded" alt="{{ $post->thumbnail}}">
                         <div class="hidden md:block md:mt-8">
-                            @foreach(explode(',', $post->tags) as $tag)
-                            <span class="bg-slate-200 text-slate-600 text-sm px-4 py-2 rounded">{{ $tag }}</span>
-                            @endforeach
+                            <span class="bg-slate-200 text-slate-600 text-sm px-4 py-2 rounded">{{ $post->category->name ?? 'Uncategorized' }}</span>
                         </div>
                         <div class="prose py-0">
                             <h4 class="text-slate-800 mt-4 line-clamp-2">{{ $post->title }}</h4>
                             <p class="text-slate-500 line-clamp-2 mb-8">{{ $post->description }}</p>
                         </div>
                     </div>
-                    <div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-700 font-medium">{{ $post->author }}</span>
                         <span class="text-slate-400">{{ \Carbon\Carbon::parse($post->created_at)->format('d F, Y') }}</span>
                     </div>
                 </div>
