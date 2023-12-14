@@ -10,19 +10,6 @@
                                 <div class="!text-lg !text-slate-600 text-justify">{{ $course->notes ?? 'Tidak ada catatan untuk kursus ini' }}</div>
                             </div>
                         @endif
-                        <h1 class="text-slate-700 mt-16 mb-4">Meet your instructor</h1>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <div class="order-last md:order-first">
-                                <div class="!text-lg !text-slate-600 text-justify">{!! $course->mentor->bio !!}</div>
-                            </div>
-                            <div>
-                                <div class="sticky top-8">
-                                    <img class="inline-block object-cover rounded" src="{{ \Storage::url($course->mentor->photo) }}" alt="{{ $course->mentor->name }}">
-                                    <h2 class="mt-4 text-slate-600">{{ $course->mentor->name }}</h2>
-                                    <p class="text-slate-400 text-lg">{{ $course->mentor->speciality }}</p>
-                                </div>
-                            </div>
-                        </div>
                         <div>
                             @forelse($sections as $section)
                                 <h1 class="text-slate-700 mt-16 mb-4">{{ $section->title }}</h1>
@@ -69,6 +56,21 @@
                                     </div>
                                 </div>
                                 @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h1 class="text-slate-700 mt-16 mb-4">Meet your instructor</h1>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="order-last md:order-first">
+                                <div class="!text-lg !text-slate-600 text-justify">{!! $course->mentor->bio !!}</div>
+                            </div>
+                            <div>
+                                <div class="sticky top-8">
+                                    <img class="inline-block object-cover rounded" src="{{ \Storage::url($course->mentor->photo) }}" alt="{{ $course->mentor->name }}">
+                                    <h2 class="mt-4 text-slate-600">{{ $course->mentor->name }}</h2>
+                                    <p class="text-slate-400 text-lg">{{ $course->mentor->speciality }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
