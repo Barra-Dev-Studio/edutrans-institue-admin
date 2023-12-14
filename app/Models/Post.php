@@ -21,5 +21,11 @@ class Post extends Model
         'keyword',
         'views',
         'status',
+        'category_id',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(CategoryPost::class);
+    }
 }

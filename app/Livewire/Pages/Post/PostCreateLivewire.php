@@ -3,6 +3,7 @@
 namespace App\Livewire\Pages\Post;
 
 use App\Livewire\Plugin\TrixLivewire;
+use App\Models\CategoryPost;
 use App\Models\Post;
 use Illuminate\Support\Str;
 use Livewire\Attributes\On;
@@ -27,6 +28,9 @@ class PostCreateLivewire extends Component
     public $description;
     public $status;
     public $keyword;
+    public $categoryId;
+
+    public $categories;
 
     protected $rules = [
         'title' => 'required',
@@ -39,6 +43,11 @@ class PostCreateLivewire extends Component
         'keyword' => 'required',
         'thumbnail' => ['required', 'image', 'max:1024']
     ];
+
+    public function mount()
+    {
+        $this->categories = CategoryPost::orderBy('name')->get();
+    }
 
     public $listeners = [
         TrixLivewire::EVENT_VALUE_UPDATED => 'updateFromTrix'
@@ -74,6 +83,7 @@ class PostCreateLivewire extends Component
                 'status' => $this->status,
                 'thumbnail' => $thumbnail,
                 'keyword' => $this->keyword,
+                'category_id' =>$this->categoryId
             ]);
             return redirect()->route('dashboard.post.index')->with('success', 'Post created successfully');
         } catch (\Exception $e) {

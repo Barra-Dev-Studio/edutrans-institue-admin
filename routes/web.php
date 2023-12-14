@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CategoryPostController;
 use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
@@ -58,6 +59,7 @@ Route::middleware(['auth'])->group(function () {
             Route::resource('chapter', ChapterController::class);
             Route::resource('transaction', TransactionController::class)->only('index', 'show');
             Route::resource('post', PostController::class);
+            Route::resource('categorypost', CategoryPostController::class);
 
             Route::get('/section/{courseId}/create', [SectionController::class, 'create'])->name('section.create');
             Route::get('/section/{id}/show', [SectionController::class, 'show'])->name('section.show');

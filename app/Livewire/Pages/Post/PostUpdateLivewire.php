@@ -3,6 +3,7 @@
 namespace App\Livewire\Pages\Post;
 
 use App\Livewire\Plugin\TrixLivewire;
+use App\Models\CategoryPost;
 use App\Models\Post;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -30,6 +31,9 @@ class PostUpdateLivewire extends Component
     public $description;
     public $status;
     public $keyword;
+    public $categoryId;
+
+    public $categories;
 
     protected $rules = [
         'title' => 'required',
@@ -54,6 +58,9 @@ class PostUpdateLivewire extends Component
         $this->description = $post->description;
         $this->status = $post->status;
         $this->keyword = $post->keyword;
+        $this->categoryId = $post->category_id;
+
+        $this->categories = CategoryPost::orderBy('name')->get();
     }
 
     public $listeners = [
@@ -90,6 +97,7 @@ class PostUpdateLivewire extends Component
                 'status' => $this->status,
                 'thumbnail' => $thumbnail,
                 'keyword' => $this->keyword,
+                'category_id' => $this->categoryId,
             ]);
             if (Storage::exists($this->currentThumbnail) && $isUpdated && $this->thumbnail) {
                 Storage::delete($this->currentThumbnail);

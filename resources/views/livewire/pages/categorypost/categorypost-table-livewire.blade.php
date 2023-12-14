@@ -26,30 +26,23 @@
                         <tr
                             class="border-b border-gray-50 dark:border-zinc-600 bg-gray-50/50 dark:bg-zinc-700/50 dark:text-zinc-100">
                             <th class="p-3">No.</th>
-                            <th class="p-3">Title</th>
-                            <th class="p-3">Category</th>
-                            <th class="p-3">Views</th>
+                            <th class="p-3">Name</th>
                             <th class="p-3" width="100px">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($posts as $post)
+                        @forelse($categories as $category)
                         <tr class="border-b border-gray-50 dark:border-zinc-600 dark:bg-zinc-700/50 dark:text-zinc-100 bg-white prose"
-                            wire:key="{{ $post->id }}">
-                            <td class="p-3" width="50">{{ ($posts->currentpage()-1) * $posts->perpage() + $loop->index + 1 }}</td>
-                            <td class="p-3">{{ $post->title }}</td>
-                            <td class="p-3">{{ $post->category->name ?? 'Uncategorized' }}</td>
-                            <td class="p-3">{{ $post->views }}</td>
+                            wire:key="{{ $category->id }}">
+                            <td class="p-3" width="50">{{ ($categories->currentpage()-1) * $categories->perpage() + $loop->index +
+                                1 }}</td>
+                            <td class="p-3">{{ $category->name }}</td>
                             <td class="p-3 flex">
-                                <a href="{{ route('blog.show', $post->slug) }}"
-                                    class="p-2 flex items-center bg-sky-400 hover:bg-sky-300 rounded-tl rounded-bl text-lg !no-underline">
-                                    <i class="bx bx-search-alt-2"></i>
-                                </a>
-                                <a href="{{ route('dashboard.post.edit', $post->id) }}"
-                                    class="p-2 flex items-center bg-amber-400 hover:bg-amber-300 text-lg !no-underline">
+                                <a href="{{ route('dashboard.category.edit', $category->id) }}"
+                                    class="p-2 flex items-center bg-amber-400 hover:bg-amber-300 text-lg rounded-tl rounded-bl !no-underline">
                                     <i class="bx bx-edit"></i>
                                 </a>
-                                <button wire:click="showModal('dashboard.post.destroy', '{{ $post->id }}')"
+                                <button wire:click="showModal('dashboard.category.destroy', '{{ $category->id }}')"
                                     class="p-2 flex items-center bg-rose-600 hover:bg-rose-700 rounded-tr rounded-br text-white text-lg">
                                     <i class="bx bx-trash-alt"></i>
                                 </button>
@@ -67,7 +60,7 @@
         </div>
     </div>
     <div class="my-5">
-        {{ $posts->onEachSide(1)->links() }}
+        {{ $categories->onEachSide(1)->links() }}
     </div>
     <x-datatable.modal :isModalShow="$isModalShow" :deleteRoute="$deleteRoute"></x-datatable.modal>
 </div>

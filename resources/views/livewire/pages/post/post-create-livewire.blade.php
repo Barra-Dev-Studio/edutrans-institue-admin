@@ -24,6 +24,11 @@
             <x-input-error :messages="$errors->get('slug')" class="mt-2" />
         </div>
         <div class="mt-4">
+                <x-input-label for="categoryId" :value="__('Category')" />
+                <x-select-input :options="$categories" :value="'id'" :label="'name'" name="categoryId" wire:model.live="categoryId"></x-select-input>
+                <x-input-error :messages="$errors->get('categoryId')" class="mt-2" />
+        </div>
+        <div class="mt-4">
             <x-input-label for="content" :value="__('Content')" />
             <livewire:plugin.trix-livewire :value="$content"></livewire:plugin.trix-livewire>
             <x-input-error :messages="$errors->get('content')" class="mt-2" />
