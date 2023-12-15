@@ -47,6 +47,6 @@ class CategoryPostUpdateLivewire extends Component
 
     public function render()
     {
-        return view('livewire.pages.categorypost.categorypost-update-livewire');
+        return view('livewire.pages.category-post.category-post-update-livewire');
     }
 }

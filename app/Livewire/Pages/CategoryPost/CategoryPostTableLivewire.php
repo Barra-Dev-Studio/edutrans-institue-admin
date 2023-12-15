@@ -28,7 +28,7 @@ class CategoryPostTableLivewire extends Component
 
     public function render()
     {
-        return view('livewire.pages.categorypost.categorypost-table-livewire', [
+        return view('livewire.pages.category-post.category-post-table-livewire', [
             'categories' => CategoryPost::where('name', 'like', '%' . $this->search . '%')->paginate($this->showPage)
         ]);
     }

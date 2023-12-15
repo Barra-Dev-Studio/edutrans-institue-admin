@@ -38,11 +38,11 @@
                                 1 }}</td>
                             <td class="p-3">{{ $category->name }}</td>
                             <td class="p-3 flex">
-                                <a href="{{ route('dashboard.category.edit', $category->id) }}"
+                                <a href="{{ route('dashboard.categorypost.edit', $category->id) }}"
                                     class="p-2 flex items-center bg-amber-400 hover:bg-amber-300 text-lg rounded-tl rounded-bl !no-underline">
                                     <i class="bx bx-edit"></i>
                                 </a>
-                                <button wire:click="showModal('dashboard.category.destroy', '{{ $category->id }}')"
+                                <button wire:click="showModal('dashboard.categorypost.destroy', '{{ $category->id }}')"
                                     class="p-2 flex items-center bg-rose-600 hover:bg-rose-700 rounded-tr rounded-br text-white text-lg">
                                     <i class="bx bx-trash-alt"></i>
                                 </button>

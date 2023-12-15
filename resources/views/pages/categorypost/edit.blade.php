@@ -11,7 +11,7 @@
         </div>
         <div class="card-body">
             <div class="w-full">
-                <livewire:pages.categorypost.categorypost-update-livewire :id="$id"></livewire:pages.categorypost.categorypost-update-livewire>
+                <livewire:pages.category-post.category-post-update-livewire :id="$id"></livewire:pages.category-post.category-post-update-livewire>
             </div>
         </div>
     </div>

@@ -38,6 +38,6 @@ class CategoryPostCreateLivewire extends Component
 
     public function render()
     {
-        return view('livewire.pages.categorypost.categorypost-create-livewire');
+        return view('livewire.pages.category-post.category-post-create-livewire');
     }
 }

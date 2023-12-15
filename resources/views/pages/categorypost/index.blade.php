@@ -14,7 +14,7 @@
             <h5 class="dark:text-zinc-100">Category data</h5>
         </div>
         <div class="card-body">
-            <livewire:pages.categorypost.categorypost-table-livewire></livewire:pages.categorypost.categorypost-table-livewire>
+            <livewire:pages.category-post.category-post-table-livewire></livewire:pages.category-post.category-post-table-livewire>
         </div>
     </div>
 </x-app-layout>
