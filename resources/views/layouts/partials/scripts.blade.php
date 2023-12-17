@@ -7,4 +7,5 @@
 <script src="{{ url('assets/js/playerjs.js') }}"></script>
 <script src="{{ url('assets/js/accordion.js') }}"></script>
 <script src="{{ url('assets/js/app.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
 

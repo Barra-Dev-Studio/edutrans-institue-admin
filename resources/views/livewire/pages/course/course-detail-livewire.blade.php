@@ -115,17 +115,30 @@
                             </div>
                         </div>
                         <div class="flex justify-between items-center">
-                            <div class="flex items-center">
-                                <i class="bx bxs-star text-xl text-amber-500"></i>
-                                <i class="bx bxs-star text-xl text-amber-500"></i>
-                                <i class="bx bxs-star text-xl text-amber-500"></i>
-                                <i class="bx bxs-star text-xl text-amber-500"></i>
-                                <i class="bx bxs-star text-xl text-amber-500"></i>
+                            <div class="flex items-center cursor-pointer" data-tooltip-target="rating-information">
+                                <span class="mr-1">({{ $course->average_rating }})</span>
+                                @foreach(range(1, 5) as $star)
+                                    @if($star <= $course->average_rating)
+                                        <i class="bx bxs-star text-xl text-amber-500"></i>
+                                    @elseif($star <= $course->average_rating + 0.5)
+                                        <i class="bx bxs-star-half text-xl text-amber-500"></i>
+                                    @else
+                                        <i class="bx bx-star text-xl text-amber-500"></i>
+                                    @endif
+                                @endforeach
                                 <span class="ml-1">({{ $course->total_ratings }})</span>
                             </div>
-                            <div class="flex items-center">
+                            <div id="rating-information" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                Total rating {{ $course->average_rating }}
+                                <div class="tooltip-arrow" data-popper-arrow></div>
+                            </div>
+                            <div class="flex items-center cursor-pointer" data-tooltip-target="total-students-information">
                                 <i class="dripicons-graduation text-xl text-blue-500 mb-0"></i>
                                 <span class="ml-1 mb-1">({{ $course->total_students }})</span>
+                            </div>
+                            <div id="total-students-information" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                Total siswa {{ $course->total_students }}
+                                <div class="tooltip-arrow" data-popper-arrow></div>
                             </div>
                         </div>
                         <div class="flex flex-col gap-2 mt-4">

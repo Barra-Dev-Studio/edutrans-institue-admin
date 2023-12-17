@@ -43,4 +43,21 @@ class Course extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class);
+    }
+
+    public function getAverageRatingAttribute()
+    {
+        $ratings = $this->ratings;
+
+        if ($ratings->count() > 0) {
+            $averageRating = $ratings->avg('rate');
+            return number_format($averageRating, 1);
+        }
+
+        return 0; // Return 0 if there are no ratings
+    }
 }
