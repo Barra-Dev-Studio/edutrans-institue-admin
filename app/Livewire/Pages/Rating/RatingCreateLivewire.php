@@ -16,14 +16,13 @@ class RatingCreateLivewire extends Component
     public $courseId;
     public $name;
     public $content;
-    public $photo;
+    public $photo = '';
     public $rate = 0;
 
     protected $rules = [
         'name' => 'required',
         'content' => 'required',
         'rate' => 'required',
-        'photo' => ['image', 'max:1024']
     ];
 
     #[On('rate-updated')]
@@ -41,12 +40,11 @@ class RatingCreateLivewire extends Component
     {
         $this->validate();
         try {
-            $photo = ($this->photo) ? $this->photo->store('ratings') : null;
             Rating::create([
                 'course_id' => $this->courseId,
                 'name' => $this->name,
                 'content' => $this->content,
-                'photo' => $photo,
+                'photo' => $this->photo,
                 'rate' => $this->rate
             ]);
             Course::where('id', $this->courseId)->increment('total_ratings');

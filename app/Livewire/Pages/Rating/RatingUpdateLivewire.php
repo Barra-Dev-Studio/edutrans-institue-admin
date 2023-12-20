@@ -17,15 +17,14 @@ class RatingUpdateLivewire extends Component
     public $courseId;
     public $name;
     public $content;
-    public $photo;
+    public $photo = '';
     public $currentPhoto;
     public $rate = 0;
 
     protected $rules = [
         'name' => 'required',
         'content' => 'required',
-        'rate' => 'required',
-        'photo' => ['image', 'max:1024', 'nullable']
+        'rate' => 'required'
     ];
 
     public function mount()
@@ -53,11 +52,10 @@ class RatingUpdateLivewire extends Component
     {
         $this->validate();
         try {
-            $photo = $this->photo ? $this->photo->store('ratings') : $this->currentPhoto;
             $isUpdated = Rating::where('id', $this->id)->update([
                 'name' => $this->name,
                 'content' => $this->content,
-                'photo' => $photo,
+                'photo' => $this->photo,
                 'rate' => $this->rate
             ]);
             if (Storage::exists($this->currentPhoto) && $isUpdated && $this->photo) {

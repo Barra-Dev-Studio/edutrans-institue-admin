@@ -1,17 +1,6 @@
 <div>
     <x-flash-notification></x-flash-notification>
     <form wire:submit.prevent="submit" class="prose">
-        @if ($photo)
-        <div class="mb-4">
-            <img src="{{ $photo->temporaryUrl() }}" alt="">
-        </div>
-        @endif
-        <div>
-            <x-input-label for="photo" :value="__('Photo')" />
-            <x-text-input wire:model.live="photo" id="photo" class="block mt-1 w-full" type="file" name="photo"
-                placeholder="Photo" required />
-            <x-input-error :messages="$errors->get('photo')" class="mt-2" />
-        </div>
         <div class="mt-4">
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input wire:model.live="name" id="name" class="block mt-1 w-full" type="text" name="name"
