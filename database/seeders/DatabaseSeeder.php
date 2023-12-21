@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             AssignRoleSeeder::class,
             AssignAdminSeeder::class,
+            PaymentMethodSeeder::class
         ]);
     }
 }

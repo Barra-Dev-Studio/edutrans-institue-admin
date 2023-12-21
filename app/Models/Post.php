@@ -22,6 +22,8 @@ class Post extends Model
         'views',
         'status',
         'category_id',
+        'alt_image',
+        'main_keyword',
     ];
 
     public function category()

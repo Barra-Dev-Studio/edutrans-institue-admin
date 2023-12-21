@@ -5,12 +5,18 @@
     <meta name="description" content="{{ $post->description }}" />
     <meta name="author" content="{{ $post->author }}" />
     <meta name="keywords" content="{{ $post->keyword }}"/>
+    <meta name="category" content="{{ $post->category->name }}"/>
 
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="{{ route('blog.show', $post->slug) }}" />
-    <meta property="og:title" content="{{ $post->title }} | Edutrans Institue" />
-    <meta property="og:description" content="{{ $post->description }}" />
-    <meta property="og:image" content="{{ \Storage::url($post->thumbnail) }}" />
+    <meta name="copyright" content="Edutrans Institute">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="date" content="{{ $post->updated_at }}">
+
+    <meta name="og:type" content="website" />
+    <meta name="og:url" content="{{ route('blog.show', $post->slug) }}" />
+    <meta name="og:title" content="{{ $post->title }} | Edutrans Institue" />
+    <meta name="og:description" content="{{ $post->description }}" />
+    <meta name="og:image" content="{{ \Storage::url($post->thumbnail) }}" />
+    <meta name='og:site_name' content='Edutrans Institute'>
 
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="{{ route('blog.show', $post->slug) }}" />
@@ -18,7 +24,6 @@
     <meta property="twitter:description" content="{{ $post->description }}" />
     <meta property="twitter:image" content="{{ \Storage::url($post->thumbnail) }}" />
     @endsection
-
 
     <div class="md:p-16">
         <div class="px-6 md:px-8">
@@ -32,7 +37,7 @@
                                 <span class="bg-slate-200 text-slate-600 text-sm px-4 py-2 rounded">{{ $post->category->name ?? 'Uncategorized' }}</span>
                             </div>
                             <div class="prose mt-8 px-1 md:px-8">
-                                <img src="{{ \Storage::url($post->thumbnail) }}" class="rounded" alt="{{ $post->title }}">
+                                <img src="{{ \Storage::url($post->thumbnail) }}" class="rounded" alt="{{ $post->alt_image }}">
                             </div>
                             <div class="prose mt-8 px-1 md:px-8">
                                 {!! $post->content !!}
@@ -70,7 +75,7 @@
                                         </div>
                                     </a>
                                 @empty
-                                    <p>Nantikan kursus menarik di Edutrans Institute</p>
+                                    <p class="mb-0 mt-0 text-slate-500 text-sm">Nantikan kursus menarik di Edutrans Institute</p>
                                 @endforelse
                             </div>
                         </div>
@@ -91,6 +96,7 @@
                                     </div>
                                 </a>
                                 @empty
+                                    <p class="mb-0 mt-0 text-slate-500 text-sm">Belum ada artikel lain untuk saat ini</p>
                                 @endforelse
                             </div>
                         </div>

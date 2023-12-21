@@ -12,6 +12,12 @@
             <x-input-error :messages="$errors->get('thumbnail')" class="mt-2" />
         </div>
         <div class="mt-4">
+            <x-input-label for="altImage" :value="__('Alt image')" />
+            <x-text-input wire:model.live="altImage" id="altImage" class="block mt-1 w-full" type="text" title="altImage"
+                          placeholder="Alt image" required />
+            <x-input-error :messages="$errors->get('altImage')" class="mt-2" />
+        </div>
+        <div class="mt-4">
             <x-input-label for="title" :value="__('Title')" />
             <x-text-input wire:model.live="title" id="title" class="block mt-1 w-full" type="text" title="title"
                 placeholder="Title" required wire:keyup="updateSlug" />
@@ -30,7 +36,7 @@
         </div>
         <div class="mt-4">
             <x-input-label for="content" :value="__('Content')" />
-            <livewire:plugin.trix-livewire :value="$content"></livewire:plugin.trix-livewire>
+            <livewire:plugin.c-k-editor-livewire :value="$content"></livewire:plugin.c-k-editor-livewire>
             <x-input-error :messages="$errors->get('content')" class="mt-2" />
         </div>
         <div class="mt-4">
@@ -45,7 +51,7 @@
             <x-input-error :messages="$errors->get('status')" class="mt-2" />
         </div>
         <div class="mt-4">
-            <x-input-label for="tags" :value="__('Search Enginer Optimization (SEO)')" />
+            <x-input-label for="tags" :value="__('Search Engine Optimization (SEO)')" />
         </div>
         <div class="mt-4">
             <x-input-label for="author" :value="__('Author')" />
@@ -60,10 +66,16 @@
             <x-input-error :messages="$errors->get('description')" class="mt-2" />
         </div>
         <div class="mt-4">
-            <x-input-label for="keyword" :value="__('Keyword')" />
+            <x-input-label for="mainKeyword" :value="__('Main keyword')" />
+            <x-text-input wire:model.live="mainKeyword" id="mainKeyword" class="block mt-1 w-full" type="text" name="mainKeyword"
+                          placeholder="Main keyword" required />
+            <x-input-error :messages="$errors->get('mainKeyword')" class="mt-2" />
+        </div>
+        <div class="mt-4">
+            <x-input-label for="keyword" :value="__('Keywords')" />
             <x-text-input wire:model.live="keyword" id="keyword" class="block mt-1 w-full" type="text" name="keyword"
-                              placeholder="Keyword" required />
-            <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                              placeholder="Keywords" required />
+            <x-input-error :messages="$errors->get('keywords')" class="mt-2" />
         </div>
         <div class="mt-4">
             <button wire:loading.attr="disabled" wire:target="submit" class="bg-emerald-500 px-6 py-3 text-white rounded" type="submit">

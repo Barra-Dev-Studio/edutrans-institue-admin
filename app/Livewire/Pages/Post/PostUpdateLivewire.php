@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Pages\Post;
 
-use App\Livewire\Plugin\TrixLivewire;
+use App\Livewire\Plugin\CKEditorLivewire;
 use App\Models\CategoryPost;
 use App\Models\Post;
 use Illuminate\Support\Facades\Storage;
@@ -31,6 +31,8 @@ class PostUpdateLivewire extends Component
     public $description;
     public $status;
     public $keyword;
+    public $mainKeyword;
+    public $altImage;
     public $categoryId;
 
     public $categories;
@@ -44,6 +46,8 @@ class PostUpdateLivewire extends Component
         'description' => 'required',
         'status' => 'required',
         'keyword' => 'required',
+        'mainKeyword' => 'required',
+        'altImage' => 'required',
     ];
 
     public function mount()
@@ -59,15 +63,17 @@ class PostUpdateLivewire extends Component
         $this->status = $post->status;
         $this->keyword = $post->keyword;
         $this->categoryId = $post->category_id;
+        $this->mainKeyword = $post->main_keyword;
+        $this->altImage = $post->alt_image;
 
         $this->categories = CategoryPost::orderBy('name')->get();
     }
 
     public $listeners = [
-        TrixLivewire::EVENT_VALUE_UPDATED => 'updateFromTrix'
+        CKEditorLivewire::EVENT_VALUE_UPDATED => 'updateFromCKEditor'
     ];
 
-    public function updateFromTrix($value)
+    public function updateFromCKEditor($value)
     {
         $this->content = $value;
     }
@@ -98,6 +104,8 @@ class PostUpdateLivewire extends Component
                 'thumbnail' => $thumbnail,
                 'keyword' => $this->keyword,
                 'category_id' => $this->categoryId,
+                'alt_image' => $this->altImage,
+                'main_keyword' => $this->mainKeyword,
             ]);
             if (Storage::exists($this->currentThumbnail) && $isUpdated && $this->thumbnail) {
                 Storage::delete($this->currentThumbnail);

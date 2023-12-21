@@ -33,7 +33,3 @@
 .ck.ck-button.ck-on, .ck.ck-button:not(.ck-disabled):hover, a.ck.ck-button.ck-on, a.ck.ck-button:not(.ck-disabled):hover {
     @apply dark:bg-gray-800;
 }
-
-.ck.ck-editor__editable_inline[dir=ltr]{
-    text-align: right !important;
-}

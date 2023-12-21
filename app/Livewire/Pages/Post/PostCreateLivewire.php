@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Pages\Post;
 
-use App\Livewire\Plugin\TrixLivewire;
+use App\Livewire\Plugin\CKEditorLivewire;
 use App\Models\CategoryPost;
 use App\Models\Post;
 use Illuminate\Support\Str;
@@ -28,6 +28,8 @@ class PostCreateLivewire extends Component
     public $description;
     public $status;
     public $keyword;
+    public $mainKeyword;
+    public $altImage;
     public $categoryId;
 
     public $categories;
@@ -41,7 +43,9 @@ class PostCreateLivewire extends Component
         'description' => 'required',
         'status' => 'required',
         'keyword' => 'required',
-        'thumbnail' => ['required', 'image', 'max:1024']
+        'thumbnail' => ['required', 'image', 'max:1024'],
+        'mainKeyword' => 'required',
+        'altImage' => 'required'
     ];
 
     public function mount()
@@ -50,10 +54,10 @@ class PostCreateLivewire extends Component
     }
 
     public $listeners = [
-        TrixLivewire::EVENT_VALUE_UPDATED => 'updateFromTrix'
+        CKEditorLivewire::EVENT_VALUE_UPDATED => 'updateFromCKEditor'
     ];
 
-    public function updateFromTrix($value)
+    public function updateFromCKEditor($value)
     {
         $this->content = $value;
     }
@@ -83,7 +87,9 @@ class PostCreateLivewire extends Component
                 'status' => $this->status,
                 'thumbnail' => $thumbnail,
                 'keyword' => $this->keyword,
-                'category_id' =>$this->categoryId
+                'category_id' => $this->categoryId,
+                'alt_image' => $this->altImage,
+                'main_keyword' => $this->mainKeyword,
             ]);
             return redirect()->route('dashboard.post.index')->with('success', 'Post created successfully');
         } catch (\Exception $e) {
