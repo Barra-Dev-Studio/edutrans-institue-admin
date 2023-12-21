@@ -1,26 +1,28 @@
 <x-blog-layout>
     @section('opengraph')
     <title>{{ $post->title }} | Edutrans Institue</title>
-    <meta name="title" content="{{ $post->title }} | Edutrans Institue" />
+    <meta name="title" content="{{ $post->title }} - Edutrans Institue" />
     <meta name="description" content="{{ $post->description }}" />
     <meta name="author" content="{{ $post->author }}" />
     <meta name="keywords" content="{{ $post->keyword }}"/>
-    <meta name="category" content="{{ $post->category->name }}"/>
+    <meta name="category" content="{{ $post->category->name ?? 'Uncategorized' }}"/>
 
     <meta name="copyright" content="Edutrans Institute">
     <meta name="HandheldFriendly" content="True">
     <meta name="date" content="{{ $post->updated_at }}">
+    <meta name="article:modified_time" content="{{ $post->updated_at }}">
+    <meta name="article:published_time" content="{{ $post->created_at }}">
 
     <meta name="og:type" content="website" />
     <meta name="og:url" content="{{ route('blog.show', $post->slug) }}" />
-    <meta name="og:title" content="{{ $post->title }} | Edutrans Institue" />
+    <meta name="og:title" content="{{ $post->title }} - Edutrans Institue" />
     <meta name="og:description" content="{{ $post->description }}" />
     <meta name="og:image" content="{{ \Storage::url($post->thumbnail) }}" />
     <meta name='og:site_name' content='Edutrans Institute'>
 
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="{{ route('blog.show', $post->slug) }}" />
-    <meta property="twitter:title" content="{{ $post->title }} | Edutrans Institue" />
+    <meta property="twitter:title" content="{{ $post->title }} - Edutrans Institue" />
     <meta property="twitter:description" content="{{ $post->description }}" />
     <meta property="twitter:image" content="{{ \Storage::url($post->thumbnail) }}" />
     @endsection
