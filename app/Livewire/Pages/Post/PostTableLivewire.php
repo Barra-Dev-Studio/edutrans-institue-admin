@@ -28,7 +28,7 @@ class PostTableLivewire extends Component
     public function render()
     {
         return view('livewire.pages.post.post-table-livewire', [
-            'posts' => Post::where('title', 'like', '%' . $this->search . '%')->paginate($this->showPage)
+            'posts' => Post::where('title', 'like', '%' . $this->search . '%')->latest()->paginate($this->showPage)
         ]);
     }
 }

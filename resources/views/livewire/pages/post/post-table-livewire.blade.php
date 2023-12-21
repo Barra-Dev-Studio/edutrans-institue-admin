@@ -29,6 +29,8 @@
                             <th class="p-3">Title</th>
                             <th class="p-3">Category</th>
                             <th class="p-3">Views</th>
+                            <th class="p-3">Status</th>
+                            <th class="p-3">Last update</th>
                             <th class="p-3" width="100px">Action</th>
                         </tr>
                     </thead>
@@ -40,6 +42,8 @@
                             <td class="p-3">{{ $post->title }}</td>
                             <td class="p-3">{{ $post->category->name ?? 'Uncategorized' }}</td>
                             <td class="p-3">{{ $post->views }}</td>
+                            <td class="p-3">{{ $post->status }}</td>
+                            <td class="p-3">{{ \Carbon\Carbon::parse($post->updated_at)->diffForHumans() }}</td>
                             <td class="p-3 flex">
                                 <a href="{{ route('blog.show', $post->slug) }}"
                                     class="p-2 flex items-center bg-sky-400 hover:bg-sky-300 rounded-tl rounded-bl text-lg !no-underline">
