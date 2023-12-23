@@ -83,15 +83,18 @@
                                     <div class="aspect-video p-4 rounded bg-white shadow">
                                         <div class="flex items-center gap-4 mb-4">
                                             <h6>{{ $rating->name  }}</h6>
-                                            @foreach(range(1, 5) as $star)
-                                                @if($star <= $rating->rate)
-                                                    <i class="bx bxs-star text-xl text-amber-500"></i>
-                                                @elseif($star <= $rating->rate + 0.5)
-                                                    <i class="bx bxs-star-half text-xl text-amber-500"></i>
-                                                @else
-                                                    <i class="bx bx-star text-xl text-amber-500"></i>
-                                                @endif
-                                            @endforeach
+                                            <div>
+                                                @foreach(range(1, 5) as $star)
+                                                    @if($star <= $rating->rate)
+                                                        <i class="bx bxs-star text-xl text-amber-500"></i>
+                                                    @elseif($star <= $rating->rate + 0.5)
+                                                        <i class="bx bxs-star-half text-xl text-amber-500"></i>
+                                                    @else
+                                                        <i class="bx bx-star text-xl text-amber-500"></i>
+                                                    @endif
+                                                @endforeach
+                                                <span class="ml-2">{{ $rating->rate }}</span>
+                                            </div>
                                         </div>
                                         <p class="text-slate-600 italic text-16">{{ $rating->content }}</p>
                                     </div>
