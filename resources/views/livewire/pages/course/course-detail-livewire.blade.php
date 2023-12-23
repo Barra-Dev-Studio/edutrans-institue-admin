@@ -81,9 +81,9 @@
                             @forelse($ratings as $rating)
                                 <div class="break-inside-avoid-column">
                                     <div class="aspect-video p-4 rounded bg-white shadow">
-                                        <div class="flex items-center gap-4 mb-4">
+                                        <div class="mb-4">
                                             <h6>{{ $rating->name  }}</h6>
-                                            <div>
+                                            <div class="flex items-center gap-4 mt-4">
                                                 @foreach(range(1, 5) as $star)
                                                     @if($star <= $rating->rate)
                                                         <i class="bx bxs-star text-xl text-amber-500"></i>
