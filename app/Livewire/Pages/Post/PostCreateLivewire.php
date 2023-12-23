@@ -3,6 +3,7 @@
 namespace App\Livewire\Pages\Post;
 
 use App\Livewire\Plugin\CKEditorLivewire;
+use App\Livewire\Plugin\SeoAnalyzerLivewire;
 use App\Models\CategoryPost;
 use App\Models\Post;
 use Illuminate\Support\Str;
@@ -14,6 +15,7 @@ class PostCreateLivewire extends Component
 {
     use WithFileUploads;
 
+    const ANALYZE_POST_CREATE_LIVEWIRE = 'analyze_post_create_livewire';
     public $statuses = [
         ['id' => 'PUBLISH', 'name' => 'PUBLISH'],
         ['id' => 'DRAFT', 'name' => 'DRAFT']
@@ -51,10 +53,19 @@ class PostCreateLivewire extends Component
     public function mount()
     {
         $this->categories = CategoryPost::orderBy('name')->get();
+        $seoData = [
+            'title' => '',
+            'description' => '',
+            'main_keyword' => '',
+            'keyword' => '',
+            'content' => '',
+            'alt_image' => '',
+        ];
+        $this->dispatch(self::ANALYZE_POST_CREATE_LIVEWIRE, $seoData);
     }
 
     public $listeners = [
-        CKEditorLivewire::EVENT_VALUE_UPDATED => 'updateFromCKEditor'
+        CKEditorLivewire::EVENT_VALUE_UPDATED => 'updateFromCKEditor',
     ];
 
     public function updateFromCKEditor($value)
@@ -65,6 +76,15 @@ class PostCreateLivewire extends Component
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
+        $seoData = [
+            'title' => $this->title,
+            'description' => $this->description,
+            'main_keyword' => $this->mainKeyword,
+            'keyword' => $this->keyword,
+            'content' => $this->content,
+            'alt_image' => $this->altImage,
+        ];
+        $this->dispatch(self::ANALYZE_POST_CREATE_LIVEWIRE, $seoData);
     }
 
     public function updateSlug()

@@ -14,6 +14,7 @@ class PostUpdateLivewire extends Component
 {
     use WithFileUploads;
 
+    const ANALYZE_POST_UPDATE_LIVEWIRE = 'analyze_post_update_livewire';
     public $statuses = [
         ['id' => 'PUBLISH', 'name' => 'PUBLISH'],
         ['id' => 'DRAFT', 'name' => 'DRAFT']
@@ -67,6 +68,16 @@ class PostUpdateLivewire extends Component
         $this->altImage = $post->alt_image;
 
         $this->categories = CategoryPost::orderBy('name')->get();
+
+        $seoData = [
+            'title' => $this->title,
+            'description' => $this->description,
+            'main_keyword' => $this->mainKeyword,
+            'keyword' => $this->keyword,
+            'content' => $this->content,
+            'alt_image' => $this->altImage,
+        ];
+        $this->dispatch(self::ANALYZE_POST_UPDATE_LIVEWIRE, $seoData);
     }
 
     public $listeners = [
@@ -81,6 +92,15 @@ class PostUpdateLivewire extends Component
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
+        $seoData = [
+            'title' => $this->title,
+            'description' => $this->description,
+            'main_keyword' => $this->mainKeyword,
+            'keyword' => $this->keyword,
+            'content' => $this->content,
+            'alt_image' => $this->altImage,
+        ];
+        $this->dispatch(self::ANALYZE_POST_UPDATE_LIVEWIRE, $seoData);
     }
 
     public function updateSlug()
