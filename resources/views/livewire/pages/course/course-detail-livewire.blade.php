@@ -74,19 +74,27 @@
                             </div>
                         </div>
                     </div>
-                    @if(count($ratings) > 0 && count($ratings) % 3 === 0)
+                    @if(count($ratings) > 0)
                     <div class="mt-8">
                         <h1 class="text-slate-700">Bagaimana kata sebagian dari mereka?</h1>
                         <div class="columns-1 md:columns-3 gap-6 space-y-6 mt-4">
                             @forelse($ratings as $rating)
-                                <div class="aspect-video p-4 rounded bg-white shadow">
-                                    <div class="flex items-center gap-4 mb-4">
-                                        <div class="h-10 w-10 rounded-full ring-2 ring-white overflow-hidden">
-                                            <img class="inline-block object-cover h-full w-full" src="{{ \Storage::url($rating->photo) }}" alt="{{ $rating->name }}">
+                                <div class="break-inside-avoid-column">
+                                    <div class="aspect-video p-4 rounded bg-white shadow">
+                                        <div class="flex items-center gap-4 mb-4">
+                                            <h6>{{ $rating->name  }}</h6>
+                                            @foreach(range(1, 5) as $star)
+                                                @if($star <= $rating->rate)
+                                                    <i class="bx bxs-star text-xl text-amber-500"></i>
+                                                @elseif($star <= $rating->rate + 0.5)
+                                                    <i class="bx bxs-star-half text-xl text-amber-500"></i>
+                                                @else
+                                                    <i class="bx bx-star text-xl text-amber-500"></i>
+                                                @endif
+                                            @endforeach
                                         </div>
-                                        <h6>{{ $rating->name  }}</h6>
+                                        <p class="text-slate-600 italic text-16">{{ $rating->content }}</p>
                                     </div>
-                                    <p class="text-slate-600 italic text-16">{{ $rating->content }}</p>
                                 </div>
                             @empty
                             @endforelse
