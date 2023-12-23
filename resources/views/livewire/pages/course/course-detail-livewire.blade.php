@@ -83,14 +83,14 @@
                                     <div class="aspect-video p-4 rounded bg-white shadow">
                                         <div class="mb-4">
                                             <h6>{{ $rating->name  }}</h6>
-                                            <div class="flex items-center gap-4 mt-4">
+                                            <div class="flex items-center mt-1">
                                                 @foreach(range(1, 5) as $star)
                                                     @if($star <= $rating->rate)
-                                                        <i class="bx bxs-star text-xl text-amber-500"></i>
+                                                        <i class="bx bxs-star text-amber-500"></i>
                                                     @elseif($star <= $rating->rate + 0.5)
-                                                        <i class="bx bxs-star-half text-xl text-amber-500"></i>
+                                                        <i class="bx bxs-star-half text-amber-500"></i>
                                                     @else
-                                                        <i class="bx bx-star text-xl text-amber-500"></i>
+                                                        <i class="bx bx-star text-amber-500"></i>
                                                     @endif
                                                 @endforeach
                                                 <span class="ml-2">{{ $rating->rate }}</span>
