@@ -12,10 +12,10 @@
                         </div>
                     </div>
                     <div class="mt-4">
-                        <x-input-label for="payment_method" :value="__('Pilih Metode Pembayaran')" />
+                        <x-input-label class="font-bold text-lg mb-8" for="payment_method" :value="__('Pilih Metode Pembayaran')" />
                         @foreach($paymentMethods as $type => $payments)
-                        <div class="mb-4">
-                            <x-input-label for="payment_method" :value="$type" />
+                        <div class="mb-8">
+                            <x-input-label class="mb-8" for="payment_method" :value="$type" />
                             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-4">
                                 @foreach($payments as $payment)
                                 <div class="card bg-white mb-0 cursor-pointer @if($selectedPayment == $payment->code) border-sky-500 @endif" wire:click="setSelectedPayment('{{ $payment->code }}')">
@@ -28,7 +28,7 @@
                         </div>
                         @endforeach
                     </div>
-                    <div class="mt-4">
+                    <div class="mt-8">
                         <x-input-label for="mobile_number" :value="__('Nomor HP')" />
                         <x-text-input wire:model.live="mobileNumber" id="mobile_number" class="block mt-1 w-full mb-1" type="text" name="mobile_number"
                             placeholder="08123xxx" required />
@@ -97,6 +97,9 @@
                     <div class="w-full mt-4">
                         <button wire:click="submit" wire:loading.attr="disabled" wire:target="submit"
                             class="!no-underline prose bg-sky-800 text-white py-3 block w-full px-6 rounded hover:bg-sky-700 disabled:bg-sky-300 disabled:text-slate-100" @if(!$selectedPayment && Auth()) disabled @endif><span wire:loading.remove wire:target="submit">Pembayaran</span><span wire:loading wire:target="submit"><x-spinner></x-spinner></span></button>
+                    </div>
+                    <div class="flex items-center justify-center mt-4">
+                        <img src="{{ \Storage::url('paymentmethods/xendit.png') }}" class="h-10" alt="Powered by Xendit">
                     </div>
                     <div class="mt-4">
                         <x-flash-notification></x-flash-notification>

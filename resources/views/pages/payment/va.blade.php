@@ -8,8 +8,10 @@
             <div class="card-body text-center">
                 <div>
                     <div class="flex flex-col items-center justify-center mb-4">
-                        <span class="font-medium text-lg mb-4">QRIS</span>
-                        {!! QrCode::size(200)->generate($qrStrings) !!}
+                        <span class="font-medium text-lg">Nomor virtual account</span>
+                        <div class="bg-slate-200 px-4 mt-4 rounded">
+                            <h2 class="mt-0">{{ number_format($accountNumber, 0, ' ', ' ') }}</h2>
+                        </div>
                     </div>
                     <div class="flex flex-col items-center justify-center mb-4">
                         <span class="font-medium text-lg">Nominal pembayaran</span>

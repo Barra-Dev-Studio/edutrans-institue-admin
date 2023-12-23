@@ -36,6 +36,7 @@ Route::get('/course/{slug}',[GuestController::class, 'courseDetail'])->name('cou
 Route::get('/checkout/{slug}', [MemberController::class,'checkout'])->name('checkout');
 Route::get('payment/{transactionId}', [PaymentController::class, 'index'])->name('payment.index');
 Route::get('payment/qris/{transactionId}', [PaymentController::class, 'qris'])->name('payment.qris');
+Route::get('payment/va/{transactionId}', [PaymentController::class, 'va'])->name('payment.va');
 
 Route::get('/email/verify', [EmailVerifyController::class, 'index'])->middleware('auth')->name('verification.notice');
 Route::get('/email/verify/{id}/{hash}', [EmailVerifyController::class, 'request'])->middleware(['auth', 'signed'])->name('verification.verify');

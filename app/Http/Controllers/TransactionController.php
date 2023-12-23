@@ -73,4 +73,27 @@ class TransactionController extends Controller
             return response($e->getMessage(), 500);
         }
     }
+
+    public function callbackVA(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $updateTransaction = TransactionService::updateCallbackVA($request);
+            if ($updateTransaction === 'SUCCEEDED') {
+                $user = User::find($request->data['metadata']['member_id']);
+                foreach ($request->data['basket'] as $item) {
+                    TransactionService::addCourseToUserFromCallback($request->data['reference_id'], $item['reference_id'], $request->data['metadata']['member_id']);
+                    $user->notify(new CoursePaid($item['reference_id'], $request->data['metadata']['member_id']));
+                }
+                DB::commit();
+                return response([], 200);
+            } else {
+                DB::commit();
+                return response([], 400);
+            }
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response($e->getMessage(), 500);
+        }
+    }
 }

@@ -41,6 +41,25 @@ class TransactionService
         ]);
     }
 
+    public static function updateCallbackVA($data)
+    {
+        $query = Transaction::where('id', $data->data['external_id'])->where('ref_id', $data->data['id']);
+        $transaction = $query->first();
+
+        if ((int) $transaction->total_payment === (int) $data->data['amount']) {
+            $query->update([
+                'status' => 'SUCCEEDED',
+                'callback_response' => json_encode($data->all())
+            ]);
+            return 'SUCCEEDED';
+        } else {
+            $query->update([
+                'callback_response' => json_encode($data->all())
+            ]);
+            return 'PENDING';
+        }
+    }
+
     public static function process($data, $method)
     {
         DB::beginTransaction();
@@ -235,12 +254,16 @@ class TransactionService
             }
 
             $xendit = new XenditService();
-            if ($method == 'EWALLET') {
+            if ($method === 'EWALLET') {
                 $xendit->createEWalletPayment($data->payment_method, $transaction->id, $data->total_price, $items, $data->mobile_number ?? '');
                 $response = $xendit->getResponse();
                 return json_decode($response->body());
-            } else if ($method == 'QRIS') {
+            } else if ($method === 'QRIS') {
                 $xendit->createQrisPayment('ID_DANA', $transaction->id, $data->total_price, $items, $data->mobile_number ?? '');
+                $response = $xendit->getResponse();
+                return json_decode($response->body());
+            } else if ($method === 'Virtual Account (VA)') {
+                $xendit->createVAPayment($data->payment_method, $transaction->id, $data->total_price, $items);
                 $response = $xendit->getResponse();
                 return json_decode($response->body());
             }
@@ -251,7 +274,7 @@ class TransactionService
     private static function getRedirectUrl($payment, $method)
     {
         $data = [];
-        if ($method == 'EWALLET') {
+        if ($method === 'EWALLET') {
             $data = [
                 'ID_OVO' => route('payment.index', $payment->reference_id),
                 'ID_DANA' => $payment->actions->desktop_web_checkout_url ?? '',
@@ -259,11 +282,22 @@ class TransactionService
                 'ID_SHOPEEPAY' => $payment->actions->mobile_deeplink_checkout_url ?? '',
                 'FREE_ITEM' => route('payment.index', $payment->reference_id),
             ];
-        } else if ($method == 'QRIS') {
+        } else if ($method === 'QRIS') {
             $data = [
                 'ID_DANA' => route('payment.qris', $payment->reference_id),
                 'ID_LINKAJA' => route('payment.qris', $payment->reference_id),
             ];
+        } else if ($method === 'Virtual Account (VA)') {
+            $data = [
+                'BCA' => route('payment.va', $payment->external_id),
+                'BNI' => route('payment.va', $payment->external_id),
+                'BRI' => route('payment.va', $payment->external_id),
+                'BSI' => route('payment.va', $payment->external_id),
+                'CIMB' => route('payment.va', $payment->external_id),
+                'MANDIRI' => route('payment.va', $payment->external_id)
+            ];
+
+            return $data[$payment->bank_code] ?? false;
         }
 
         return $data[$payment->channel_code] ?? false;
