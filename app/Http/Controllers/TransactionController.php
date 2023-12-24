@@ -81,8 +81,8 @@ class TransactionController extends Controller
         try {
             $updateTransaction = TransactionService::updateCallbackVA($request);
             if ($updateTransaction === 'SUCCEEDED') {
-                $transaction = Transaction::where('id', $request->data['external_id'])
-                        ->where('ref_id', $request->data['id'])
+                $transaction = Transaction::where('id', $request->external_id)
+                        ->where('ref_id', $request->id)
                         ->with('transactionDetails')
                         ->first();
                 foreach ($transaction->transactionDetails as $item) {

@@ -43,10 +43,10 @@ class TransactionService
 
     public static function updateCallbackVA($data)
     {
-        $query = Transaction::where('id', $data->data['external_id'])->where('ref_id', $data->data['id']);
+        $query = Transaction::where('id', $data->external_id)->where('ref_id', $data->id);
         $transaction = $query->first();
 
-        if ((int) $transaction->total_payment === (int) $data->data['amount']) {
+        if ((int) $transaction->total_payment === (int) $data->amount) {
             $query->update([
                 'status' => 'SUCCEEDED',
                 'callback_response' => json_encode($data->all())
