@@ -10,7 +10,7 @@
                     @foreach($chapters as $chapter)
                     <a href="{{ route('member.play', [$course->id, $chapter->id]) }}"
                         class="px-5 text-slate-700  prose font-medium py-2 @if(!$loop->last) border-b border-slate-100 @endif @if($selectedChapter->id === $chapter->id) border-l border-sky-500 bg-slate-100 @else hover:bg-slate-200 @endif border-slate-200 cursor-pointer flex justify-between items-center gap-4">
-                            <span>{{ trim(explode('.', $chapter->title)[1]) }}</span>
+                            <span>{{ (preg_match('/^\d+\.\s(.+)$/', $chapter->title, $matches)) ? $matches[1] : 'Chapter' }}</span>
                             @if($this->checkIfCompleted($chapter->id)) <i class="bx bx-check-circle text-emerald-600"></i> @endif
                         </a>
                     @endforeach

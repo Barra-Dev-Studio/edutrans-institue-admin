@@ -25,7 +25,7 @@ class ChapterService
 
         $sections = [];
         foreach ($chapters as $chapter) {
-            $sections[trim(explode(".", $chapter->section)[1])][] = $chapter;
+            $sections[(preg_match('/^\d+\.\s(.+)$/', $chapter->section, $matches)) ? $matches[1] : 'Section'][] = $chapter;
         }
         return $sections;
     }

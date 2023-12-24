@@ -40,7 +40,7 @@
                                             <div class="flex flex-col gap-4">
                                                 @foreach($chapter as $item)
                                                 <div class="flex items-center justify-between">
-                                                    <p class="prose">{{ trim(explode(".", $item->title)[1]) }}</p>
+                                                    <p class="prose">{{ (preg_match('/^\d+\.\s(.+)$/', $item->title, $matches)) ? $matches[1] : 'Chapter' }}</p>
                                                     <div
                                                         class="flex gap-4 @if($item->is_preview) justify-between @else justify-end @endif min-w-[125px]">
                                                         @if($item->is_preview)
