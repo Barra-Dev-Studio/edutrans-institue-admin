@@ -15,11 +15,11 @@ class PlyrLivewire extends Component
 
     public function mount()
     {
-        if (str_contains($this->embedId, 'youtube.com')) {
+        if (str_contains($this->embedId, 'youtube.com') || str_contains($this->embedId, 'youtu.be')) {
             $this->source = 'youtube';
         }
 
-        if (!str_contains($this->embedId, 'youtube.com')) {
+        if (!str_contains($this->embedId, 'youtube.com') && !str_contains($this->embedId, 'youtu.be')) {
             $this->processThePresignedUrl();
         }
     }
