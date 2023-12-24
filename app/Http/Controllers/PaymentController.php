@@ -46,4 +46,28 @@ class PaymentController extends Controller
 
         return view('pages.payment.qris', compact('qrStrings','expiredAt','amount'));
     }
+    public function va($transactionId)
+    {
+        if (!auth()->check()) {
+            return abort(404);
+        }
+
+        $transaction = TransactionService::getById($transactionId);
+        $paymentResponse = json_decode($transaction->payment_response);
+
+        $accountNumber = $paymentResponse->data->account_number;
+        $expiredAt = $paymentResponse->data->expiration_date;
+        $amount = $paymentResponse->data->expected_amount;
+
+        if (Carbon::parse($expiredAt)->isPast()) {
+            return abort(404);
+        }
+
+        if ($transaction->status == 'SUCCEEDED') {
+            return redirect()->route('payment.index', $transaction->id);
+        }
+
+        return view('pages.payment.va', compact('accountNumber','expiredAt','amount'));
+    }
+
 }

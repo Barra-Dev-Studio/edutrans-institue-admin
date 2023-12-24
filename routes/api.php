@@ -22,5 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('verify.callback')->group(function () {
     Route::post('/payment/callback', [TransactionController::class, 'callback'])->name('payment.callback');
     Route::post('/payment/qris/callback', [TransactionController::class, 'callbackQris'])->name('payment.callback.qris');
+    Route::post('/payment/va/callback', [TransactionController::class, 'callbackVA'])->name('payment.callback.va');
 });
 

@@ -93,6 +93,25 @@ class XenditService
         $this->response = $response;
     }
 
+    public function createVAPayment($bankCode, $referenceId, $amount, $items)
+    {
+        $body = [
+            'external_id' => $referenceId,
+            'bank_code' => $bankCode,
+            'name' => auth()->user()->name,
+            'is_closed' => true,
+            'expected_amount' => $amount,
+            'expiration_date' => Carbon::now()->addHour(1),
+        ];
+
+        $headers = [
+            'Content-Type' => 'application/json',
+        ];
+
+        $response = Http::withBasicAuth($this->getApiSecretKey(), '')->withHeaders($headers)->post('https://api.xendit.co/callback_virtual_accounts', $body);
+        $this->response = $response;
+    }
+
     public function getBalances()
     {
         $headers = [
@@ -105,6 +124,7 @@ class XenditService
 
     public static function getAdditionalFee($channelCode, $amount)
     {
+        $bankChannelCodes = ['BCA', 'BNI', 'BRI', 'BSI', 'CIMB', 'MANDIRI'];
         $channelCodes = [
             'ID_OVO' => '0.03',
             'ID_DANA' => '0.03',
@@ -113,7 +133,12 @@ class XenditService
             'QRIS' => '0.007'
         ];
 
-        return ceil($amount * $channelCodes[$channelCode]);
+        if (in_array($channelCode, $bankChannelCodes)) {
+            return 4000;
+        } else {
+            return ceil($amount * $channelCodes[$channelCode]);
+        }
+
     }
 
     public function getResponse()

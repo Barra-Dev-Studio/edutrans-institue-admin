@@ -21,6 +21,8 @@ class CheckoutLivewire extends Component
     public $selectedPayment = null;
     public $selectedPaymentShow = null;
 
+    protected $bankChannelCodes = ['BCA', 'BNI', 'BRI', 'BSI', 'CIMB', 'MANDIRI'];
+
     public function mount()
     {
         $this->updatePrice();
@@ -92,13 +94,31 @@ class CheckoutLivewire extends Component
                     'type' => 'course',
                     'price' => $this->course->price,
                     'disc' => $this->course->discount ?? 0,
-                    'final_price_item' => $this->course->final_price_item ?? $this->course->price
+                    'final_price_item' => $this->course->discount_price > 0
+                            ? $this->course->discount_price
+                            : $this->course->price
                 ]
             ]
         ];
-        $method = $this->selectedPayment == 'QRIS' ? 'QRIS' : 'EWALLET';
+
+        $method = $this->getPaymentMethod();
         $process = TransactionService::process($data, $method);
+
         return $process ? redirect($process) : back()->with('error', 'Terjadi kesalahan di sisi kami, silakan hubungi kamu untuk lebih lanjut');
+    }
+
+    protected function getPaymentMethod()
+    {
+        $method = '';
+        if ($this->selectedPayment === 'QRIS') {
+            $method = 'QRIS';
+        } else if (in_array($this->selectedPayment, $this->bankChannelCodes)) {
+            $method = 'Virtual Account (VA)';
+        } else {
+            $method = 'EWALLET';
+        }
+
+        return $method;
     }
 
     public function render()

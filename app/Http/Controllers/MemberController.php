@@ -48,7 +48,8 @@ class MemberController extends Controller
 
         $payments = [
             'Virtual Account (VA)' => 1904,
-            'QRIS' => 0
+            'QRIS' => 0,
+            'EWalltet' => 0
         ];
 
         return view('pages.member.checkout', compact('course', 'payments'));
