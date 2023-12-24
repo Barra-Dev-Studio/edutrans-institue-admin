@@ -43,7 +43,7 @@ class TransactionService
 
     public static function updateCallbackVA($data)
     {
-        $query = Transaction::where('id', $data->external_id)->where('ref_id', $data->id);
+        $query = Transaction::where('id', $data->external_id)->where('ref_id', $data->callback_virtual_account_id);
         $transaction = $query->first();
 
         if ((int) $transaction->total_payment === (int) $data->amount) {

@@ -82,7 +82,7 @@ class TransactionController extends Controller
             $updateTransaction = TransactionService::updateCallbackVA($request);
             if ($updateTransaction === 'SUCCEEDED') {
                 $transaction = Transaction::where('id', $request->external_id)
-                        ->where('ref_id', $request->id)
+                        ->where('ref_id', $request->callback_virtual_account_id)
                         ->with('transactionDetails')
                         ->first();
                 foreach ($transaction->transactionDetails as $item) {
