@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaction;
 use App\Models\User;
 use App\Notifications\CoursePaid;
 use App\Services\CourseService;
@@ -80,10 +81,14 @@ class TransactionController extends Controller
         try {
             $updateTransaction = TransactionService::updateCallbackVA($request);
             if ($updateTransaction === 'SUCCEEDED') {
-                $user = User::find($request->data['metadata']['member_id']);
-                foreach ($request->data['basket'] as $item) {
-                    TransactionService::addCourseToUserFromCallback($request->data['reference_id'], $item['reference_id'], $request->data['metadata']['member_id']);
-                    $user->notify(new CoursePaid($item['reference_id'], $request->data['metadata']['member_id']));
+                $transaction = Transaction::where('id', $request->data['external_id'])
+                        ->where('ref_id', $request->data['id'])
+                        ->with('transactionDetails')
+                        ->first();
+                foreach ($transaction->transactionDetails as $item) {
+                    TransactionService::addCourseToUserFromCallback($transaction->id, $item->item_id, $transaction->member_id);
+                    $user = User::find($transaction->member_id);
+                    $user->notify(new CoursePaid($item->item_id, $transaction->member_id));
                 }
                 DB::commit();
                 return response([], 200);
