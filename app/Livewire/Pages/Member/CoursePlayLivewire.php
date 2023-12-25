@@ -6,6 +6,7 @@ use App\Models\Chapter;
 use App\Models\ChapterProgress;
 use App\Models\OwnedCourse;
 use Livewire\Component;
+use Illuminate\Support\Arr;
 
 class CoursePlayLivewire extends Component
 {
@@ -37,6 +38,7 @@ class CoursePlayLivewire extends Component
 
     public function setAsComplete()
     {
+        $this->checkIfChapterAddedToProgess();
         $chapterProgress = $this->course->chapterProgress;
         $chapters = json_decode($chapterProgress->chapters_completed);
         for ($index = 0; $index < count($chapters); $index++) {
@@ -47,11 +49,42 @@ class CoursePlayLivewire extends Component
 
         ChapterProgress::where('id', $chapterProgress->id)->update([
             'chapters_completed' => json_encode($chapters),
-            'last_chapter_id' => $this->selectedChapter->id
+            'last_chapter_id' => $this->selectedChapter->id,
+            'total_duration' => $chapterProgress->total_duration + $this->selectedChapter->duration
         ]);
         OwnedCourse::find($this->course->id)->touch();
 
-        return redirect()->route('member.play', [$this->course->id, $this->selectedChapter->id])->with('success', 'Berhasil menyelesaikan chapter ' . $this->selectedChapter->title);
+        return redirect()
+            ->route('member.play', [$this->course->id, $this->selectedChapter->id])
+            ->with('success', 'Berhasil menyelesaikan chapter ' . ((preg_match('/^\d+\.\s(.+)$/', $this->selectedChapter->title, $matches)) ? $matches[1] : ''));
+    }
+
+    public function checkIfChapterAddedToProgess()
+    {
+        $chapterProgress = $this->course->chapterProgress;
+        $chapters = json_decode($chapterProgress->chapters_completed);
+        $selectedChapterId = $this->selectedChapter->id;
+        $chapter = Arr::where($chapters, function ($value, $key) use ($selectedChapterId) {
+            return $value->id === $selectedChapterId;
+        });
+
+        if (count($chapter) === 0) {
+            $chapters[] = [
+                'id' => $this->selectedChapter->id,
+                'duration' => $this->selectedChapter->duration,
+                'start' => 0,
+                'watch' => 0,
+                'is_completed' => false
+            ];
+            ChapterProgress::where('id', $chapterProgress->id)->update([
+                'chapters_completed' => json_encode($chapters),
+            ]);
+            $this->course = OwnedCourse::where('course_id', $this->course->course_id)
+                ->where('member_id', auth()->id())
+                ->with('chapterProgress')->first();
+        }
+
+        return true;
     }
 
     public function render()
