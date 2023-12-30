@@ -1,6 +1,6 @@
 <div>
     <div class="md:px-16 pb-16">
-        <div class="px-6 md:px-8">
+        <div class="px-6 md:px-8 relative">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-8">
                 <div class="md:col-span-2">
                     <div class="pt-10">

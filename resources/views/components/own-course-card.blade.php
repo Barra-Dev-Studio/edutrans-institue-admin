@@ -1,6 +1,13 @@
 @props(['course'])
 <div class="card bg-white cursor-pointer h-full flex flex-col justify-between">
-    <div>
+    <div class="relative">
+        @if(str_contains($course->title, 'Premium Course'))
+            <div class="absolute left-0 top-0 h-16 w-16">
+                <div class="ribbon">
+                    Premium Course
+                </div>
+            </div>
+        @endif
         <div class="h-[180px] overflow-hidden">
             <img class="rounded-tl rounded-tr h-full w-full object-cover" src="{{ \Storage::url($course->thumbnail) }}" alt="{{ $course->title }}">
         </div>

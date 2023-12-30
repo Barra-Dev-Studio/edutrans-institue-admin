@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="hidden md:block">
-                    <div class="h-[250px] overflow-hidden">
+                    <div class="min-h-[250px] overflow-hidden">
                         <img src="{{ \Storage::url($course->thumbnail) }}" class="rounded-t h-full w-full" alt="{{ $course->title }}">
                     </div>
                 </div>
