@@ -1,7 +1,7 @@
 @props(['course'])
 <div class="card bg-slate-50 cursor-pointer h-full flex flex-col justify-between">
     <div class="relative">
-        @if(str_contains($course->title, 'Premium course'))
+        @if(str_contains($course->title, 'Premium Course'))
         <div class="absolute left-0 top-0 h-16 w-16">
             <div class="ribbon">
                 Premium Course
