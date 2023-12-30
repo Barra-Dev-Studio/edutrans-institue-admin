@@ -7,15 +7,6 @@
                 .create(document.querySelector('#ckeditor'), {
                     language: 'en',
                     contentsLangDirection: 'ltr',
-                    toolbar: {
-                        items: [
-                            'undo', 'redo',
-                            '|', 'heading',
-                            '|', 'bold', 'italic',
-                            '|', 'link', 'insertTable', 'blockQuote',
-                            '|', 'bulletedList', 'numberedList', 'outdent', 'indent'
-                        ]
-                    },
                 })
                 .then(function (editor) {
                     editor.model.document.on('change:data', () => {
