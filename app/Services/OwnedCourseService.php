@@ -44,7 +44,7 @@ class OwnedCourseService
             ->with(['course.chapters', 'chapterProgress'])
             ->latest()->first();
 
-        if (!$ownedCourse) {
+        if ($ownedCourse === null) {
             return false;
         }
 
