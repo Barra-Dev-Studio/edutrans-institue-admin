@@ -12,7 +12,7 @@ class BlogIndexLivewire extends Component
 
     public $featuredPost;
 
-    public $showPage = 5;
+    public $showPage = 6;
     public $search = '';
 
     public $tagBackgrounds = [
