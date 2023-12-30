@@ -207,4 +207,23 @@ select{
 .social-button {
     @apply border border-slate-200 rounded p-4 text-lg hover:bg-sky-800 hover:text-slate-50 text-slate-700
 }
+.ribbon {
+    @apply absolute pl-5 transform bg-sky-600 text-white font-medium py-1 top-[138px] w-[150px]
+}
+.ribbon::after {
+    content: '';
+    width: 30px;
+    height: 100%;
+    background-color: #4497D9;
+
+    /* position ribbon ends behind and slightly lower */
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    right: -14px;
+    rotate: 180deg;
+
+    /* clip ribbon end shape */
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 50% 50%);
+}
 

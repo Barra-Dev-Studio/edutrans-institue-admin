@@ -16,7 +16,9 @@
         "livewire/volt": "^1.0",
         "maatwebsite/excel": "^3.1",
         "simplesoftwareio/simple-qrcode": "~4",
-        "spatie/laravel-permission": "^6.0"
+        "spatie/laravel-permission": "^6.0",
+        "ext-gd": "*",
+        "ext-curl": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.9",

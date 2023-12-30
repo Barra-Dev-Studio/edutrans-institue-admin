@@ -37,4 +37,19 @@ class OwnedCourseService
     {
         return OwnedCourse::where('member_id', auth()->id())->count();
     }
+
+    public static function checkIfCompleteTheCourse($id)
+    {
+        $ownedCourse = OwnedCourse::where('member_id', auth()->id())->where('id', $id)
+            ->with(['course.chapters', 'chapterProgress'])
+            ->latest()->first();
+        $totalChapter = count($ownedCourse->course->chapters);
+        $chapterProgress = $ownedCourse->chapterProgress;
+        $completedChapter = collect(json_decode($chapterProgress->chapters_completed))
+            ->filter(function ($value) { return $value->is_completed; })->count();
+
+        // Add check quiz
+
+        return $totalChapter == $completedChapter;
+    }
 }

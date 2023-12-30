@@ -3,6 +3,7 @@
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryPostController;
+use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
@@ -80,6 +81,9 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/transaction', [MemberController::class,'transaction'])->name('transaction');
             Route::get('/transaction/{id}', [MemberController::class,'detailTransaction'])->name('transaction.show');
             Route::get('/play/{id}/{chapterId?}', [MemberController::class,'play'])->name('play');
+            Route::get('/certificate/', [CertificateController::class, 'index'])->name('certificate');
+            Route::get('/certificate/my/{id}', [CertificateController::class, 'generateCertificate'])->name('certificate.my');
+            Route::get('/certificate/download/{id}', [CertificateController::class, 'download'])->name('certificate.download');
         });
     });
 });
