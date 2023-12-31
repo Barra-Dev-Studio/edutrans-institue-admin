@@ -16,6 +16,7 @@ use App\Http\Controllers\RatingController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\QuizController;
 use Illuminate\Support\Facades\Route;
@@ -77,6 +78,8 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/quiz/{courseId}/create', [QuizController::class, 'create'])->name('quiz.create');
             Route::get('/quiz/{courseId}', [QuizController::class, 'index'])->name('quiz.index');
             Route::resource('quiz', QuizController::class)->only('edit', 'destroy');
+
+            Route::get('/paymentmethod', [PaymentMethodController::class, 'index'])->name('paymentmethod.index');
         });
     });
 

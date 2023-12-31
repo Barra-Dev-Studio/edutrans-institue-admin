@@ -52,6 +52,12 @@
                     </li>
                     <li class="menu-heading px-4 py-3 text-xs font-medium text-gray-500 cursor-default" data-key="t-elements">Admin area</li>
                     <li>
+                        <a href="{{ route('dashboard.paymentmethod.index') }}" class="pl-6 pr-4 py-3 block text-sm font-medium text-gray-700 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
+                            <i data-feather="dollar-sign"></i>
+                            <span data-key="t-paymentmethod" class="prose"> Payment methods</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('dashboard.user.index') }}" class="pl-6 pr-4 py-3 block text-sm font-medium text-gray-700 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
                             <i data-feather="user"></i>
                             <span data-key="t-user" class="prose"> Users</span>
