@@ -9,6 +9,7 @@ use App\Models\TransactionDetail;
 use App\Notifications\CoursePaid;
 use Illuminate\Support\Facades\Auth;
 use DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class TransactionService
@@ -110,6 +111,7 @@ class TransactionService
             }
             return self::getRedirectUrl($payment, $method);
         } catch (\Exception $e) {
+            Log::error($e);
             DB::rollBack();
             return false;
         }
