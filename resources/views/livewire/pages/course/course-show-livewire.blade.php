@@ -16,6 +16,9 @@
                     <li class="text-slate-700 prose font-medium p-4 hover:bg-slate-200 border-slate-200 cursor-pointer">
                         <a class="text-slate-700 !no-underline" href="{{ route('dashboard.rating.index', $course->id) }}">Rating management</a>
                     </li>
+                    <li class="text-slate-700 prose font-medium p-4 hover:bg-slate-200 border-slate-200 cursor-pointer">
+                        <a class="text-slate-700 !no-underline" href="{{ route('dashboard.quiz.index', $course->id) }}">Quiz management</a>
+                    </li>
                 </ul>
             </div>
         </div>

@@ -17,6 +17,7 @@ use App\Http\Controllers\SectionController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\QuizController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -72,6 +73,10 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/rating/{id}/show', [RatingController::class, 'show'])->name('rating.show');
             Route::get('/rating/{courseId}', [RatingController::class, 'index'])->name('rating.index');
             Route::resource('rating', RatingController::class)->only('edit', 'destroy');
+
+            Route::get('/quiz/{courseId}/create', [QuizController::class, 'create'])->name('quiz.create');
+            Route::get('/quiz/{courseId}', [QuizController::class, 'index'])->name('quiz.index');
+            Route::resource('quiz', QuizController::class)->only('edit', 'destroy');
         });
     });
 
