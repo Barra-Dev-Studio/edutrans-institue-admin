@@ -259,14 +259,17 @@ class TransactionService
             if ($method === 'EWALLET') {
                 $xendit->createEWalletPayment($data->payment_method, $transaction->id, $data->total_price, $items, $data->mobile_number ?? '');
                 $response = $xendit->getResponse();
+                Log::info($response->body());
                 return json_decode($response->body());
             } else if ($method === 'QRIS') {
                 $xendit->createQrisPayment('ID_DANA', $transaction->id, $data->total_price, $items, $data->mobile_number ?? '');
                 $response = $xendit->getResponse();
+                Log::info($response->body());
                 return json_decode($response->body());
             } else if ($method === 'Virtual Account (VA)') {
                 $xendit->createVAPayment($data->payment_method, $transaction->id, $data->total_price, $items);
                 $response = $xendit->getResponse();
+                Log::info($response->body());
                 return json_decode($response->body());
             }
             return false;
