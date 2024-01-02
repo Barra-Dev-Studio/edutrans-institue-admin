@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\UserVirtualAccountController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,5 +24,6 @@ Route::middleware('verify.callback')->group(function () {
     Route::post('/payment/callback', [TransactionController::class, 'callback'])->name('payment.callback');
     Route::post('/payment/qris/callback', [TransactionController::class, 'callbackQris'])->name('payment.callback.qris');
     Route::post('/payment/va/callback', [TransactionController::class, 'callbackVA'])->name('payment.callback.va');
+    Route::post('/payment/va/upsert', [UserVirtualAccountController::class, 'callbackUpsertVA'])->name('payment.upsert.va');
 });
 
