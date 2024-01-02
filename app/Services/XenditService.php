@@ -3,6 +3,7 @@
 namespace App\Services;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class XenditService
 {
@@ -45,6 +46,8 @@ class XenditService
             ]
         ];
 
+        Log::info(json_encode($body));
+
         $headers = [
             'Content-Type' => 'application/json',
         ];
@@ -84,6 +87,8 @@ class XenditService
             ]
         ];
 
+        Log::info(json_encode($body));
+
         $headers = [
             'Content-Type' => 'application/json',
             'api-version' => '2022-07-31'
@@ -103,6 +108,8 @@ class XenditService
             'expected_amount' => $amount,
             'expiration_date' => Carbon::now()->addHour(1),
         ];
+
+        Log::info(json_encode($body));
 
         $headers = [
             'Content-Type' => 'application/json',
