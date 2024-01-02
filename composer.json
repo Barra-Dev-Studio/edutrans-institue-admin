@@ -6,6 +6,8 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "ext-curl": "*",
+        "ext-gd": "*",
         "guzzlehttp/guzzle": "^7.2",
         "jorenvanhocht/laravel-share": "^4.2",
         "laravel/framework": "^10.10",
@@ -17,8 +19,7 @@
         "maatwebsite/excel": "^3.1",
         "simplesoftwareio/simple-qrcode": "~4",
         "spatie/laravel-permission": "^6.0",
-        "ext-gd": "*",
-        "ext-curl": "*"
+        "spatie/laravel-sitemap": "^7.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.9",

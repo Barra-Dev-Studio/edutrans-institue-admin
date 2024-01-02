@@ -14,6 +14,7 @@ use App\Http\Controllers\MentorController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\SectionController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PaymentMethodController;
@@ -80,6 +81,7 @@ Route::middleware(['auth'])->group(function () {
             Route::resource('quiz', QuizController::class)->only('edit', 'destroy');
 
             Route::get('/paymentmethod', [PaymentMethodController::class, 'index'])->name('paymentmethod.index');
+            Route::get('/generatesitemap', [SitemapController::class, 'generate'])->name('sitemap.generate');
         });
     });
 
