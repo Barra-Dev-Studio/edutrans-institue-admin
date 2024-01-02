@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Spatie\Sitemap\Sitemap;
@@ -30,6 +31,13 @@ class SitemapController extends Controller
                ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY)
                ->setPriority(0.1)
            );
+        });
+
+        Course::where('status', 'PUBLISHED')->each(function ($course) use ($sitemap) {
+            $sitemap->add(Url::create('course/' . $course->slug)
+                ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY)
+                ->setPriority(0.1)
+            );
         });
 
         $sitemap->writeToFile(public_path('sitemap.xml'));
