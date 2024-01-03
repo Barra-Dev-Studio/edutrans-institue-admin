@@ -26,8 +26,9 @@ class PlyrLivewire extends Component
 
     private function processThePresignedUrl(): void
     {
-        $this->embedId = Storage::disk('s3')->temporaryUrl($this->embedId, Carbon::now()->addMinutes(120));
+//        $this->embedId = Storage::disk('s3')->temporaryUrl($this->embedId, Carbon::now()->addMinutes(120));
 //        $this->embedId = str_replace('edutransinstitute.s3.ap-southeast-1.amazonaws.com', 'dbtu2xul1ioz8.cloudfront.net', $embedId);
+          $this->embedId = "https://dbtu2xul1ioz8.cloudfront.net/" . urlencode($this->embedId);
     }
 
     public function render()
