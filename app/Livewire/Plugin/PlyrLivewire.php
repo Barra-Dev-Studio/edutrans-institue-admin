@@ -3,6 +3,7 @@
 namespace App\Livewire\Plugin;
 
 use Carbon\Carbon;
+use Dreamonkey\CloudFrontUrlSigner\CloudFrontUrlSigner;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 
@@ -27,7 +28,7 @@ class PlyrLivewire extends Component
     private function processThePresignedUrl(): void
     {
         if(env('AWS_CLOUDFRONT_ACTIVE')) {
-            $this->embedId = env("AWS_CLOUDFRONT_ENDPOINT") . str_replace(' ', '%20', $this->embedId);
+            $this->embedId = CloudFrontUrlSigner::sign(env("AWS_CLOUDFRONT_ENDPOINT") . str_replace(' ', '%20', $this->embedId));
         } else {
             $this->embedId = Storage::disk('s3')->temporaryUrl($this->embedId, Carbon::now()->addMinutes(120));
         }

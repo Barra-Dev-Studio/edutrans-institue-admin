@@ -8,6 +8,7 @@
         "php": "^8.1",
         "ext-curl": "*",
         "ext-gd": "*",
+        "dreamonkey/laravel-cloudfront-url-signer": "^3.4",
         "guzzlehttp/guzzle": "^7.2",
         "jorenvanhocht/laravel-share": "^4.2",
         "laravel/framework": "^10.10",
