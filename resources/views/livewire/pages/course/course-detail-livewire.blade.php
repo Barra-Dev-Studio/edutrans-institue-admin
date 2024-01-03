@@ -189,7 +189,7 @@
                     <p class="text-lg mt-0">{{ trim(explode(".", $preview->title)[1]) }}</p>
                 </div>
                 <livewire:plugin.plyr-livewire id="player-{{ $loop->iteration }}" :embedId="$preview->playback_url"
-                    :autoplay="false" wire:key="{{ $preview->id }}" :course-id="$preview->course_id"></livewire:plugin.plyr-livewire>
+                    :autoplay="false" wire:key="{{ $preview->id }}" :course-id="$course->id"></livewire:plugin.plyr-livewire>
             </div>
         </div>
     </x-modal>
