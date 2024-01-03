@@ -28,7 +28,7 @@ class PlyrLivewire extends Component
     {
 //        $this->embedId = Storage::disk('s3')->temporaryUrl($this->embedId, Carbon::now()->addMinutes(120));
 //        $this->embedId = str_replace('edutransinstitute.s3.ap-southeast-1.amazonaws.com', 'dbtu2xul1ioz8.cloudfront.net', $embedId);
-          $this->embedId = "https://dbtu2xul1ioz8.cloudfront.net/" . str_replace(' ', '%20', $this->embedId);
+          $this->embedId = "https://djguv9mbuxyst.cloudfront.net/" . str_replace(' ', '%20', $this->embedId);
     }
 
     public function render()
