@@ -13,7 +13,7 @@
             </div>
             <div class="card-body">
                 <livewire:plugin.plyr-livewire id="player" :embedId="$chapter->playback_url" :autoplay="false"
-                    wire:key="{{ $chapter->id }}"></livewire:plugin.plyr-livewire>
+                    wire:key="{{ $chapter->id }}" :course-id="$chapter->course_id"></livewire:plugin.plyr-livewire>
             </div>
         </div>
         <div class="card dark:border-zinc-600 dark:bg-zinc-800 bg-slate-50">

@@ -32,7 +32,7 @@
             </div>
             <div class="card-body">
                 <div class="w-full">
-                    <livewire:plugin.plyr-livewire wire:ignore :embedId="$selectedChapter->playback_url"></livewire:plugin.plyr-livewire>
+                    <livewire:plugin.plyr-livewire wire:ignore :embedId="$selectedChapter->playback_url" :course-id="$selectedChapter->course_id"></livewire:plugin.plyr-livewire>
                     <div class="grid grid-cols-1 mt-8 gap-4">
                         <div class="card bg-white">
                             <div class="card-body">

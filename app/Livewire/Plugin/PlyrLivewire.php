@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Plugin;
 
+use App\Models\Course;
 use Carbon\Carbon;
 use Dreamonkey\CloudFrontUrlSigner\Facades\CloudFrontUrlSigner;
 use Illuminate\Support\Facades\Storage;
@@ -13,6 +14,8 @@ class PlyrLivewire extends Component
     public $autoplay = true;
     public $id = "mediaPlayer";
     public $source = 'amazons3';
+    public $course;
+    public $courseId;
 
     public function mount()
     {
@@ -23,6 +26,8 @@ class PlyrLivewire extends Component
         if (!str_contains($this->embedId, 'youtube.com') && !str_contains($this->embedId, 'youtu.be')) {
             $this->processThePresignedUrl();
         }
+
+        $this->course = Course::find($this->courseId);
     }
 
     private function processThePresignedUrl(): void
