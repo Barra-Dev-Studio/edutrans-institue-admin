@@ -22,7 +22,6 @@ class PlyrLivewire extends Component
     {
         if (str_contains($this->embedId, 'youtube.com') || str_contains($this->embedId, 'youtu.be')) {
             $this->source = 'youtube';
-            $this->embedId = Crypt::encryptString($this->embedId);
         }
 
         if (!str_contains($this->embedId, 'youtube.com') && !str_contains($this->embedId, 'youtu.be')) {
@@ -35,12 +34,10 @@ class PlyrLivewire extends Component
     private function processThePresignedUrl(): void
     {
         if(env('AWS_CLOUDFRONT_ACTIVE')) {
-            $embedId = CloudFrontUrlSigner::sign(env("AWS_CLOUDFRONT_ENDPOINT") . str_replace(' ', '%20', $this->embedId));
+            $this->embedId = CloudFrontUrlSigner::sign(env("AWS_CLOUDFRONT_ENDPOINT") . str_replace(' ', '%20', $this->embedId));
         } else {
-            $embedId = Storage::disk('s3')->temporaryUrl($this->embedId, Carbon::now()->addMinutes(120));
+            $this->embedId = Storage::disk('s3')->temporaryUrl($this->embedId, Carbon::now()->addMinutes(120));
         }
-
-        $this->embedId = Crypt::encryptString($embedId);
     }
 
     public function render()
