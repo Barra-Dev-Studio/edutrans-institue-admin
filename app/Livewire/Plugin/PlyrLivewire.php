@@ -3,7 +3,7 @@
 namespace App\Livewire\Plugin;
 
 use Carbon\Carbon;
-use Dreamonkey\CloudFrontUrlSigner\CloudFrontUrlSigner;
+use Dreamonkey\CloudFrontUrlSigner\Facades\CloudFrontUrlSigner;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 
