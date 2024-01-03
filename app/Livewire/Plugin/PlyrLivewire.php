@@ -22,6 +22,7 @@ class PlyrLivewire extends Component
     {
         if (str_contains($this->embedId, 'youtube.com') || str_contains($this->embedId, 'youtu.be')) {
             $this->source = 'youtube';
+            $this->embedId = Crypt::encryptString($this->embedId);
         }
 
         if (!str_contains($this->embedId, 'youtube.com') && !str_contains($this->embedId, 'youtu.be')) {
