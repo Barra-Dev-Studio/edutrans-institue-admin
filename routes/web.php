@@ -12,6 +12,7 @@ use App\Http\Controllers\GuestController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\QuizProgressController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\SitemapController;
@@ -94,6 +95,9 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/certificate/', [CertificateController::class, 'index'])->name('certificate');
             Route::get('/certificate/my/{id}', [CertificateController::class, 'generateCertificate'])->name('certificate.my');
             Route::get('/certificate/download/{id}', [CertificateController::class, 'download'])->name('certificate.download');
+            Route::get('/quiz/pre/{ownedCourseId}', [QuizProgressController::class, 'pre'])->name('quiz.pre');
+            Route::get('/quiz/result/{ownedCourseId}', [QuizProgressController::class, 'result'])->name('quiz.result');
+            Route::get('/quiz/{ownedCourseId}', [QuizProgressController::class, 'index'])->name('quiz.index');
         });
     });
 });
