@@ -24,6 +24,24 @@
             <p class="text-slate-600">This course does not have chapters</p>
         </div>
         @endforelse
+        @if($this->checkIfCourseHasQuiz())
+            <div class="card-body pb-4 border-b w-full border-t border-slate-200">
+                <h5 class="dark:text-zinc-100">Quiz</h5>
+            </div>
+            <div class="">
+                <div class="w-full">
+                    <div class="flex flex-col">
+                        <div class="hover:bg-slate-200 @if($this->checkIfUserHasCompletedTheQuiz()) border-l-2 border-emerald-500 bg-emerald-50 @endif">
+                            <a href="{{ route('member.quiz.pre', $course->id) }}"
+                               class="min-h-[75px] px-5 text-slate-700  prose font-medium py-2 border-slate-200 cursor-pointer flex justify-between items-center gap-4">
+                                <span>Mulai kerjakan quiz</span>
+                                @if($this->checkIfUserHasCompletedTheQuiz()) <i class="bx bx-check-circle text-emerald-600"></i> @endif
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
     </div>
     <div class="md:col-span-3 order-first md:order-last">
         <div class="card dark:border-zinc-600 dark:bg-zinc-800 bg-slate-50 w-full">

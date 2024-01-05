@@ -23,11 +23,19 @@ class QuizService
     public static function getFormattedQuizByCourseId($courseId)
     {
         $quizzes = Quiz::where('course_id', $courseId)->inRandomOrder()->get();
+        $formattedQuiz = [];
         foreach ($quizzes as $quiz) {
-            $answers = json_decode($quizzes->answers);
-            $quiz->answers = shuffle($answers);
+            $answers = json_decode($quiz->answers);
+            shuffle($answers);
+            $formattedQuiz[] = [
+                'id' => $quiz->id,
+                'question' => $quiz->question,
+                'answers' => $answers,
+                'duration' => $quiz->duration,
+                'score' => $quiz->score,
+            ];
         }
 
-        return $quizzes;
+        return $formattedQuiz;
     }
 }

@@ -5,6 +5,8 @@ namespace App\Livewire\Pages\Member;
 use App\Models\Chapter;
 use App\Models\ChapterProgress;
 use App\Models\OwnedCourse;
+use App\Models\Quiz;
+use App\Services\QuizProgressService;
 use Livewire\Component;
 use Illuminate\Support\Arr;
 
@@ -85,6 +87,18 @@ class CoursePlayLivewire extends Component
         }
 
         return true;
+    }
+
+    public function checkIfCourseHasQuiz()
+    {
+        $check = Quiz::where('course_id', $this->course->course->id)->where('status', 'PUBLISHED')->first();
+        return $check !== null;
+    }
+
+    public function checkIfUserHasCompletedTheQuiz()
+    {
+        $check = QuizProgressService::getByOwnedCourseId($this->course->id);
+        return $check->is_done;
     }
 
     public function render()

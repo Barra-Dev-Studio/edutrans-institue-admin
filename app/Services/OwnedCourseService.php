@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Mentor;
 use App\Models\OwnedCourse;
+use App\Models\Quiz;
 
 class OwnedCourseService
 {
@@ -55,9 +56,14 @@ class OwnedCourseService
 
         $courseHasCertificate = $ownedCourse->course->is_certified;
 
-
-        // Add check quiz
+        $checkIfCourseHasQuiz = Quiz::where('course_id', $ownedCourse->course_id)
+                ->where('status', 'PUBLISHED')->get();
+        if (count($checkIfCourseHasQuiz) > 0) {
+            $quiz = QuizProgressService::getByOwnedCourseId($id);
+            return $totalChapter == $completedChapter && $courseHasCertificate && $quiz->is_done;
+        }
 
         return $totalChapter == $completedChapter && $courseHasCertificate;
+
     }
 }
