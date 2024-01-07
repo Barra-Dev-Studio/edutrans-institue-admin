@@ -98,6 +98,9 @@ class CoursePlayLivewire extends Component
     public function checkIfUserHasCompletedTheQuiz()
     {
         $check = QuizProgressService::getByOwnedCourseId($this->course->id);
+        if ($check === null) {
+            return false;
+        }
         return $check->is_done;
     }
 
