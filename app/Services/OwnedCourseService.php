@@ -60,6 +60,9 @@ class OwnedCourseService
                 ->where('status', 'PUBLISHED')->get();
         if (count($checkIfCourseHasQuiz) > 0) {
             $quiz = QuizProgressService::getByOwnedCourseId($id);
+            if ($quiz === null) {
+                return false;
+            }
             return $totalChapter == $completedChapter && $courseHasCertificate && $quiz->is_done;
         }
 
