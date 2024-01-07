@@ -76,6 +76,7 @@ class QuizPlayLivewire extends Component
 
     public function submitProgress()
     {
+        $this->updateProgress();
         QuizProgressService::recapProgess($this->ownedCourse->id);
         return redirect()->route('member.quiz.result', $this->ownedCourse->id);
     }
