@@ -16,6 +16,7 @@ class QuizPlayLivewire extends Component
 
     public function mount()
     {
+        $this->checkValidSession();
         $this->loadQuestions();
     }
     public function loadQuestions()
@@ -26,6 +27,8 @@ class QuizPlayLivewire extends Component
 
     public function nextQuestion()
     {
+        $this->checkValidSession();
+
         if ($this->index + 1 < count($this->questions)) {
             $this->updateProgress();
             $this->index++;
@@ -78,7 +81,18 @@ class QuizPlayLivewire extends Component
     {
         $this->updateProgress();
         QuizProgressService::recapProgess($this->ownedCourse->id);
+        session()->pull('sessionKey');
         return redirect()->route('member.quiz.result', $this->ownedCourse->id);
+    }
+
+    public function checkValidSession()
+    {
+        $sessionKey = session('sessionKey');
+        if (!session()->has('sessionKey') && !uuid_is_valid($sessionKey)) {
+            session()->pull('sessionKey');
+            return redirect()->route('member.quiz.pre', $this->ownedCourse->id);
+        }
+        return true;
     }
 
 

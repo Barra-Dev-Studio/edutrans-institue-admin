@@ -12,10 +12,15 @@
             <p class="text-lg text-slate-500">Dengan perolehan skor</p>
             <h1 class="dark:text-zinc-100 my-4">{{ $scores }}</h1>
             <p class="mb-16 text-slate-500 text-lg">Jawaban benar {{ $correctAnswers }} dari {{ $totalAnswers }}</p>
-            <div class="mt-16 mb-8">
-                <span class="bg-gray-900 text-white py-4 px-8 text-lg rounded mt-8">
+            <div class="mt-16 mb-8 flex gap-4 justify-center items-center">
+                <span class="bg-gray-900 text-white py-4 px-8 text-lg rounded mt-8 hover:bg-gray-950">
                     <a href="{{ route('member.play', $ownedCourse->id) }}">Kembali</a>
                 </span>
+                @if($quizProgress->is_done)
+                    <span class="bg-emerald-500 text-white py-4 px-8 text-lg rounded mt-8 hover:bg-emerald-600">
+                        <a href="{{ route('member.certificate') }}">Sertifikat</a>
+                    </span>
+                @endif
             </div>
         </div>
     </div>

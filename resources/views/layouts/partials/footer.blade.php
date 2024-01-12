@@ -4,8 +4,8 @@
             &copy;
             <script>
                 document.write(new Date().getFullYear());
-            </script> Minia
+            </script> Edutrans Institute
         </div>
-        <div class="hidden md:inline-block text-end">Design & Develop by <a href="" class="text-violet-500 underline">Themesbrand</a></div>
+        <div class="hidden md:inline-block text-end">Edutrans Institute by Hendi Pratama</div>
     </div>
 </footer>

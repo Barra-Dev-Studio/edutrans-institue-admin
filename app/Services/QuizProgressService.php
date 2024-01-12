@@ -57,7 +57,7 @@ class QuizProgressService
             }
         }
 
-        $isDone = $correctAnswers === count($histories);
+        $isDone = $correctAnswers >= floor(count($histories) * 0.8);
         return QuizProgress::where('member_id', auth()->id())->where('owned_course_id', $ownedCourseId)
             ->update([
                 'end_at' => Carbon::now(),

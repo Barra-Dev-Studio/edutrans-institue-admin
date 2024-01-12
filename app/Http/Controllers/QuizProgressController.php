@@ -6,6 +6,7 @@ use App\Services\CourseService;
 use App\Services\OwnedCourseService;
 use App\Services\QuizProgressService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class QuizProgressController extends Controller
 {
@@ -13,6 +14,9 @@ class QuizProgressController extends Controller
     {
         $ownedCourse = OwnedCourseService::getById($ownedCourseId);
         QuizProgressService::init($ownedCourse);
+        if (!session()->has('sessionKey') && !uuid_is_valid(session('sessionKey'))) {
+            return redirect()->route('member.quiz.pre', $ownedCourseId);
+        }
         return view('pages.member.quiz.index', compact('ownedCourse', ));
     }
 
@@ -38,6 +42,8 @@ class QuizProgressController extends Controller
     public function pre($ownedCourseId)
     {
         $ownedCourse = OwnedCourseService::getById($ownedCourseId);
+        $sessionKey = Str::uuid();
+        session(['sessionKey' => $sessionKey]);
         return view('pages.member.quiz.pre', compact('ownedCourse', ));
     }
 }

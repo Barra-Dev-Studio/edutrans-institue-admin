@@ -17,6 +17,12 @@
             <div class="text-center">
                 <h4 class="mb-4 text-slate-500">Waktu</h4>
                 <h1 class="text-8xl @if($timer > 5) text-slate-700 @else text-red-500 @endif" wire:poll.1s="countdown" wire:poll.keep-alive>{{ $timer }}</h1>
+                <button class="mt-4 bg-emerald-500 py-4 px-8 text-white text-lg rounded hover:bg-emerald-600 cursor-pointer" wire:click="nextQuestion">
+                    @if($index + 1 < count($questions)) Selanjutnya
+                    @else
+                    Kirimkan
+                    @endif
+                </button>
             </div>
         </div>
     </div>

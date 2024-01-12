@@ -22,7 +22,7 @@ class QuizService
 
     public static function getFormattedQuizByCourseId($courseId)
     {
-        $quizzes = Quiz::where('course_id', $courseId)->inRandomOrder()->get();
+        $quizzes = Quiz::where('course_id', $courseId)->oldest()->get();
         $formattedQuiz = [];
         foreach ($quizzes as $quiz) {
             $answers = json_decode($quiz->answers);
