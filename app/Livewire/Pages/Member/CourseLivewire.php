@@ -23,8 +23,10 @@ class CourseLivewire extends Component
 
     public function mount()
     {
-        $this->categories = OwnedCourse::where('member_id', auth()->user()->id)->pluck('category');
-        $this->mentors = OwnedCourse::where('member_id', auth()->user()->id)->pluck('mentor');
+        $this->categories = OwnedCourse::where('member_id', auth()->user()->id)
+                ->distinct()->pluck('category');
+        $this->mentors = OwnedCourse::where('member_id', auth()->user()->id)
+                ->distinct()->pluck('mentor');
     }
 
     public function updatingSearch()
