@@ -73,7 +73,7 @@ new #[Layout('layouts.guest')] class extends Component
 
 <div class="w-screen flex items-center justify-center my-16">
     <div class="bg-slate-50 p-10 rounded-lg border border-slate-300/40 md:min-w-[460px] md:max-w-[460px]">
-        <h2 class="mb-8">Login</h2>
+        <h2 class="mb-8">Masuk</h2>
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -106,7 +106,7 @@ new #[Layout('layouts.guest')] class extends Component
                 </label>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
+            <div class="flex items-center justify-between mt-4">
                 @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}" wire:navigate>
                         {{ __('Forgot your password?') }}

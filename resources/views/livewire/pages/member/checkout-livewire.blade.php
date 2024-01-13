@@ -78,12 +78,15 @@
                                 <p class="text-slate-700">{{ $selectedPayment == null ? 'Silakan pilih metode pembayaran untuk melanjutkan proses pemesanan' : $selectedPaymentShow->name }}</p>
                             </div>
                             <div class="mt-8">
-                                <x-input-label for="payment_method" :value="__('Informasi pemesan')" />
                                 @if(auth()->check())
+                                <x-input-label for="payment_method" :value="__('Informasi pemesan')" />
                                 <p class="text-slate-700">{{ auth()->user()->name }}</p>
                                 <p class="text-slate-700">{{ auth()->user()->email }}</p>
                                 @else
-                                <a href="{{ route('login') }}" class="!no-underline prose bg-sky-800 text-white py-3 block w-full px-6 rounded hover:bg-sky-700">Masuk</a>
+                                <p class="text-slate-700">Untuk melakukan pemesanan, silakan
+                                    <a href="{{ route('login') }}" class="text-blue-500 underline hover:text-blue-600 cursor-pointer">Masuk</a> terlebih dahulu, atau
+                                    <a href="{{ route('register') }}" class="text-blue-500 underline hover:text-blue-600 cursor-pointer">Buat akun</a> jika belum memilikinya
+                                </p>
                                 @endif
                             </div>
                         </div>

@@ -168,7 +168,7 @@
                             <p class="mb-0 mt-0 flex items-center gap-2 cursor-pointer hover:text-black"><i class="bx bx-book"></i> Total konten kursus {{ $course->chapters->count() }} konten</p>
                             <p class="mb-0 mt-0 flex items-center gap-2 cursor-pointer hover:text-black"><i class="bx bx-money-withdraw"></i> Jaminan uang kembali</p>
                             @if($course->is_certified)
-                            <p class="mb-0 mt-0"><i class="bx bx-file"></i> Sertifikat kursus</p>
+                            <p class="mb-0 mt-0 flex items-center gap-2 cursor-pointer hover:text-black"><i class="bx bx-file"></i> Sertifikat kursus</p>
                             @endif
                         </div>
                         <div class="bg-slate-200 h-[1px] my-4"></div>
