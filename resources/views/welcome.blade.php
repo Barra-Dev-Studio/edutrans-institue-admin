@@ -59,9 +59,12 @@
         </div>
     </div>
     <section>
+        <livewire:pages.guest.popular-course-livewire></livewire:pages.guest.popular-course-livewire>
+    </section>
+    <section class="bg-sky-900">
         <div class="md:px-16 py-10">
             <div class="px-6 md:px-8">
-                <h3 class="mb-8">Bagaimana kata mereka?</h3>
+                <h3 class="mb-8 text-white">Bagaimana kata mereka?</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 items-start justify-between gap-8 md:gap-4">
                     <div class="card bg-slate-50 h-full cursor-pointer hover:scale-105">
                         <div class="card-body h-full">
@@ -108,6 +111,9 @@
                 </div>
             </div>
         </div>
+    </section>
+    <section>
+        <livewire:pages.guest.latest-post-livewire></livewire:pages.guest.latest-post-livewire>
     </section>
     <section class="bg-slate-200/40">
         <div class="md:px-16 py-10">
