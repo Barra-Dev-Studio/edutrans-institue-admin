@@ -11,7 +11,9 @@ class PopularCourseLivewire extends Component
 
     public function mount()
     {
-       $this->courses = Course::where('status', 'PUBLISHED')->orderBy('total_students', 'desc')->limit(9)->get();
+       $this->courses = Course::where('status', 'PUBLISHED')
+           ->orderBy('total_students', 'desc')
+           ->limit(8)->get();
     }
     public function render()
     {
