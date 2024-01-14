@@ -3,7 +3,7 @@
     <div class="px-6 md:px-8">
         <div class="flex items-center justify-between mb-8">
             <h3>Jelajahi kursus populer</h3>
-            <a href="{{ route('courses') }}" class="prose">Jelajahi kursus</a>
+            <a href="{{ route('courses') }}" class="prose">Lihat semua kursus</a>
         </div>
         <div>
             <div class="swiper popular-courses">

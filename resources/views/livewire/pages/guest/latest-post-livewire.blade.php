@@ -1,7 +1,10 @@
 <div class="md:px-16 py-10">
     <div class="px-6 md:px-8">
-        <h3 class="mb-8">Postingan terbaru</h3>
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8 mt-8">
+        <div class="flex items-center justify-between mb-8">
+            <h3>Artikel terbaru</h3>
+            <a href="{{ route('blog') }}" class="prose">Lihat semua artikel</a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-8">
             @forelse($posts as $post)
                 <a href="{{ route('blog.show', $post->slug) }}">
                     <div class="card h-full bg-slate-50">
