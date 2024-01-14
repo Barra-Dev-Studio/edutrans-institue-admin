@@ -13,7 +13,7 @@ class PopularCourseLivewire extends Component
     {
        $this->courses = Course::where('status', 'PUBLISHED')
            ->orderBy('total_students', 'desc')
-           ->limit(8)->get();
+           ->limit(5)->get();
     }
     public function render()
     {
