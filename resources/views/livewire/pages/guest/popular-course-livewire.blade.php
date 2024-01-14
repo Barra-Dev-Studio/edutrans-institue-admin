@@ -38,7 +38,7 @@
             breakpoints: {
                 769: {
                     slidesPerView: 4,
-                    slidesPerGroup: 2,
+                    slidesPerGroup: 1,
                 },
             },
         });
