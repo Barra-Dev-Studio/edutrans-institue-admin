@@ -37,6 +37,8 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'welcome')->name('home');
 Route::view('/courses', 'courses')->name('courses');
 Route::view('/about', 'about')->name('about');
+Route::view('/terms', 'terms')->name('terms');
+Route::view('/terms/privacy', 'privacy-policy')->name('privacy');
 Route::get('/course/{slug}',[GuestController::class, 'courseDetail'])->name('course.detail');
 Route::get('/checkout/{slug}', [MemberController::class,'checkout'])->name('checkout');
 Route::get('payment/{transactionId}', [PaymentController::class, 'index'])->name('payment.index');

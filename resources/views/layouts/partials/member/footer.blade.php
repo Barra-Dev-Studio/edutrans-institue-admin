@@ -35,12 +35,14 @@
                 </div>
             </div>
             <div class="md:col-span-2">
-                <h3 class="text-white mb-3">Useful Links</h3>
+                <h3 class="text-white mb-3">Menu Edutrans</h3>
                 <ul class="list-none text-slate-400 flex flex-col gap-2">
                     <li><a href="{{ route('home')}}" class="!no-underline hover:text-white">Home</a></li>
                     <li><a href="{{ route('blog') }}" class="!no-underline hover:text-white">Blog</a></li>
                     <li><a href="{{ route('courses') }}" class="!no-underline hover:text-white">Courses</a></li>
                     <li><a href="{{ route('about') }}" class="!no-underline hover:text-white">About</a></li>
+                    <li><a href="{{ route('terms') }}" class="!no-underline hover:text-white">Syarat & Ketentuan</a></li>
+                    <li><a href="{{ route('privacy') }}" class="!no-underline hover:text-white">Kebijakan Privasi</a></li>
                 </ul>
             </div>
             <div class="md:col-span-2">
