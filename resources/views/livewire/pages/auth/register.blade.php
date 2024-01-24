@@ -78,7 +78,7 @@ new #[Layout('layouts.guest')] class extends Component
             </div>
 
             <div class="block mt-4">
-                <p class="text-slate-500">Dengan mendaftar Anda menyetujui syarat dan ketentuan yang ada di Edutrans Institute</p>
+                <p class="text-slate-500">Dengan mendaftar Anda menyetujui <a href="{{ route('terms') }}" class="underline">syarat dan ketentuan</a> yang ada di Edutrans Institute</p>
             </div>
 
             <div class="flex items-center justify-between mt-4">

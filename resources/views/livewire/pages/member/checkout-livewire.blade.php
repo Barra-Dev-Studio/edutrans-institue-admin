@@ -1,4 +1,12 @@
 <div>
+    @if(auth() && auth()->user()->email_verified_at === null)
+    <div class="flex px-5 py-3 border-2 bg-red-50 text-red-700 border-red-100 rounded mb-4">
+        <div>
+            <h6 class="text-15">Email belum dikonfirmasi</h6>
+            <p>Link konfirmasi telah dikirimkan ke {{ auth()->user()->email }}. Konfirmasi email terlebih dahulu supaya dapat memutar course yang telah dibeli.</p>
+        </div>
+    </div>
+    @endif
     <div class="card bg-slate-50">
         <div class="card-body">
             <div class="grid grid-cols-1 md:grid-cols-3">

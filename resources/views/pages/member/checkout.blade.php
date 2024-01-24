@@ -11,7 +11,12 @@
     </div>
     <div class="md:px-16 pb-16 mt-16">
         <div class="px-6 md:px-8">
+            @guest
+            <livewire:pages.guest.login-or-register-livewire :course="$course"></livewire:pages.guest.login-or-register-livewire>
+            @endguest
+            @auth
             <livewire:pages.member.checkout-livewire :course="$course"></livewire:pages.member.checkout-livewire>
+            @endauth
         </div>
     </div>
 </x-guest-layout>
