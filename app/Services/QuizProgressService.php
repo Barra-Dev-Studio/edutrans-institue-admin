@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Quiz;
 use App\Models\QuizProgress;
 use Carbon\Carbon;
 
@@ -44,21 +45,21 @@ class QuizProgressService
                 ]);
     }
 
-    public static function recapProgess($ownedCourseId)
+    public static function recapProgress($ownedCourse)
     {
-        $correctAnswers = 0;
         $scores = 0;
-        $data = self::getByOwnedCourseId($ownedCourseId);
+        $data = self::getByOwnedCourseId($ownedCourse->id);
         $histories = json_decode($data->histories);
         foreach ($histories as $history) {
             if ($history->is_pass) {
                 $scores += $history->score;
-                $correctAnswers++;
             }
         }
 
-        $isDone = $correctAnswers >= floor(count($histories) * 0.8);
-        return QuizProgress::where('member_id', auth()->id())->where('owned_course_id', $ownedCourseId)
+        $actualScores = QuizService::getSumScores($ownedCourse->course_id);
+
+        $isDone = $scores >= floor($actualScores * 0.8);
+        return QuizProgress::where('member_id', auth()->id())->where('owned_course_id', $ownedCourse->id)
             ->update([
                 'end_at' => Carbon::now(),
                 'is_done' => $isDone,

@@ -29,9 +29,9 @@ class QuizProgressController extends Controller
         $ownedCourse = OwnedCourseService::getById($ownedCourseId);
         $histories = json_decode($quizProgress->histories);
         foreach ($histories as $history) {
-            $scores += $history->score;
             $totalAnswers++;
             if ($history->is_pass) {
+                $scores += $history->score;
                 $correctAnswers += 1;
             }
         }

@@ -12,7 +12,7 @@ use Livewire\Component;
 class PlyrLivewire extends Component
 {
     public $embedId;
-    public $autoplay = false;
+    public $autoplay = true;
     public $id = "mediaPlayer";
     public $source = 'amazons3';
     public $course;

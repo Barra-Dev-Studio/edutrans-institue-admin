@@ -38,4 +38,10 @@ class QuizService
 
         return $formattedQuiz;
     }
+
+    public static function getSumScores($courseId)
+    {
+        return (int) Quiz::where('course_id', $courseId)->sum('score');
+    }
+
 }
