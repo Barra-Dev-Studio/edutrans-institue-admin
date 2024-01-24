@@ -46,7 +46,7 @@
                         <x-primary-button class="w-full md:w-auto">
                             {{ __('Buat akun') }}
                         </x-primary-button>
-                        <x-primary-outline-button wire:click="changeSection" class="w-full md:w-auto">
+                        <x-primary-outline-button type="button" wire:click="changeSection" class="w-full md:w-auto">
                             {{ __('Saya sudah memiliki akun') }}
                         </x-primary-outline-button>
                     </div>
@@ -78,7 +78,7 @@
                         <x-primary-button class="w-full md:w-auto">
                             {{ __('Log in') }}
                         </x-primary-button>
-                        <x-primary-outline-button wire:click="changeSection" class="w-full md:w-auto">
+                        <x-primary-outline-button type="button" wire:click="changeSection" class="w-full md:w-auto">
                             {{ __('Saya belum memiliki akun') }}
                         </x-primary-outline-button>
                     </div>
