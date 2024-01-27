@@ -71,4 +71,9 @@ class QuizProgressService
                 'scores' => $scores
             ]);
     }
+
+    public static function getByOwnedCourseIdWithoutUser($ownedCourseId)
+    {
+        return QuizProgress::where('owned_course_id', $ownedCourseId)->latest()->first();
+    }
 }

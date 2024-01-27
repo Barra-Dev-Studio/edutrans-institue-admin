@@ -94,7 +94,7 @@ class OwnedCourseService
         $checkIfCourseHasQuiz = Quiz::where('course_id', $ownedCourse->course_id)
             ->where('status', 'PUBLISHED')->get();
         if (count($checkIfCourseHasQuiz) > 0) {
-            $quiz = QuizProgressService::getByOwnedCourseId($id);
+            $quiz = QuizProgressService::getByOwnedCourseIdWithoutUser($id);
             if ($quiz === null) {
                 return false;
             }
