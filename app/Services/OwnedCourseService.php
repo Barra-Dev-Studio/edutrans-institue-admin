@@ -101,7 +101,11 @@ class OwnedCourseService
             return $totalChapter == $completedChapter && $courseHasCertificate && $quiz->is_done;
         }
 
-        return $totalChapter == $completedChapter && $courseHasCertificate;
+        if ($courseHasCertificate) {
+            return $totalChapter == $completedChapter && $courseHasCertificate;
+        }
+
+        return $totalChapter == $completedChapter;
     }
 
 }
