@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Certificate;
 use App\Services\CertificateService;
 use App\Services\OwnedCourseService;
 use Carbon\Carbon;
@@ -54,5 +55,20 @@ class CertificateController extends Controller
             'Content-Disposition' => "attachment; filename=$name",
         ];
         return Response::download($tempFilePath, $name, $headers)->deleteFileAfterSend(true);
+    }
+
+    public function validateNumber($certificateNumber)
+    {
+        $certificate = CertificateService::getByNumber($certificateNumber);
+
+        if ($certificate === null) {
+            abort (404);
+        }
+
+        if (!OwnedCourseService::checkIfCompleteTheCourseById($certificate->owned_course_id)) {
+            abort(404);
+        }
+
+        return view('pages.certificate.validate', compact('certificate'));
     }
 }

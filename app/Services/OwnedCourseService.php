@@ -67,6 +67,36 @@ class OwnedCourseService
         }
 
         return $totalChapter == $completedChapter && $courseHasCertificate;
-
     }
+
+    public static function checkIfCompleteTheCourseById($id)
+    {
+        $ownedCourse = OwnedCourse::where('id', $id)
+            ->with(['course.chapters', 'chapterProgress'])
+            ->latest()->first();
+
+        if ($ownedCourse === null) {
+            return false;
+        }
+
+        $totalChapter = count($ownedCourse->course->chapters);
+        $chapterProgress = $ownedCourse->chapterProgress;
+        $completedChapter = collect(json_decode($chapterProgress->chapters_completed))
+            ->filter(function ($value) { return $value->is_completed; })->count();
+
+        $courseHasCertificate = $ownedCourse->course->is_certified;
+
+        $checkIfCourseHasQuiz = Quiz::where('course_id', $ownedCourse->course_id)
+            ->where('status', 'PUBLISHED')->get();
+        if (count($checkIfCourseHasQuiz) > 0) {
+            $quiz = QuizProgressService::getByOwnedCourseId($id);
+            if ($quiz === null) {
+                return false;
+            }
+            return $totalChapter == $completedChapter && $courseHasCertificate && $quiz->is_done;
+        }
+
+        return $totalChapter == $completedChapter && $courseHasCertificate;
+    }
+
 }

@@ -59,6 +59,11 @@ class QuizProgressService
         $actualScores = QuizService::getSumScores($ownedCourse->course_id);
 
         $isDone = $scores >= floor($actualScores * 0.8);
+
+        if ($isDone) {
+            CertificateService::upsertCertificate($ownedCourse->id);
+        }
+
         return QuizProgress::where('member_id', auth()->id())->where('owned_course_id', $ownedCourse->id)
             ->update([
                 'end_at' => Carbon::now(),

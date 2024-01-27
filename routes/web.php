@@ -52,6 +52,8 @@ Route::post('/email/verification-notification', [EmailVerifyController::class, '
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 Route::get('/post/{slug}', [BlogController::class, 'show'])->name('blog.show');
 
+Route::get('certificate/{certificate_number}', [CertificateController::class, 'validateNumber'])->name('validate.certificate');
+
 Route::middleware(['auth'])->group(function () {
     Route::get('profile', [DashboardController::class, 'profile'])->name('dashboard.profile');
 

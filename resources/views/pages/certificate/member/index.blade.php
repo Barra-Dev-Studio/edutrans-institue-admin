@@ -12,7 +12,7 @@
                 @forelse($certificates as $certificate)
                     <a href="{{ route('member.certificate.download', $certificate->id) }}" data-tooltip-target="certificate-{{ $loop->iteration }}">
                         <div class="bg-white p-2 rounded cursor-pointer hover:border hover:border-slate-200 h-full">
-                            <img src="{{ route('member.certificate.my', $certificate->id) }}" alt="{{ $certificate->title }}">
+                            <img src="{{ asset('assets/images/certificateshow.png') }}" alt="{{ $certificate->title }}">
                             <h6 class="mt-4">{{ $certificate->title }}</h6>
                         </div>
                         <div id="certificate-{{ $loop->iteration }}" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
