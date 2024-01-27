@@ -15,7 +15,8 @@ class Rating extends Model
         'name',
         'photo',
         'content',
-        'rate'
+        'rate',
+        'member_id'
     ];
 
     public function course()

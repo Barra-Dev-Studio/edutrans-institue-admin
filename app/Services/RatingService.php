@@ -26,4 +26,10 @@ class RatingService
     {
         return Course::where('id', $courseId)->decrement('total_ratings');
     }
+
+    public static function checkIfUserRatedTheCourse($courseId)
+    {
+        return Rating::where('member_id', auth()->id())->where('course_id', $courseId)
+                ->first();
+    }
 }

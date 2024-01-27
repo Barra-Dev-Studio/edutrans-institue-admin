@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Certificate;
 use App\Services\CertificateService;
 use App\Services\OwnedCourseService;
+use App\Services\RatingService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
@@ -44,8 +45,12 @@ class CertificateController extends Controller
         if (!OwnedCourseService::checkIfCompleteTheCourse($id)) {
             abort(404);
         }
-
         $ownedCourse = OwnedCourseService::getById($id);
+
+        if (!RatingService::checkIfUserRatedTheCourse($ownedCourse->course_id)) {
+            return redirect()->route('member.rate.index', [$ownedCourse->id, 'certificate']);
+        }
+
         $image = CertificateService::generateCertificate($ownedCourse);
         $tempFilePath = tempnam(sys_get_temp_dir(), 'image');
         imagepng($image, $tempFilePath);

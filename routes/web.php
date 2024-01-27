@@ -102,6 +102,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/quiz/pre/{ownedCourseId}', [QuizProgressController::class, 'pre'])->name('quiz.pre');
             Route::get('/quiz/result/{ownedCourseId}', [QuizProgressController::class, 'result'])->name('quiz.result');
             Route::get('/quiz/{ownedCourseId}', [QuizProgressController::class, 'index'])->name('quiz.index');
+            Route::get('/rate/{ownedCourseId}/{redirectTo?}', [RatingController::class, 'rate'])->name('rate.index');
         });
     });
 });

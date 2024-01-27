@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\ChapterService;
 use App\Services\CourseService;
 use App\Services\OwnedCourseService;
+use App\Services\RatingService;
 use App\Services\TransactionService;
 use Illuminate\Http\Request;
 
@@ -27,8 +28,19 @@ class MemberController extends Controller
         // Check if course playable
         // If not return 404
         $course = OwnedCourseService::getById($id);
+
+        if ($course === null) {
+            return redirect()->route('member.index');
+        }
+
         if (!TransactionService::checkIfUserOwnedTheCourse($course->course_id)) {
             return abort(404);
+        }
+
+        if (OwnedCourseService::checkIfCompleteTheCourse($id)) {
+            if (!RatingService::checkIfUserRatedTheCourse($course->course_id)) {
+                return redirect()->route('member.rate.index', $id);
+            }
         }
 
         $sections = ChapterService::getByCourseId($course->course_id, true);

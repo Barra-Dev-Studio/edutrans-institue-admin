@@ -291,6 +291,7 @@ class TransactionService
             $data = [
                 'ID_DANA' => route('payment.qris', $payment->reference_id),
                 'ID_LINKAJA' => route('payment.qris', $payment->reference_id),
+                'FREE_ITEM' => route('payment.index', $payment->reference_id),
             ];
         } else if ($method === 'Virtual Account (VA)') {
             $data = [
@@ -299,7 +300,8 @@ class TransactionService
                 'BRI' => route('payment.va', $payment->external_id),
                 'BSI' => route('payment.va', $payment->external_id),
                 'CIMB' => route('payment.va', $payment->external_id),
-                'MANDIRI' => route('payment.va', $payment->external_id)
+                'MANDIRI' => route('payment.va', $payment->external_id),
+                'FREE_ITEM' => route('payment.index', $payment->reference_id),
             ];
 
             return $data[$payment->bank_code] ?? false;

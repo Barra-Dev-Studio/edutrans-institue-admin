@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Rating;
+use App\Services\OwnedCourseService;
 use App\Services\RatingService;
 use Illuminate\Http\Request;
 
@@ -45,5 +46,20 @@ class RatingController extends Controller
         return $isDeleted
             ? redirect()->route('dashboard.rating.index', $rating->course_id)->with('success', 'Rating has been deleted')
             : redirect()->back()->with('error', 'Failed to delete rating');
+    }
+
+    public function rate(string $ownedCourseId, string $redirectTo = null)
+    {
+        if (!OwnedCourseService::checkIfCompleteTheCourse($ownedCourseId)) {
+            abort(404);
+        }
+
+        $ownedCourse = OwnedCourseService::getById($ownedCourseId);
+
+        if (RatingService::checkIfUserRatedTheCourse($ownedCourse->course_id)) {
+            return redirect()->route('member.index');
+        }
+
+        return view('pages.member.rating.index', compact('ownedCourse', 'redirectTo'));
     }
 }

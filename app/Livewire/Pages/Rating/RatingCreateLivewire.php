@@ -18,12 +18,18 @@ class RatingCreateLivewire extends Component
     public $content;
     public $photo = '';
     public $rate = 0;
+    public $redirectTo = null;
 
     protected $rules = [
         'name' => 'required',
         'content' => 'required',
         'rate' => 'required',
     ];
+
+    public function mount()
+    {
+        $this->name = auth()->user()->can('access-member') ? auth()->user()->name : '';
+    }
 
     #[On('rate-updated')]
     public function updateRating($rating)
@@ -45,12 +51,21 @@ class RatingCreateLivewire extends Component
                 'name' => $this->name,
                 'content' => $this->content,
                 'photo' => $this->photo,
-                'rate' => $this->rate
+                'rate' => $this->rate,
+                'member_id' => auth()->id()
             ]);
             Course::where('id', $this->courseId)->increment('total_ratings');
-            return redirect()->route('dashboard.rating.index', $this->courseId)->with('success', 'Rating created successfully');
+            if (auth()->user()->can('access-admin')) {
+                return redirect()->route('dashboard.rating.index', $this->courseId)->with('success', 'Rating added successfully');
+            } else {
+                if ($this->redirectTo === 'certificate') {
+                    return redirect()->route('member.certificate')->with('success', 'Rating added successfully. Thank you');
+                }
+
+                return redirect()->route('member.index');
+            }
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Failed to add new rating');
+            return redirect()->back()->with('error', 'Failed to add new rating. Please try again');
         }
     }
 
