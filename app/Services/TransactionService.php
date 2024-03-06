@@ -301,7 +301,7 @@ class TransactionService
                 'BSI' => route('payment.va', $payment->external_id),
                 'CIMB' => route('payment.va', $payment->external_id),
                 'MANDIRI' => route('payment.va', $payment->external_id),
-                'FREE_ITEM' => route('payment.index', $payment->reference_id),
+                'FREE_ITEM' => route('payment.index', $payment->external_id),
             ];
 
             return $data[$payment->bank_code] ?? false;
