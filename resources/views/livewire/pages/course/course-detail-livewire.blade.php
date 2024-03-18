@@ -113,7 +113,7 @@
                         <div class="flex items-center justify-between">
                             <div>
                                 @if($course->discount_price > 0)
-                                    <h3 class="line-through text-red-700">Rp{{ number_format($course->price) }}</h3>
+                                    <h4 class="line-through text-red-700">Rp{{ number_format($course->price) }}</h4>
                                     <h5 class="mb-0">Rp{{ number_format($course->discount_price) }}</h5>
                                 @else
                                     <h5 class="mb-0">{{ $course->price == 0 ? 'Gratis!' : 'Rp' . number_format($course->price) }}</h5>
