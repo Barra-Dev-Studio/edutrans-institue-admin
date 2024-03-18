@@ -70,7 +70,7 @@
                         <div class="card-body h-full">
                             <div class="flex flex-col items-center justify-center gap-4 h-full">
                                 <div class="col-span-1">
-                                    <img src="https://edutransid.files.wordpress.com/2023/04/screen-shot-2023-04-22-at-02.12.46.png" class="inline-block h-20 w-20 rounded ring-2 ring-white dark:ring-zinc-500" alt="Mr. Slamet Khoirul">
+                                    <img src="{{ asset('assets/images/mr-slamet-khoirul.jpg') }}" class="inline-block h-20 w-20 rounded ring-2 ring-white dark:ring-zinc-500" alt="Mr. Slamet Khoirul">
                                 </div>
                                 <div class="col-span-2 text-center flex flex-col justify-between">
                                     <p class="text-slate-500 italic mb-4">“Pelatihan dengan Dr. Hendi memang seru dan sangat mendidik. Saya sering “repeat order” untuk pelatihan para legislator“
@@ -84,7 +84,7 @@
                         <div class="card-body h-full">
                             <div class="flex flex-col items-center justify-center gap-4 h-full">
                                 <div class="col-span-1">
-                                    <img src="https://edutransid.files.wordpress.com/2023/04/screen-shot-2023-04-22-at-02.13.14.png" class="inline-block h-20 w-20 rounded ring-2 ring-white dark:ring-zinc-500" alt="Mr. Slamet Khoirul">
+                                    <img src="{{ asset('assets/images/ms-airin-wenas.jpg') }}" class="inline-block h-20 w-20 rounded ring-2 ring-white dark:ring-zinc-500" alt="Mr. Slamet Khoirul">
                                 </div>
                                 <div class="col-span-2 text-center flex flex-col justify-between">
                                     <p class="text-slate-500 italic mb-4">“Acara yang diisi oleh Pak Hendi Pratama selalu mencerahkan. Saya akan selalu ikut acara beliau jika ada kesempatan”
@@ -98,7 +98,7 @@
                         <div class="card-body h-full">
                             <div class="flex flex-col items-center justify-center h-full gap-4">
                                 <div class="col-span-1">
-                                    <img src="https://edutransid.files.wordpress.com/2023/04/screen-shot-2023-04-22-at-02.19.15.png" class="inline-block h-20 w-20 rounded ring-2 ring-white dark:ring-zinc-500" alt="Mr. Slamet Khoirul">
+                                    <img src="{{ asset('assets/images/mr-oscar-carascalo.jpg') }}" class="inline-block h-20 w-20 rounded ring-2 ring-white dark:ring-zinc-500" alt="Mr. Slamet Khoirul">
                                 </div>
                                 <div class="col-span-2 text-center h-full flex flex-col justify-between">
                                     <p class="text-slate-500 italic mb-4">“Sebagai seorang guru saya sangat terinspirasi oleh pelatihan yang diberikan oleh Mr. Hendi“
