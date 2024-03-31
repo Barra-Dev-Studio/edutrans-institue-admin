@@ -14,7 +14,7 @@
                             {{ $detail->item_name }} ({{ $detail->item_type }})
                         @endforeach
                     </td>
-                    <td class="p-3">{{ $row->paymentMethod->name }}</td>
+                    <td class="p-3">{{ $row->paymentMethod?->name ?? 'Added manually' }}</td>
                     <td class="p-3">Rp{{ number_format($row->total_disc) }}</td>
                     <td class="p-3">Rp{{ number_format($row->total_price) }}</td>
                     <td class="p-3">Rp{{ number_format($row->total_payment) }}</td>

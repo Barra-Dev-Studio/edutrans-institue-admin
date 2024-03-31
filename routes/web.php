@@ -64,6 +64,7 @@ Route::middleware(['auth'])->group(function () {
             Route::resource('category', CategoryController::class);
             Route::get('user/export', [UserController::class, 'export'])->name('user.export');
             Route::resource('user', UserController::class);
+            Route::get('user/assign/{id}', [UserController::class, 'assign'])->name('user.assign');
             Route::resource('mentor', MentorController::class);
             Route::resource('course', CourseController::class);
             Route::resource('chapter', ChapterController::class);

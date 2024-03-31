@@ -8,7 +8,7 @@
         <div class="card-body pb-4 border-b border-slate-200">
             <div class="flex justify-between items-center">
                 <h5 class="dark:text-zinc-100">Owned Courses</h5>
-                <a href="" class="btn bg-emerald-500 text-white hover:bg-emerald-600">Add new course manually</a>
+                <a href="{{ route('dashboard.user.assign', $user->id) }}" class="btn bg-emerald-500 text-white hover:bg-emerald-600">Add new course manually</a>
             </div>
         </div>
         <div class="card-body">

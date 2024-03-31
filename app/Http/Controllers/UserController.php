@@ -68,4 +68,10 @@ class UserController extends Controller
         $filename = "users-" . Carbon::now()->format('d-m-Y') . ".xlsx";
         return Excel::download(new UsersExport, $filename);
     }
+
+    public function assign($id)
+    {
+        $user = UserService::getById($id);
+        return view('pages.user.assign', compact('user'));
+    }
 }
