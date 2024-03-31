@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Exports\UsersExport;
+use App\Models\OwnedCourse;
+use App\Models\Transaction;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Services\UserService;
@@ -32,7 +34,12 @@ class UserController extends Controller
     public function show(string $id)
     {
         $user = UserService::getById($id);
-        return view('pages.user.show', compact('user'));
+        $stats = [
+            'courses' => OwnedCourse::where('member_id', $id)->count(),
+            'transactions' => Transaction::where('member_id', $id)->count(),
+            'payment' => Transaction::where('member_id',$id)->where('status', 'SUCCEEDED')->sum('total_payment'),
+        ];
+        return view('pages.user.show', compact('user', 'stats'));
     }
 
     /**

@@ -4,7 +4,7 @@
     <tr>
         @forelse($columns as $column => $property)
             @if($column === 'id')
-                <th class="{{ $property['classes'] ?? '' }} cursor-pointer p-1 w-[7rem]" wire:key="{{ $column }}" wire:click="setOrder('{{ $column }}')">
+                <th class="{{ $property['classes'] ?? '' }} cursor-pointer p-1 min-w-[4rem]" wire:key="{{ $column }}" wire:click="setOrder('{{ $column }}')">
                     <div class="flex justify-between items-center">
                         <span class="mt-2">{{ $property['label'] ?? '-' }}</span>
                         @if(isset($order[$column]) && $order[$column] === 'desc')
