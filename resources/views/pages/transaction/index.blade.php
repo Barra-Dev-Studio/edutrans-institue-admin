@@ -3,8 +3,8 @@
         <x-slot name="title">Transaction management</x-slot>
         <x-breadcrumb-item>Transaction management</x-breadcrumb-item>
     </x-breadcrumb>
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div class="card bg-white">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
+        <div class="card bg-white mb-0 col-span-3">
             <div class="card-body flex flex-col justify-between h-full">
                 <div>
                     <div class="grid grid-cols-1 gap-5 items-center">
@@ -19,7 +19,7 @@
                 </div>
             </div>
         </div>
-        <div class="card bg-white">
+        <div class="card bg-white mb-0">
             <div class="card-body flex flex-col justify-between h-full">
                 <div>
                     <div class="grid grid-cols-1 gap-5 items-center">
@@ -34,7 +34,7 @@
                 </div>
             </div>
         </div>
-        <div class="card bg-white">
+        <div class="card bg-white mb-0">
             <div class="card-body flex flex-col justify-between h-full">
                 <div>
                     <div class="grid grid-cols-1 gap-5 items-center">
@@ -49,7 +49,7 @@
                 </div>
             </div>
         </div>
-        <div class="card bg-white">
+        <div class="card bg-white mb-0">
             <div class="card-body flex flex-col justify-between h-full">
                 <div>
                     <div class="grid grid-cols-1 gap-5 items-center">

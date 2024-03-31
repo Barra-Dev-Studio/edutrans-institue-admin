@@ -3,8 +3,8 @@
     <x-slot name="title">Dashboard</x-slot>
   </x-breadcrumb>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-    <div class="card bg-white">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
+    <div class="card bg-white mb-0">
         <div class="card-body flex flex-col justify-between h-full">
             <div>
                 <div class="grid grid-cols-1 gap-5 items-center">
@@ -20,7 +20,7 @@
             </div>
         </div>
     </div>
-    <div class="card bg-white">
+    <div class="card bg-white mb-0">
         <div class="card-body flex flex-col justify-between h-full">
             <div>
                 <div class="grid grid-cols-1 gap-5 items-center">
@@ -36,7 +36,7 @@
             </div>
         </div>
     </div>
-    <div class="card bg-white">
+    <div class="card bg-white mb-0">
         <div class="card-body flex flex-col justify-between h-full">
             <div>
                 <div class="grid grid-cols-1 gap-5 items-center">
@@ -52,7 +52,7 @@
             </div>
         </div>
     </div>
-    <div class="card bg-white">
+    <div class="card bg-white mb-0">
         <div class="card-body flex flex-col justify-between h-full">
             <div>
                 <div class="grid grid-cols-1 gap-5 items-center">
@@ -69,8 +69,8 @@
         </div>
     </div>
   </div>
-  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-    <div class="card bg-white">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-2 mt-2">
+    <div class="card bg-white mb-0">
         <div class="card-body flex items-center justify-between h-full">
             <div class="flex gap-2 items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 428 389.11">

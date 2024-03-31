@@ -3,30 +3,37 @@
 namespace App\Livewire\Pages\Transaction;
 
 use App\Models\Transaction;
+use App\Traits\DatatableLivewire;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class TransactionTableLivewire extends Component
 {
-    use WithPagination;
+    use WithPagination, DatatableLivewire;
+    public string|Transaction $model = Transaction::class;
 
-    public $showPage = 5;
-    public $search = '';
-
-    public function updatingSearch()
+    public function mount(): void
     {
-        $this->resetPage();
+        $this->columns = [
+            'id' => ['type' => 'text', 'label' => 'No'],
+            'created_at' => ['type' => 'text', 'label' => 'Date'],
+            'member.name' => ['type' => 'text', 'label' => 'Member'],
+            'transactionDetails.item_name' => ['type' => 'text', 'label' => 'Items'],
+            'paymentMethod.name' => ['type' => 'text', 'label' => 'Payment'],
+            'total_disc' => ['type' => 'text', 'label' => 'Total discount'],
+            'total_price' => ['type' => 'text', 'label' => 'Total price'],
+            'total_payment' => ['type' => 'text', 'label' => 'Total payment'],
+            'status' => ['type' => 'text', 'label' => 'Status']
+        ];
     }
 
-    public function paginationView()
+    public function render(): View
     {
-        return 'vendor.livewire.tailwind';
-    }
+        $data = $this->getData(new ($this->model));
 
-    public function render()
-    {
         return view('livewire.pages.transaction.transaction-table-livewire', [
-            'transactions' => Transaction::paginate($this->showPage)
+            'data' => $data
         ]);
     }
 }
