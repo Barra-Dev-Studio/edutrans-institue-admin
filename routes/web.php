@@ -21,6 +21,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\VoucherController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -88,6 +89,8 @@ Route::middleware(['auth'])->group(function () {
 
             Route::get('/paymentmethod', [PaymentMethodController::class, 'index'])->name('paymentmethod.index');
             Route::get('/generatesitemap', [SitemapController::class, 'generate'])->name('sitemap.generate');
+
+            Route::resource('voucher', VoucherController::class);
         });
     });
 

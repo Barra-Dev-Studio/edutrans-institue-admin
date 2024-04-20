@@ -61,10 +61,16 @@ class TransactionService
         }
     }
 
-    public static function process($data, $method)
+    public static function process($data, $method, $voucher = null)
     {
         DB::beginTransaction();
         try {
+            if ($voucher !== null) {
+                $validateVoucher = VoucherService::validate($voucher->code, $data->items[0], $data->total_price);
+                if ($validateVoucher->error) {
+                    throw new \Exception($validateVoucher->message);
+                }
+            }
             $transactionData = (object) [
                 'ref_id' => '',
                 'total_item' => count($data->items),
@@ -102,6 +108,9 @@ class TransactionService
                         self::saveOwnedCourse($ownedCourse);
                     }
                 }
+            }
+            if ($voucher !== null) {
+                self::updateVoucher($voucher, $transaction);
             }
             DB::commit();
             if ($data->total_payment == 0) {
@@ -231,7 +240,8 @@ class TransactionService
 
     private static function createTransaction($data, $transaction, $method)
     {
-        if ($data->total_price == 0) {
+        $totalPayment = ceil($data->total_payment);
+        if ($totalPayment == 0) {
             return (object) [
                 'id' => Str::uuid(),
                 'ref_id' => Str::uuid(),
@@ -257,17 +267,17 @@ class TransactionService
 
             $xendit = new XenditService();
             if ($method === 'EWALLET') {
-                $xendit->createEWalletPayment($data->payment_method, $transaction->id, $data->total_price, $items, $data->mobile_number ?? '');
+                $xendit->createEWalletPayment($data->payment_method, $transaction->id, $totalPayment, $items, $data->mobile_number ?? '');
                 $response = $xendit->getResponse();
                 Log::info($response->body());
                 return json_decode($response->body());
             } else if ($method === 'QRIS') {
-                $xendit->createQrisPayment('ID_DANA', $transaction->id, $data->total_price, $items, $data->mobile_number ?? '');
+                $xendit->createQrisPayment('ID_DANA', $transaction->id, $totalPayment, $items, $data->mobile_number ?? '');
                 $response = $xendit->getResponse();
                 Log::info($response->body());
                 return json_decode($response->body());
             } else if ($method === 'Virtual Account (VA)') {
-                $xendit->createVAPayment($data->payment_method, $transaction->id, $data->total_price, $items);
+                $xendit->createVAPayment($data->payment_method, $transaction->id, $totalPayment, $items);
                 $response = $xendit->getResponse();
                 Log::info($response->body());
                 return json_decode($response->body());
@@ -308,5 +318,11 @@ class TransactionService
         }
 
         return $data[$payment->channel_code] ?? false;
+    }
+
+    private static function updateVoucher($voucher, $transaction)
+    {
+        VoucherService::applied($voucher, $transaction);
+        return VoucherService::reduceQty($voucher);
     }
 }

@@ -11,7 +11,7 @@
         <div class="card-body">
             <div class="grid grid-cols-1 md:grid-cols-3">
                 <div class="col-span-2 md:border-r md:border-slate-200 md:pr-8">
-                    <h3 class="mb-4">Detail pembayaran</h3>
+                    <h6 class="mb-4">Detail pembayaran</h6>
                     <div class="flex px-5 py-3 border-2 bg-yellow-50 text-yellow-700 border-yellow-100 rounded mb-4">
                         <div>
                             <h6 class="text-15">Mohon pratinjau informasi</h6>
@@ -19,11 +19,11 @@
                                 email pembeli</p>
                         </div>
                     </div>
-                    <div class="mt-4">
+                    <div class="mt-4 border rounded p-4 border-slate-200">
                         <x-input-label class="font-bold text-lg mb-8" for="payment_method" :value="__('Pilih Metode Pembayaran')" />
                         @foreach($paymentMethods as $type => $payments)
-                        <div class="mb-8">
-                            <x-input-label class="mb-8" for="payment_method" :value="$type" />
+                        <div class="{{ $loop->last ? '' : 'mb-8'}}">
+                            <x-input-label class="mb-8" for="payment_method" class="!mb-2" :value="$type" />
                             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-4">
                                 @foreach($payments as $payment)
                                 <div class="card bg-white mb-0 cursor-pointer @if($selectedPayment == $payment->code) border-sky-500 @endif" wire:click="setSelectedPayment('{{ $payment->code }}')">
@@ -36,14 +36,14 @@
                         </div>
                         @endforeach
                     </div>
-                    <div class="mt-8">
+                    <div class="mt-8 border rounded p-4 border-slate-200">
                         <x-input-label for="mobile_number" :value="__('Nomor HP')" />
                         <x-text-input wire:model.live="mobileNumber" id="mobile_number" class="block mt-1 w-full mb-1" type="text" name="mobile_number"
                             placeholder="08123xxx" required />
                         <span class="text-slate-500">Jika memilih metode pembayaran Ewallet, pastikan Nomor HP yang dimasukan yang terdaftar di Ewallet yang dipilih</span>
                     </div>
                     <div class="mt-8">
-                        <h3 class="mb-2">Detail produk</h3>
+                        <h6 class="mb-2">Detail produk</h6>
                         <div class="card bg-white">
                             <div class="card-body flex gap-4 items-center">
                                 <div>
@@ -62,9 +62,9 @@
                     <div class="card bg-white">
                         <div class="card-body">
                             <div>
-                                <x-input-label for="payment_method" :value="__('Detail pemesanan')" />
+                                <x-input-label for="payment_method" class="font-bold" :value="__('Detail pemesanan')" />
                                 <div class="flex gap-2 flex-col mt-4">
-                                    <div class="flex gap-8 justify-between items-center">
+                                    <div class="flex gap-8 justify-between items-center border-b border-slate-200 pb-2">
                                         <p class="text-slate-700">{{ $course->title }}</p>
                                         @if($course->discount_price > 0)
                                             <div>
@@ -75,19 +75,25 @@
                                             <p class="text-right text-slate-700">Rp{{ number_format($course->price) }}</p>
                                         @endif
                                     </div>
-                                    <div class="flex gap-8 justify-between items-center">
+                                    <div class="flex gap-8 justify-between items-center border-b border-slate-200 pb-2">
                                         <p class="text-slate-700">Biaya transaksi</p>
                                         <p class="text-right text-slate-700">Rp{{ number_format($additionalPrice) }}</p>
                                     </div>
+                                    @if ($selectedVoucher !== null && !$selectedVoucher->error)
+                                    <div class="flex gap-8 justify-between items-center border-b border-slate-200 pb-2">
+                                        <p class="text-emerald-700">Voucher {{ $voucherCode }}</p>
+                                        <p class="text-right text-emerald-700">-Rp{{ number_format($selectedVoucher->voucher->calculation?->disc) }}</p>
+                                    </div>
+                                    @endif
                                 </div>
                             </div>
                             <div class="mt-8">
-                                <x-input-label for="payment_method" :value="__('Metode pembayaran')" />
+                                <x-input-label for="payment_method" class="font-bold" :value="__('Metode pembayaran')" />
                                 <p class="text-slate-700">{{ $selectedPayment == null ? 'Silakan pilih metode pembayaran untuk melanjutkan proses pemesanan' : $selectedPaymentShow->name }}</p>
                             </div>
                             <div class="mt-8">
                                 @if(auth()->check())
-                                <x-input-label for="payment_method" :value="__('Informasi pemesan')" />
+                                <x-input-label for="customer_information" class="font-bold" :value="__('Informasi pemesan')" />
                                 <p class="text-slate-700">{{ auth()->user()->name }}</p>
                                 <p class="text-slate-700">{{ auth()->user()->email }}</p>
                                 @else
@@ -99,10 +105,32 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card bg-white">
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <x-input-label for="voucherCode" class="font-bold !mb-0" :value="__('Punya Voucher?')" />
+                                <p class="text-slate-700 mb-2">Gunakan voucher kamu sekarang</p>
+                                <x-text-input wire:model.live="voucherCode" id="voucherCode" class="block mt-1 w-full mb-1" type="text"
+                                    name="voucherCode" placeholder="Kode voucher" />
+                            </div>
+                            <div>
+                                <button class="py-2 px-6 bg-emerald-500 hover:bg-emerald-600 text-white rounded" type="button" wire:click="updateVoucher">Gunakan</button>
+                            </div>
+                            @if(isset($selectedVoucher->error) && $selectedVoucher->error)
+                            <div class="border border-red-500 rounded p-2 text-red-500 mt-4">
+                                {{ $selectedVoucher->message }}
+                            </div>
+                            @elseif(isset($selectedVoucher->error) && !$selectedVoucher->error)
+                            <div class="border border-emerald-500 rounded p-2 text-emerald-500 mt-4">
+                                {{ $selectedVoucher->message }}
+                            </div>
+                            @endif
+                        </div>
+                    </div>
                     <div class="h-[50px]"></div>
                     <div class="text-right">
                         <p class="text-slate-900 font-bold">Total pembayaran</p>
-                        <h3>Rp{{ number_format($totalPrice) }}</h3>
+                        <h3>Rp{{ number_format(round($totalPrice - $this->disc)) }}</h3>
                     </div>
                     @if(auth()->check())
                     <div class="w-full mt-4">
