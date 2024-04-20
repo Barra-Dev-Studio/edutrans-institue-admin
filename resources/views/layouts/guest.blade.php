@@ -8,19 +8,23 @@
 
   <title>Edutrans Institute by Hendi Pratama</title>
   <meta name="title" content="Edutrans Institute" />
-  <meta name="description" content="Edutrans Institute merupakan sebuah platform transformasi edukasi yang memiliki misi untuk menyederhanakan & mempermudah proses pembelajaran melalui berbagai pilihan e-course sesuai dengan kebutuhan pelanggan dan industri masa kini tentunya." />
-  <meta name="keywords" content="Kursus murah, kursus gratis, kursus bersertifikat, personal branding, pengembangan diri, materi public speaking" />
+  <meta name="description"
+    content="Edutrans Institute merupakan sebuah platform transformasi edukasi yang memiliki misi untuk menyederhanakan & mempermudah proses pembelajaran melalui berbagai pilihan e-course sesuai dengan kebutuhan pelanggan dan industri masa kini tentunya." />
+  <meta name="keywords"
+    content="Kursus murah, kursus gratis, kursus bersertifikat, personal branding, pengembangan diri, materi public speaking" />
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://edutransinstitute.com" />
   <meta property="og:title" content="Edutrans Institute" />
-  <meta property="og:description" content="Edutrans Institute merupakan sebuah platform transformasi edukasi yang memiliki misi untuk menyederhanakan & mempermudah proses pembelajaran melalui berbagai pilihan e-course sesuai dengan kebutuhan pelanggan dan industri masa kini tentunya." />
+  <meta property="og:description"
+    content="Edutrans Institute merupakan sebuah platform transformasi edukasi yang memiliki misi untuk menyederhanakan & mempermudah proses pembelajaran melalui berbagai pilihan e-course sesuai dengan kebutuhan pelanggan dan industri masa kini tentunya." />
   <meta property="og:image" content="https://edutransinstitute.com/assets/images/og.png" />
 
   <meta property="twitter:card" content="summary_large_image" />
   <meta property="twitter:url" content="https://edutransinstitute.com" />
   <meta property="twitter:title" content="Edutrans Institute" />
-  <meta property="twitter:description" content="Edutrans Institute merupakan sebuah platform transformasi edukasi yang memiliki misi untuk menyederhanakan & mempermudah proses pembelajaran melalui berbagai pilihan e-course sesuai dengan kebutuhan pelanggan dan industri masa kini tentunya.." />
+  <meta property="twitter:description"
+    content="Edutrans Institute merupakan sebuah platform transformasi edukasi yang memiliki misi untuk menyederhanakan & mempermudah proses pembelajaran melalui berbagai pilihan e-course sesuai dengan kebutuhan pelanggan dan industri masa kini tentunya.." />
   <meta property="twitter:image" content="https://edutransinstitute.com/assets/images/og.png" />
 
   <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('assets/favicon/apple-icon-57x57.png') }}">
@@ -46,7 +50,7 @@
   @if(env('APP_ENV') === 'local')
   @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/icons.css'])
   @else
-  <link rel="stylesheet" href="{{ asset('build/assets/app-1c2c5115.css') }}">
+  <link rel="stylesheet" href="{{ asset('build/assets/app-b78cf089.css') }}">
   <link rel="stylesheet" href="{{ asset('build/assets/icons-adf300ab.css') }}">
   <script src="{{ asset('build/assets/app-02317797.js') }}"></script>
   @endif
