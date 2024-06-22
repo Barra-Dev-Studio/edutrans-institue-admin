@@ -30,6 +30,14 @@
                             <span data-key="t-category"> Course Categories</span>
                         </a>
                     </li>
+                    <li class="menu-heading px-4 py-2 text-xs font-medium text-gray-500 cursor-default" data-key="t-elements">Books</li>
+                    <li>
+                        <a href="{{ route('dashboard.book.index') }}"
+                            class="pl-6 pr-4 py-2 block text-sm font-medium text-gray-700 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
+                            <i data-feather="book"></i>
+                            <span data-key="t-book"> Books</span>
+                        </a>
+                    </li>
                     <li class="menu-heading px-4 py-2 text-xs font-medium text-gray-500 cursor-default" data-key="t-elements">Transactions</li>
                     <li>
                         <a href="{{ route('dashboard.transaction.index') }}" class="pl-6 pr-4 py-2 block text-sm font-medium text-gray-700 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">

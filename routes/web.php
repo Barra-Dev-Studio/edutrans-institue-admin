@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryPostController;
 use App\Http\Controllers\CertificateController;
@@ -91,6 +92,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/generatesitemap', [SitemapController::class, 'generate'])->name('sitemap.generate');
 
             Route::resource('voucher', VoucherController::class);
+            Route::resource('book', BookController::class);
         });
     });
 
