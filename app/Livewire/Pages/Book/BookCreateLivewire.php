@@ -23,6 +23,7 @@ class BookCreateLivewire extends Component
     public $publishedYear;
     public $category;
     public $cover;
+    public $file;
     public $price = 0;
     public $discountPrice = 0;
     public $totalPages= 0;
@@ -44,6 +45,7 @@ class BookCreateLivewire extends Component
         'isbn' => ['required'],
         'publishedYear' => ['required'],
         'cover' => ['required', 'image', 'max:1024'],
+        'file' => ['required', 'file'],
         'price' => ['required'],
         'discountPrice' => ['required'],
         'totalViews' => ['required'],
@@ -90,6 +92,7 @@ class BookCreateLivewire extends Component
         $this->validate();
         try {
             $cover = $this->cover->store('book/cover');
+            $file = $this->file->store('book/file');
             $book = Book::create([
                 'title' => $this->title,
                 'slug' => $this->slug,
@@ -106,7 +109,8 @@ class BookCreateLivewire extends Component
                 'total_purchased' => $this->totalPurchased,
                 'total_pages' => $this->totalPages,
                 'status' => $this->status,
-                'cover' => $cover
+                'cover' => $cover,
+                'file' => $file,
             ]);
             return redirect()->route('dashboard.book.show', $book->id)->with('success', 'Book created successfuly');
         } catch (\Exception $e) {

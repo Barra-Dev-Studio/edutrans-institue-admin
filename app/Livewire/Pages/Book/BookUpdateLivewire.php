@@ -22,6 +22,7 @@ class BookUpdateLivewire extends Component
     public $publishedYear;
     public $category;
     public $cover;
+    public $file;
     public $price = 0;
     public $discountPrice = 0;
     public $totalViews = 0;
@@ -35,6 +36,7 @@ class BookUpdateLivewire extends Component
 
     public $id;
     public $currentCover;
+    public $currentFile;
 
     protected $rules = [
         'title' => ['required', 'min:4'],
@@ -46,6 +48,7 @@ class BookUpdateLivewire extends Component
         'isbn' => ['required'],
         'publishedYear' => ['required'],
         'cover' => ['nullable', 'image', 'max:1024'],
+        'file' => ['nullable', 'file'],
         'price' => ['required'],
         'discountPrice' => ['required'],
         'totalViews' => ['required'],
@@ -80,6 +83,7 @@ class BookUpdateLivewire extends Component
         $this->category = $book->category_id;
         $this->selectedCategory = Category::where('id', $book->category_id)->first();
         $this->currentCover = $book->cover;
+        $this->currentFile = $book->file;
         $this->price = $book->price;
         $this->discountPrice = $book->discount_price;
         $this->totalViews = $book->total_views;
@@ -112,6 +116,7 @@ class BookUpdateLivewire extends Component
         $this->validate();
         try {
             $cover = $this->cover ? $this->cover->store('book/cover') : $this->currentCover;
+            $file = $this->file ? $this->file->store('book/file') : $this->currentFile;
             Book::where('id', $this->id)->update([
                 'title' => $this->title,
                 'slug' => $this->slug,
@@ -128,7 +133,8 @@ class BookUpdateLivewire extends Component
                 'total_purchased' => $this->totalPurchased,
                 'total_pages' => $this->totalPages,
                 'status' => $this->status,
-                'cover' => $cover
+                'cover' => $cover,
+                'file' => $file,
             ]);
             return redirect()->route('dashboard.book.show', $this->id)->with('success', 'Book updated successfuly');
         } catch (\Exception $e) {

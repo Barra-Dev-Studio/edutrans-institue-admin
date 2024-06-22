@@ -21,6 +21,7 @@ class Book extends Model
         'isbn',
         'published_year',
         'cover',
+        'file',
         'price',
         'discount_price',
         'total_pages',

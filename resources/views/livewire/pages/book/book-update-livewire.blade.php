@@ -10,11 +10,20 @@
             <img src="{{ $cover->temporaryUrl() }}" alt="">
         </div>
         @endif
-        <div>
+        <div class="mb-4">
             <x-input-label for="cover" :value="__('Cover')" />
             <x-text-input wire:model.live="cover" id="cover" class="block mt-1 w-full" type="file" name="cover"
                 placeholder="Cover" />
             <x-input-error :messages="$errors->get('cover')" class="mt-2" />
+        </div>
+        <div>
+            <x-input-label for="file" :value="__('File')" />
+            @if($currentFile)
+            <div class="bg-yellow-500 text-black p-2 text-xs mb-4 rounded"><a href="{{ \Storage::url($currentFile) }}" class="underline">Download current file</a></div>
+            @endif
+            <x-text-input wire:model.live="file" id="file" class="block mt-1 w-full" type="file" name="file"
+                placeholder="File" />
+            <x-input-error :messages="$errors->get('file')" class="mt-2" />
         </div>
         <div class="mt-4">
             <x-input-label for="title" :value="__('Title')" />
@@ -135,7 +144,7 @@
         <div class="mt-4">
             <button wire:loading.attr="disabled" wire:target="submit"
                 class="bg-emerald-500 px-6 py-3 text-white rounded" type="submit"><span wire:loading.remove
-                    wire:target="submit">Add new book</span><span wire:loading
+                    wire:target="submit">Save book</span><span wire:loading
                     wire:target="submit"><x-spinner></x-spinner></span></button>
         </div>
     </form>

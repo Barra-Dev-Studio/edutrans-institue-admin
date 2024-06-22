@@ -3,16 +3,22 @@
     <form wire:submit.prevent="submit" class="prose">
         @if ($cover)
         <div class="mb-4">
-            <img src="{{ $cover->temporaryUrl() }}" alt="">
+            <img src="{{ $cover->temporaryUrl() }}" alt="Uploaded cover">
         </div>
         @endif
-        <div>
+        <div class="mb-4">
             <x-input-label for="cover" :value="__('Cover')" />
             <x-text-input wire:model.live="cover" id="cover" class="block mt-1 w-full" type="file" name="cover"
                 placeholder="Cover" required />
             <x-input-error :messages="$errors->get('cover')" class="mt-2" />
         </div>
-        <div class="mt-4">
+        <div class="mb-4">
+            <x-input-label for="file" :value="__('File')" />
+            <x-text-input wire:model.live="file" id="file" class="block mt-1 w-full" type="file" name="file"
+                placeholder="File" required />
+            <x-input-error :messages="$errors->get('file')" class="mt-2" />
+        </div>
+        <div>
             <x-input-label for="title" :value="__('Title')" />
             <x-text-input wire:model.live="title" id="title" class="block mt-1 w-full" type="text" name="title"
                 placeholder="Title" required />
