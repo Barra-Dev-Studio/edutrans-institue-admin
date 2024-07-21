@@ -16,7 +16,7 @@
                     <div class="prose">
                         <h1 class="mb-0 text-slate-800">{{ $book->title }}</h1>
                         <p class="text-slate-600">
-                            {{ $book->author }}<br>
+                            {{ $book->author->name }}<br>
                             {{ $book->published_year}} .
                             {{ $book->publisher }}
                         </p>

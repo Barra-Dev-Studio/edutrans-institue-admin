@@ -18,7 +18,7 @@ class LoginOrRegisterLivewire extends Component
     public $name = '';
     public $email = '';
     public $password = '';
-    public $course;
+    public $product;
     public $section = 'register';
     public string $password_confirmation = '';
 
@@ -37,7 +37,7 @@ class LoginOrRegisterLivewire extends Component
         auth()->login($user);
 
         $user->assignRole('member');
-        $this->redirect(route('checkout', $this->course->slug));
+        $this->redirect(route('checkout', $this->product->slug));
     }
 
     public function login(): void
@@ -61,7 +61,7 @@ class LoginOrRegisterLivewire extends Component
 
         session()->regenerate();
 
-        $redirectTo = route('checkout', $this->course->slug);
+        $redirectTo = route('checkout', $this->product->slug);
 
         $this->redirect(
             session('url.intended', $redirectTo)

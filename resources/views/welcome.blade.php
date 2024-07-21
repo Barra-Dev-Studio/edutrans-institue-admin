@@ -61,6 +61,9 @@
     <section>
         <livewire:pages.guest.popular-course-livewire></livewire:pages.guest.popular-course-livewire>
     </section>
+    <section>
+        <livewire:pages.guest.popular-book-livewire></livewire:pages.guest.popular-book-livewire>
+    </section>
     <section class="bg-sky-900">
         <div class="md:px-16 py-10">
             <div class="px-6 md:px-8">

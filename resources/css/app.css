@@ -226,4 +226,23 @@ select{
     /* clip ribbon end shape */
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 50% 50%);
 }
+.ribbon-discount {
+    @apply absolute pl-5 transform bg-red-600 text-white font-medium py-1 top-[280px] w-[150px]
+}
+.ribbon-discount::after {
+    content: '';
+    width: 30px;
+    height: 100%;
+    background-color: #e65955;
+
+    /* position ribbon ends behind and slightly lower */
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    right: -14px;
+    rotate: 180deg;
+
+    /* clip ribbon end shape */
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 50% 50%);
+}
 

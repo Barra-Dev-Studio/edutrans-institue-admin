@@ -16,7 +16,7 @@ class Book extends Model
         'title',
         'slug',
         'description',
-        'author',
+        'author_id',
         'publisher',
         'isbn',
         'published_year',
@@ -34,5 +34,10 @@ class Book extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function author()
+    {
+        return $this->belongsTo(Mentor::class, 'author_id', 'id');
     }
 }

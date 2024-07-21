@@ -57,7 +57,7 @@ class CertificateController extends Controller
         $name = "Certificate " . auth()->user()->name . " " . Carbon::now()->format('Y-m-d') . ".png";
         $headers = [
             'Content-Type' => 'image/png',
-            'Content-Disposition' => "attachment; filename=$name",
+            'Content-Disposition' => "attachment; filename=" . $name,
         ];
         return Response::download($tempFilePath, $name, $headers)->deleteFileAfterSend(true);
     }

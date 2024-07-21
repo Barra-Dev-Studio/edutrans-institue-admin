@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\BookService;
 use App\Services\ChapterService;
 use App\Services\CourseService;
 use App\Services\RatingService;
@@ -22,5 +23,15 @@ class GuestController extends Controller
         $sections = SectionService::getByCourseId($course->id);
         $ratings = RatingService::getByCourseId($course->id);
         return view("pages.course.detail", compact("course", "chapters", "previews", "sections", 'ratings'));
+    }
+
+    public function bookDetail($slug)
+    {
+        $book = BookService::getBySlug($slug);
+        if (!$book || $book->status !== 'PUBLISHED') {
+            return abort(404);
+        }
+
+        return view("pages.book.detail", compact("book"));
     }
 }

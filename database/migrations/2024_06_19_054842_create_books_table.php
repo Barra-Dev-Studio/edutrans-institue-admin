@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->text('description');
-            $table->string('author');
+            $table->string('author_id');
             $table->string('publisher');
             $table->string('isbn');
             $table->string('published_year');

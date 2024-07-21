@@ -50,19 +50,27 @@
                 <x-input-error :messages="$errors->get('category')" class="mt-2" />
             </div>
             @if($selectedCategory != null)
-            <div class="mt-4 prose">
+            <div class="mt-4 prose border rounded p-2">
                 <h4 class="mb-0 text-slate-700">{{ $selectedCategory->name }}</h4>
                 <p class="text-sm text-slate-500">{{ $selectedCategory->description }}</p>
             </div>
             @endif
         </div>
-        <div class="grid grid-cols-2 mt-4 gap-2">
+        <div class="mt-4">
             <div>
                 <x-input-label for="author" :value="__('Author')" />
-                <x-text-input wire:model.live="author" id="author" class="block mt-1 w-full" type="text" name="author"
-                    placeholder="Author" required />
+                <x-select-input :options="$authors" :value="'id'" :label="'name'" name="author" wire:model.live="author"
+                    wire:change="setSelectedAuthor"></x-select-input>
                 <x-input-error :messages="$errors->get('author')" class="mt-2" />
             </div>
+            @if($selectedAuthor != null)
+            <div class="mt-4 prose border rounded p-2">
+                <h4 class="mb-0 text-slate-700">{{ $selectedAuthor->name }}</h4>
+                <p class="text-sm text-slate-500">{{ $selectedAuthor->speciality }}</p>
+            </div>
+            @endif
+        </div>
+        <div class="mt-4">
             <div>
                 <x-input-label for="publisher" :value="__('Publisher')" />
                 <x-text-input wire:model.live="publisher" id="publisher" class="block mt-1 w-full" type="text"

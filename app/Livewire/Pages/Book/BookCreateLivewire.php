@@ -5,6 +5,7 @@ namespace App\Livewire\Pages\Book;
 use App\Livewire\Plugin\TrixLivewire;
 use App\Models\Book;
 use App\Models\Category;
+use App\Models\Mentor;
 use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -33,7 +34,9 @@ class BookCreateLivewire extends Component
     public $status = 'DRAFT';
 
     public $categories = [];
+    public $authors = [];
     public $selectedCategory = null;
+    public $selectedAuthor = null;
 
     protected $rules = [
         'title' => ['required', 'min:4'],
@@ -67,11 +70,17 @@ class BookCreateLivewire extends Component
     public function mount()
     {
         $this->categories = Category::orderBy('name')->get();
+        $this->authors = Mentor::orderBy('name')->get();
     }
 
     public function setSelectedCategory()
     {
         $this->selectedCategory = $this->category != '-1' ? Category::findOrFail($this->category) : null;
+    }
+
+    public function setSelectedAuthor()
+    {
+        $this->selectedAuthor = $this->author != '-1' ? Mentor::findOrFail($this->author) : null;
     }
 
     public function setStatus($status)
@@ -92,11 +101,11 @@ class BookCreateLivewire extends Component
         $this->validate();
         try {
             $cover = $this->cover->store('book/cover');
-            $file = $this->file->store('book/file');
+            $file = $this->file->store('book/file', 'local');
             $book = Book::create([
                 'title' => $this->title,
                 'slug' => $this->slug,
-                'author' => $this->author,
+                'author_id' => $this->author,
                 'publisher' => $this->publisher,
                 'isbn' => $this->isbn,
                 'description' => $this->description,

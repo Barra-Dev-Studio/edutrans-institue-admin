@@ -39,6 +39,7 @@
                 <ul class="list-none text-slate-400 flex flex-col gap-2">
                     <li><a href="{{ route('home')}}" class="!no-underline hover:text-white">Home</a></li>
                     <li><a href="{{ route('blog') }}" class="!no-underline hover:text-white">Blog</a></li>
+                    <li><a href="{{ route('books') }}" class="!no-underline hover:text-white">Books</a></li>
                     <li><a href="{{ route('courses') }}" class="!no-underline hover:text-white">Courses</a></li>
                     <li><a href="{{ route('about') }}" class="!no-underline hover:text-white">About</a></li>
                     <li><a href="{{ route('terms') }}" class="!no-underline hover:text-white">Syarat & Ketentuan</a></li>

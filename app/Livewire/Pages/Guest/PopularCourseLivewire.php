@@ -15,6 +15,7 @@ class PopularCourseLivewire extends Component
            ->orderBy('total_students', 'desc')
            ->limit(5)->get();
     }
+
     public function render()
     {
         return view('livewire.pages.guest.popular-course-livewire');

@@ -1,11 +1,15 @@
 <?php
 
 namespace App\Services;
+
+use App\Models\Book;
 use App\Models\ChapterProgress;
 use App\Models\Course;
+use App\Models\OwnedBook;
 use App\Models\OwnedCourse;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
+use App\Notifications\BookPaid;
 use App\Notifications\CoursePaid;
 use Illuminate\Support\Facades\Auth;
 use DB;
@@ -106,6 +110,17 @@ class TransactionService
                             'transaction_detail_id' => $transactionDetail->id
                         ];
                         self::saveOwnedCourse($ownedCourse);
+                    } else if ($item->type === 'book') {
+                        $ownedBook = (object) [
+                            'member_id' => Auth()->id(),
+                            'book_id' => $item->id,
+                            'title' => $item->title,
+                            'author' => $item->author,
+                            'publisher' => $item->publisher,
+                            'category' => $item->category,
+                            'transaction_detail_id' => $transactionDetail->id
+                        ];
+                        self::saveOwnedBook($ownedBook);
                     }
                 }
             }
@@ -115,11 +130,16 @@ class TransactionService
             DB::commit();
             if ($data->total_payment == 0) {
                 foreach ($data->items as $item) {
-                    auth()->user()->notify(new CoursePaid($item->id, auth()->user()->id));
+                    if ($item->type === 'book') {
+                        auth()->user()->notify(new BookPaid($item->id, auth()->user()->id));
+                    } else {
+                        auth()->user()->notify(new CoursePaid($item->id, auth()->user()->id));
+                    }
                 }
             }
             return self::getRedirectUrl($payment, $method);
         } catch (\Exception $e) {
+            dd($e);
             Log::error($e);
             DB::rollBack();
             return false;
@@ -139,6 +159,12 @@ class TransactionService
         return $ownedCourse > 0;
     }
 
+    public static function checkIfUserOwnedTheBook($bookId)
+    {
+        $ownedBook = OwnedBook::where('member_id', Auth::user()->id)->where('book_id', $bookId)->count();
+        return $ownedBook > 0;
+    }
+
     public static function addCourseToUserFromCallback($transactionId, $courseId, $userId)
     {
         $checkIfUserAlreadyPay = self::getById($transactionId);
@@ -155,6 +181,26 @@ class TransactionService
             ];
             self::saveOwnedCourse($ownedCourse);
             return Course::where('id', $courseId)->increment('total_students');
+        }
+    }
+
+    public static function addBookToUserFromCallback($transactionId, $bookId, $userId)
+    {
+        $checkIfUserAlreadyPay = self::getById($transactionId);
+        if ($checkIfUserAlreadyPay->status === 'SUCCEEDED') {
+            $book = Book::where('id', $bookId)->with('category')->first();
+            $transactionDetail = TransactionDetail::where('transaction_id', $transactionId)->where('item_id', $bookId)->first();
+            $ownedBook = (object) [
+                'member_id' => $userId,
+                'book_id' => $book->id,
+                'title' => $book->title,
+                'author' => $book->author,
+                'publisher' => $book->publisher,
+                'category' => $book->category->name,
+                'transaction_detail_id' => $transactionDetail->id
+            ];
+            self::saveOwnedBook($ownedBook);
+            return Book::where('id', $bookId)->increment('total_students');
         }
     }
 
@@ -238,6 +284,20 @@ class TransactionService
         ]);
     }
 
+    private static function saveOwnedBook($data)
+    {
+        return OwnedBook::create([
+            'member_id' => $data->member_id,
+            'book_id' => $data->book_id,
+            'title' => $data->title,
+            'author' => $data->author,
+            'publisher' => $data->publisher,
+            'category' => $data->category,
+            'transaction_detail_id' => $data->transaction_detail_id,
+            'key' => Str::upper(Str::random(10)),
+        ]);
+    }
+
     private static function createTransaction($data, $transaction, $method)
     {
         $totalPayment = ceil($data->total_payment);
@@ -262,6 +322,7 @@ class TransactionService
                     'name' => $item->title,
                     'category' => $item->category,
                     'price' => $item->final_price_item,
+                    'type' => $item->type,
                 ];
             }
 

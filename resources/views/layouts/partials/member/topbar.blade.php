@@ -11,6 +11,7 @@
             <ul class="flex gap-8 items-center list-none">
                 <li><a href="{{ route('home') }}" class="!no-underline prose hover:text-black">Home</a></li>
                 <li><a href="{{ route('blog') }}" class="!no-underline prose hover:text-black">Blog</a></li>
+                <li><a href="{{ route('books') }}" class="!no-underline prose hover:text-black">Books</a></li>
                 <li><a href="{{ route('courses') }}" class="!no-underline prose hover:text-black">Courses</a></li>
                 <li><a href="{{ route('about') }}" class="!no-underline prose hover:text-black">About</a></li>
             </ul>
@@ -37,6 +38,7 @@
                                     <ul class="flex flex-col gap-4 items-start list-none md:hidden px-3 py-2">
                                         <li><a href="{{ route('home') }}" class="!no-underline prose hover:text-black">Home</a></li>
                                         <li><a href="{{ route('blog') }}" class="!no-underline prose hover:text-black">Blog</a></li>
+                                        <li><a href="{{ route('books') }}" class="!no-underline prose hover:text-black">Books</a></li>
                                         <li><a href="{{ route('courses') }}" class="!no-underline prose hover:text-black">Courses</a></li>
                                         <li><a href="{{ route('about') }}" class="!no-underline prose hover:text-black">About</a></li>
                                     </ul>
@@ -90,6 +92,7 @@
                 <li><a href="{{ route('home') }}" class="!no-underline prose hover:text-black dropdown-item py-2 block w-full whitespace-nowrap" >Home</a></li>
                 <li><a href="{{ route('blog') }}" class="!no-underline prose hover:text-black dropdown-item py-2 block w-full whitespace-nowrap">Blog</a></li>
                 <li><a href="{{ route('about') }}" class="!no-underline prose hover:text-black dropdown-item py-2 block w-full whitespace-nowrap">About</a></li>
+                <li><a href="{{ route('books') }}" class="!no-underline prose hover:text-black dropdown-item py-2 block w-full whitespace-nowrap mb-4">Books</a></li>
                 <li><a href="{{ route('courses') }}" class="!no-underline prose hover:text-black dropdown-item py-2 block w-full whitespace-nowrap mb-4">Courses</a></li>
                 <li class="box-border hover:text-white hover:bg-sky-800 hover:border-none text-sky-700 rounded border border-sky-700  py-2 px-4 mb-2"><a href="{{ route('login') }}"
                         class="!no-underline prose">Masuk</a>

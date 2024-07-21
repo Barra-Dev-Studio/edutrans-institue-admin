@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\BookService;
 use App\Services\ChapterService;
 use App\Services\CourseService;
 use App\Services\OwnedCourseService;
@@ -54,7 +55,9 @@ class MemberController extends Controller
         // Check if course buyable and check another price
         // If not return 404
         $course = CourseService::getBySlug($slug);
-        if ($course == null) {
+        $book = BookService::getBySlug($slug);
+
+        if ($course == null && $book == null) {
             return abort(404);
         }
 
@@ -64,12 +67,19 @@ class MemberController extends Controller
             'EWalltet' => 0
         ];
 
-        return view('pages.member.checkout', compact('course', 'payments'));
+        $product = $course !== null ? $course : $book;
+
+        return view('pages.member.checkout', compact('product', 'payments', 'book', 'course'));
     }
 
     public function detailTransaction($id)
     {
         $transaction = TransactionService::getById($id);
         return view('pages.member.transaction.show', compact('transaction'));
+    }
+
+    public function read($id)
+    {
+        return 'under development';
     }
 }

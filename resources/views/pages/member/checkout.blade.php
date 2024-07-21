@@ -12,10 +12,14 @@
     <div class="md:px-16 pb-16 mt-16">
         <div class="px-6 md:px-8">
             @guest
-            <livewire:pages.guest.login-or-register-livewire :course="$course"></livewire:pages.guest.login-or-register-livewire>
+            <livewire:pages.guest.login-or-register-livewire :product="$product"></livewire:pages.guest.login-or-register-livewire>
             @endguest
             @auth
+            @if($course !== null)
             <livewire:pages.member.checkout-livewire :course="$course"></livewire:pages.member.checkout-livewire>
+            @elseif($book !== null)
+            <livewire:pages.member.checkout-book-livewire :book="$book"></livewire:pages.member.checkout-book-livewire>
+            @endif
             @endauth
         </div>
     </div>

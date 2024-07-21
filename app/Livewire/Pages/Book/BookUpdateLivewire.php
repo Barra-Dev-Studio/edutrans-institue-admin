@@ -5,6 +5,7 @@ namespace App\Livewire\Pages\Book;
 use App\Livewire\Plugin\TrixLivewire;
 use App\Models\Book;
 use App\Models\Category;
+use App\Models\Mentor;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Str;
@@ -32,7 +33,9 @@ class BookUpdateLivewire extends Component
     public $status = 'DRAFT';
 
     public $categories = [];
+    public $authors = [];
     public $selectedCategory = null;
+    public $selectedAuthor = null;
 
     public $id;
     public $currentCover;
@@ -70,18 +73,18 @@ class BookUpdateLivewire extends Component
     public function mount()
     {
         $this->categories = Category::orderBy('name')->get();
+        $this->authors = Mentor::orderBy('name')->get();
 
         $book = Book::where('id', $this->id)->first();
 
         $this->title = $book->title;
         $this->slug = $book->slug;
         $this->description = $book->description;
-        $this->author = $book->author;
+        $this->author = $book->author_id;
         $this->publisher = $book->publisher;
         $this->isbn = $book->isbn;
         $this->publishedYear = $book->published_year;
         $this->category = $book->category_id;
-        $this->selectedCategory = Category::where('id', $book->category_id)->first();
         $this->currentCover = $book->cover;
         $this->currentFile = $book->file;
         $this->price = $book->price;
@@ -91,11 +94,19 @@ class BookUpdateLivewire extends Component
         $this->totalPurchased = $book->total_purchased;
         $this->totalPages = $book->total_pages;
         $this->status = $book->status;
+
+        $this->selectedCategory = Category::where('id', $book->category_id)->first();
+        $this->selectedAuthor = Mentor::where('id', $book->author_id)->first();
     }
 
     public function setSelectedCategory()
     {
         $this->selectedCategory = $this->category != '-1' ? Category::findOrFail($this->category) : null;
+    }
+
+    public function setSelectedAuthor()
+    {
+        $this->selectedAuthor = $this->author != '-1' ? Mentor::findOrFail($this->author) : null;
     }
 
     public function setStatus($status)
@@ -116,11 +127,11 @@ class BookUpdateLivewire extends Component
         $this->validate();
         try {
             $cover = $this->cover ? $this->cover->store('book/cover') : $this->currentCover;
-            $file = $this->file ? $this->file->store('book/file') : $this->currentFile;
+            $file = $this->file ? $this->file->store('book/file', 'local') : $this->currentFile;
             Book::where('id', $this->id)->update([
                 'title' => $this->title,
                 'slug' => $this->slug,
-                'author' => $this->author,
+                'author_id' => $this->author,
                 'publisher' => $this->publisher,
                 'isbn' => $this->isbn,
                 'description' => $this->description,

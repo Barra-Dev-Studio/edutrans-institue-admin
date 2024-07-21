@@ -22,7 +22,7 @@ class XenditService
                 'currency' => 'IDR',
                 'price' => (int) $item->price,
                 'quantity' => 1,
-                'type' => 'PRODUCT',
+                'type' => $item->type,
             ];
         }
 
@@ -67,7 +67,7 @@ class XenditService
                 'currency' => 'IDR',
                 'price' => (int) $item->price,
                 'quantity' => 1,
-                'type' => 'PRODUCT',
+                'type' => $item->type,
             ];
         }
 

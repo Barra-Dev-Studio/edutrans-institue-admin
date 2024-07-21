@@ -23,7 +23,7 @@ class BookTableLivewire extends DataTableComponent
     public function builder(): Builder
     {
         return Book::query()
-            ->with('category')
+            ->with(['category', 'author'])
             ->select(['books.id', 'price', 'discount_price']);
     }
 
@@ -39,7 +39,7 @@ class BookTableLivewire extends DataTableComponent
                 ->searchable(),
             Column::make("Category", "category.name")
                 ->sortable(),
-            Column::make("Author", "author")
+            Column::make("Author", "author.name")
                 ->sortable()
                 ->searchable(),
             Column::make("Publisher", "publisher")

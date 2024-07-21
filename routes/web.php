@@ -12,6 +12,7 @@ use App\Http\Controllers\EmailVerifyController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\MentorController;
+use App\Http\Controllers\OwnedBookController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\QuizProgressController;
 use App\Http\Controllers\RatingController;
@@ -38,10 +39,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome')->name('home');
 Route::view('/courses', 'courses')->name('courses');
+Route::view('/books', 'books')->name('books');
 Route::view('/about', 'about')->name('about');
 Route::view('/terms', 'terms')->name('terms');
 Route::view('/terms/privacy', 'privacy-policy')->name('privacy');
 Route::get('/course/{slug}',[GuestController::class, 'courseDetail'])->name('course.detail');
+Route::get('/book/{slug}',[GuestController::class, 'bookDetail'])->name('book.detail');
 Route::get('/checkout/{slug}', [MemberController::class,'checkout'])->name('checkout');
 Route::get('payment/{transactionId}', [PaymentController::class, 'index'])->name('payment.index');
 Route::get('payment/qris/{transactionId}', [PaymentController::class, 'qris'])->name('payment.qris');
@@ -102,6 +105,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/transaction', [MemberController::class,'transaction'])->name('transaction');
             Route::get('/transaction/{id}', [MemberController::class,'detailTransaction'])->name('transaction.show');
             Route::get('/play/{id}/{chapterId?}', [MemberController::class,'play'])->name('play');
+            Route::get('/read/{id}', [MemberController::class,'read'])->name('read');
             Route::get('/certificate/', [CertificateController::class, 'index'])->name('certificate');
             Route::get('/certificate/my/{id}', [CertificateController::class, 'generateCertificate'])->name('certificate.my');
             Route::get('/certificate/download/{id}', [CertificateController::class, 'download'])->name('certificate.download');
@@ -109,6 +113,8 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/quiz/result/{ownedCourseId}', [QuizProgressController::class, 'result'])->name('quiz.result');
             Route::get('/quiz/{ownedCourseId}', [QuizProgressController::class, 'index'])->name('quiz.index');
             Route::get('/rate/{ownedCourseId}/{redirectTo?}', [RatingController::class, 'rate'])->name('rate.index');
+            Route::resource('book', OwnedBookController::class)->only('index');
+            Route::get('book/download/{id}', [OwnedBookController::class, 'download'])->name('book.download');
         });
     });
 });
