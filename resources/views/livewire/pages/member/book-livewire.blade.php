@@ -17,7 +17,7 @@
         <div class="prose">
             <label class="block font-medium text-gray-700 dark:text-zinc-100 mb-2">Search </label>
             <x-text-input wire:model.live="search" id="search" class="block mt-1 w-full" type="text" name="search"
-                placeholder="Search your course" />
+                placeholder="Search your ebook" />
         </div>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -27,8 +27,8 @@
         </div>
         @empty
         <div class="col-span-4" wire:key="not-found">
-            <p class="prose">Belum ada kursus. Akses halaman <a href="{{ route('courses') }}">Katalog</a> untuk melihat
-                list kursus yang tersedia</p>
+            <p class="prose">Belum ada ebook. Akses halaman <a href="{{ route('books') }}">Katalog</a> untuk melihat
+                list ebook yang tersedia</p>
         </div>
         @endforelse
     </div>
