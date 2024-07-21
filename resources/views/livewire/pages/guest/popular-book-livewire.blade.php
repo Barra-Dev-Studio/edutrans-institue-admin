@@ -1,10 +1,12 @@
 <div class="md:px-16 py-10">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <div class="px-6 md:px-8">
+        @if(count($books) > 0)
         <div class="flex items-center justify-between mb-8">
             <h3>Baca ebook populer</h3>
             <a href="{{ route('books') }}" class="prose">Lihat semua ebook</a>
         </div>
+        @endif
         <div>
             <div class="swiper popular-books">
                 <div class="swiper-wrapper">
