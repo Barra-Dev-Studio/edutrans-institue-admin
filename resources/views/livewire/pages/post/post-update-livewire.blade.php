@@ -1,14 +1,5 @@
 <div>
     <form wire:submit.prevent="submit" class="prose">
-        <!-- @if ($currentThumbnail && !$thumbnail)
-        <div class="mb-4">
-            <img src="{{ \Storage::url($currentThumbnail) }}" alt="">
-        </div>
-        @elseif($thumbnail)
-        <div>
-            <img src="{{ $thumbnail->temporaryUrl() }}" alt="">
-        </div>
-        @endif -->
         <div>
             <x-input-label for="thumbnail" :value="__('Thumbnail')" />
             <x-text-input wire:model.live="thumbnail" id="thumbnail" class="block mt-1 w-full" type="file"
