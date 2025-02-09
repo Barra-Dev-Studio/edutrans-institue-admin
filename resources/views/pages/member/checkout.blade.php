@@ -1,4 +1,4 @@
-<x-guest-layout title="Checkout | Edutrans Institute>
+<x-guest-layout title="Checkout | Edutrans Institute">
     <div class="bg-sky-900 pt-16 md:px-16">
         <div class="px-6 md:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 items-end gap-8">
