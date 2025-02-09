@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-guest-layout title="Certificate | Edutrans Institute>
     <div class="md:p-16">
         <div class="flex justify-center flex-col px-6 md:px-8 mb-16 w-full">
             <div class="flex justify-center w-full">

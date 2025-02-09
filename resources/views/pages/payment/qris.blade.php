@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-guest-layout title="Pembayaran QRIS | Edutrans Institute">
     <div class="w-screen h-screen flex items-start md:items-center justify-center px-6">
         <div class="card bg-white w-full md:w-[400px]">
             <div class="card-body border-b border-slate-200 text-center">

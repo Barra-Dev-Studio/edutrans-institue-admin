@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-guest-layout title="Edutrans Institute - Privacy Police">
     <section>
         <div class="md:px-16 py-10">
             <div class="px-6 md:px-8 pt-8 pb-8 rounded">

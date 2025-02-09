@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-guest-layout title="{{ $book->title ?? 'Books' }} | Edutrans Institute">
     <div class="bg-sky-900 py-6 md:px-16">
         <div class="px-6 md:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 items-end gap-8">

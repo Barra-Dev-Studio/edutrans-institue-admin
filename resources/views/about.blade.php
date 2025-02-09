@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-guest-layout title="Edutrans Institute - About Us">
     <section>
         <div class="md:px-16 py-10">
             <div class="px-6 md:px-8">
