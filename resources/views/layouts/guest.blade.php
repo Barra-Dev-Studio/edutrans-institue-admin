@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-  <title>{{ $title ? $title : 'Edutrans Institute by Hendi Pratama' }}</title>
+  <title>{{ isset($title) ? $title : 'Edutrans Institute by Hendi Pratama' }}</title>
   <meta name="title" content="Edutrans Institute" />
   <meta name="description"
     content="Edutrans Institute merupakan sebuah platform transformasi edukasi yang memiliki misi untuk menyederhanakan & mempermudah proses pembelajaran melalui berbagai pilihan e-course sesuai dengan kebutuhan pelanggan dan industri masa kini tentunya." />
